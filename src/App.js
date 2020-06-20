@@ -5,13 +5,19 @@ import NoLoginMenu from './Components/NoLoginMenu';
 import CustomerUserMenu from './Components/Customer/CustomerUserMenu';
 import EmployeeUserMenu from './Components/Employee/EmployeeUserMenu';
 import ManagerUserMenu from './Components/Manager/ManagerUserMenu';
+import NewsPage from './Components/AirportPages/NewsPage';
+import AboutUsPage from './Components/AirportPages/AboutUsPage';
+import MainPage from './Components/AirportPages/MainPage';
+import AccountPage from './Components/AccountPage';
+import AccountStatus from './Components/AccountStatus';
+
 
 function App() {
-
-  const [user,setUser] = useState(0);
+  const [userType,setUserType] = useState(0);
+  const [menuChoice, setMenuChoice] = useState(0);
 
   const renderMenuSwitch = () => {
-    switch(user){
+    switch(userType){
       case 0:
         return <NoLoginMenu />;
       case 1:
@@ -25,13 +31,33 @@ function App() {
     }
   }
 
+  const renderContentSwitch = () => {
+    switch(menuChoice){
+      case 0:
+        return <MainPage />;
+      case 1:
+        return <NewsPage />;
+      case 2:
+        return <AboutUsPage />;
+      case 3:
+        return <AccountPage />;
+      default:
+        return <MainPage />;
+    }
+  }
+
   return (
     <div className="App">
       <div className="Header">
         <div className="Logo">Logo</div>
         <div style={{display:"flex",flexDirection:"column",flex:2}}>
-          <div className="Login">Login</div>
-          <div className="ContentMenu">Content Menu<Button>Strona główna</Button><Button>Wiadomości</Button></div>
+          <div className="Login"><AccountStatus isLogged={0}/></div>
+          <div className="AirportPageMenu">
+            Content Menu
+            <Button onClick={() => setMenuChoice(0)}>Strona główna</Button>
+            <Button onClick={() => setMenuChoice(1)}>Wiadomości</Button>
+            <Button onClick={() => setMenuChoice(2)}>O nas</Button>
+          </div>
         </div>
       </div>
 
@@ -39,7 +65,9 @@ function App() {
         <div className="UserMenu">
           {renderMenuSwitch()}
         </div>
-        <div className="Content">Content</div>
+        <div className="Content">
+          {renderContentSwitch()}
+        </div>
       </div>
 
       <div className="Footer">

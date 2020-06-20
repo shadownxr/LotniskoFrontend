@@ -25,10 +25,10 @@
   flex: 1;
   align-content: flex-end;
   justify-content: flex-end;
-  background-color: red;
+  background-color: silver;
 }
 
-.ContentMenu {
+.AirportPageMenu {
   flex: 2;
   align-content: flex-end;
   justify-content: flex-end;
