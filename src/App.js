@@ -1,72 +1,41 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Button from '@material-ui/core/button';
-import NoLoginMenu from './Components/NoLoginMenu';
-import CustomerUserMenu from './Components/Customer/CustomerUserMenu';
-import EmployeeUserMenu from './Components/Employee/EmployeeUserMenu';
-import ManagerUserMenu from './Components/Manager/ManagerUserMenu';
-import NewsPage from './Components/AirportPages/NewsPage';
-import AboutUsPage from './Components/AirportPages/AboutUsPage';
-import MainPage from './Components/AirportPages/MainPage';
-import AccountPage from './Components/AccountPage';
+import UserMenu from './Components/UserMenu';
 import AccountStatus from './Components/AccountStatus';
-
+import Content from './Components/Content';
 
 function App() {
-  const [userType,setUserType] = useState(0);
+  const [userType,setUserType] = useState("");
   const [menuChoice, setMenuChoice] = useState(0);
+  const [tokenId, setTokenId] = useState(0);
 
-  const renderMenuSwitch = () => {
-    switch(userType){
-      case 0:
-        return <NoLoginMenu />;
-      case 1:
-        return <CustomerUserMenu />;
-      case 2:
-        return <EmployeeUserMenu />;
-      case 3:
-        return <ManagerUserMenu />;
-      default:
-        return <NoLoginMenu />;
-    }
-  }
-
-  const renderContentSwitch = () => {
-    switch(menuChoice){
-      case 0:
-        return <MainPage />;
-      case 1:
-        return <NewsPage />;
-      case 2:
-        return <AboutUsPage />;
-      case 3:
-        return <AccountPage />;
-      default:
-        return <MainPage />;
-    }
-  }
+  useEffect(() => {
+    setUserType("Customer");
+  },[userType]);
 
   return (
     <div className="App">
       <div className="Header">
         <div className="Logo">Logo</div>
         <div style={{display:"flex",flexDirection:"column",flex:2}}>
-          <div className="Login"><AccountStatus isLogged={0}/></div>
+          <div className="Login"><AccountStatus isLogged={1}/></div>
           <div className="AirportPageMenu">
-            Content Menu
-            <Button onClick={() => setMenuChoice(0)}>Strona główna</Button>
-            <Button onClick={() => setMenuChoice(1)}>Wiadomości</Button>
-            <Button onClick={() => setMenuChoice(2)}>O nas</Button>
+            <div className="AirportMenuButtonCluster">
+            <Button onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
+            <Button onClick={() => setMenuChoice("News")}>Wiadomości</Button>
+            <Button onClick={() => setMenuChoice("About Us")}>O nas</Button>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="Main">
         <div className="UserMenu">
-          {renderMenuSwitch()}
+          <UserMenu userType={userType} menuChoice={(choice) => setMenuChoice(choice)} tokenId={tokenId}/>
         </div>
         <div className="Content">
-          {renderContentSwitch()}
+          <div className="ContentContainer"><Content menuChoice={menuChoice} /></div>
         </div>
       </div>
 

@@ -1,5 +1,7 @@
 import React, {useState,useEffect} from 'react';
-import Link from '@material-ui/core/Link';
+import SignIn from './Authorization/SignIn';
+import SignUp from './Authorization/SignUp';
+import Button from '@material-ui/core/Button';
 
 export default function AccountStatus(props){
     const [isLogged,setIsLogged] = useState(0);
@@ -11,11 +13,11 @@ export default function AccountStatus(props){
     const accountStatusSwitch = () => {
         switch(isLogged){
             case 0:
-                return <Link>Nie jesteś zalogowany, kliknij aby się zalogować.</Link>;
+                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} /></div>;
             case 1:
-                return <div>Witaj nazwa_użytkownika!</div>;
+                return <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>Witaj nazwa_użytkownika!<Button>Dane Konta</Button><Button>Wyloguj</Button></div>;
             default:
-                return <Link>Nie jesteś zalogowany, kliknij aby się zalogować.</Link>;
+                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} /></div>;
         }
     }
 
