@@ -8,7 +8,7 @@ export default function EmployeeUserMenu(props){
 
     return(
         <div>
-            <div className="UserMenu"><Button onClick={() => handleMenuChoice("Employee View Flights")}>Dodawaj/Usuwaj/Edytuj loty</Button></div>
+            <div className="UserMenu"><Button onClick={() => handleMenuChoice("Employee View Flights")}>Zarządzaj lotami</Button></div>
         </div>
     )
 }

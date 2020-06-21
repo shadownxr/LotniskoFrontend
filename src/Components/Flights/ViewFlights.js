@@ -57,6 +57,9 @@ export default function ViewFlights(){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
+                            <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
+                        </StyledTableRow>
+                        <StyledTableRow>
                             <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Z</StyledTableCell>
                             <StyledTableCell align="center">Do</StyledTableCell>
