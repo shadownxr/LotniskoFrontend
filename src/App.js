@@ -11,7 +11,7 @@ function App() {
   const [tokenId, setTokenId] = useState(0);
 
   useEffect(() => {
-    setUserType("Employee");
+    setUserType("Manager");
   },[userType]);
 
   return (
