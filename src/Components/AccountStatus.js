@@ -7,7 +7,6 @@ import Cookie from 'react-cookies';
 export default function AccountStatus(props){
     const [isLogged,setIsLogged] = useState(0);
     const [accountData,setAccountData] = useState();
-    const [userType,setUserType] = useState("Not logged");
 
     const useWindowUnloadEffect = (handler, callOnCleanup) => {
         const cb = useRef();

@@ -20,19 +20,19 @@ export default function Content(props){
           case "About Us":
             return <AboutUsPage />;
           case "Account Page":
-            return <AccountPage />;
+            return <AccountPage accountData={props.accountData}/>;
           case "View Flights":
-            return <ViewFlights />;
+            return <ViewFlights accountData={props.accountData}/>;
           case "Online Briefing":
-            return <OnlineBriefing />;
+            return <OnlineBriefing accountData={props.accountData}/>;
           case "Employee View Flights":
-            return <EmployeeViewFlights />;
+            return <EmployeeViewFlights accountData={props.accountData}/>;
           case "Manager View Flights":
-            return <ManagerViewFlights />;
+            return <ManagerViewFlights accountData={props.accountData}/>;
           case "View Employees":
-            return <ViewEmployees />;
+            return <ViewEmployees accountData={props.accountData}/>;
           case "Customer Reservations":
-            return <CustomerReservations />;
+            return <CustomerReservations accountData={props.accountData}/>;
           default:
             return <MainPage />;
         }

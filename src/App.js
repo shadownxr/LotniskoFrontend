@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Button from '@material-ui/core/button';
 import UserMenu from './Components/UserMenu';
@@ -6,7 +6,6 @@ import AccountStatus from './Components/AccountStatus';
 import Content from './Components/Content';
 
 function App() {
-  const [userType,setUserType] = useState("Not logged");
   const [menuChoice, setMenuChoice] = useState(0);
   const [accountData, setAccountData] = useState();
 
@@ -33,7 +32,7 @@ function App() {
           <UserMenu userType={accountData?accountData.roles[accountData.roles.length - 1]:"Not logged"} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
         </div>
         <div className="Content">
-          <div className="ContentContainer"><Content menuChoice={menuChoice} /></div>
+          <div className="ContentContainer"><Content menuChoice={menuChoice} accountData={accountData}/></div>
         </div>
       </div>
 

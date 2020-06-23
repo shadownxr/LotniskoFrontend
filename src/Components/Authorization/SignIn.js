@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
-import { Cookies, useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 export default function SignIn(props){
     const [open, setOpen] = useState(false);
