@@ -7,12 +7,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
+import { Cookies, useCookies } from 'react-cookie';
 
 export default function SignIn(props){
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');
     const [login, setLogin] = useState('');
     const [err, setErr] = useState('');
+    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -31,9 +33,46 @@ export default function SignIn(props){
         setPassword(event.target.value);
       };
 
-    const handleAdd = () => {
-      console.log(password+" "+login);
-      setOpen(false);
+    const handleSignIn = () => {
+      fetchToken();
+    };
+
+    const fetchToken = () => {
+      let payload = {
+        username: login,
+        password: password
+      }
+
+      console.log(payload);
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      let dt = new Date();
+      dt.setMinutes( dt.getMinutes() + 15 );
+
+      const url = "http://localhost:8080/api/auth/signin";
+
+      fetch(url, options)
+        .then(response => response.json())
+        .then(result => {
+          if(result.error === "Unauthorized"){
+            console.log(result);
+            setErr("Błędny login lub hasło");
+            return
+          } else {
+            setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt});
+            props.accountData({id: result.id,roles:result.roles,username:result.username,email:result.email});
+            setOpen(false);
+          }
+      });
+
     };
 
     return (
@@ -66,7 +105,7 @@ export default function SignIn(props){
                         />
                 </DialogContent>
             <DialogActions className="DialogButtons">
-                <Button onClick={handleAdd} color="primary">
+                <Button onClick={handleSignIn} color="primary">
                     Zaloguj
                 </Button>
             </DialogActions>
