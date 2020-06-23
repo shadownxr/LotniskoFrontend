@@ -6,20 +6,18 @@ import AccountStatus from './Components/AccountStatus';
 import Content from './Components/Content';
 
 function App() {
-  const [userType,setUserType] = useState("");
+  const [userType,setUserType] = useState("Not logged");
   const [menuChoice, setMenuChoice] = useState(0);
-  const [tokenId, setTokenId] = useState(0);
+  const [accountData, setAccountData] = useState();
 
-  useEffect(() => {
-    setUserType("Employee");
-  },[userType]);
+  console.log(accountData);
 
   return (
     <div className="App">
       <div className="Header">
         <div className="Logo">Logo</div>
         <div style={{display:"flex",flexDirection:"column",flex:2}}>
-          <div className="Login"><AccountStatus isLogged={1}/></div>
+          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
             <Button onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
@@ -32,7 +30,7 @@ function App() {
 
       <div className="Main">
         <div className="UserMenu">
-          <UserMenu userType={userType} menuChoice={(choice) => setMenuChoice(choice)} tokenId={tokenId}/>
+          <UserMenu userType={accountData?accountData.roles[accountData.roles.length - 1]:"Not logged"} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
         </div>
         <div className="Content">
           <div className="ContentContainer"><Content menuChoice={menuChoice} /></div>

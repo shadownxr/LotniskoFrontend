@@ -12,8 +12,12 @@ export default function SignUp(props){
     const [open, setOpen] = React.useState(false);
     const [password, setPassword] = React.useState('');
     const [rPassword, setRPassword] = React.useState('');
-    const [email, setEmail] = React.useState('');
     const [login, setLogin] = React.useState('');
+    const [email, setEmail] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [surename, setSurename] = React.useState('');
+    const [personalId, setPersonalId] = React.useState('');
+    const [phoneNumber, setPhoneNumber] = React.useState('');
     const [err, setErr] = React.useState('');
 
     const handleClickOpen = () => {
@@ -33,6 +37,22 @@ export default function SignUp(props){
         setEmail(event.target.value);
     };
 
+    const handleName = (event) => {
+        setName(event.target.value);
+    };
+
+    const handleSurename = (event) => {
+        setSurename(event.target.value);
+    };
+
+    const handlePhoneNumber = (event) => {
+        setPhoneNumber(event.target.value);
+    };
+
+    const handlePersonalId = (event) => {
+        setPersonalId(event.target.value);
+    };
+
     const handlePassword = (event) => {
         setPassword(event.target.value);
     };
@@ -44,11 +64,63 @@ export default function SignUp(props){
     const handleAdd = () => {
       console.log(password+" "+rPassword+" "+login+" "+email);
         if(password === rPassword){
+            fetchRegister();
             setOpen(false);
         } else {
             setErr("Hasła nie zgadzają się");
         }
     };
+
+    const fetchRegister = () => {
+        let payload = {
+          "username": login,
+          "password": password,
+          "email": email,
+          "role": ["user"],
+          "phoneNumber": phoneNumber,
+          "personalID": personalId,
+          "name": name,
+          "surname": surename
+        }
+  
+        if(password.length < 6){
+            err("Hasło musi mieć conajmniej 6 znaków");
+            return
+        }
+
+        console.log(payload);
+  
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        };
+  
+        const url = "http://localhost:8080/api/auth/signup";
+  
+        fetch(url, options)
+          .then(response => response.json())
+          .then(result => {
+            console.log(result);
+            if(result.message === "Error: Username is already taken!"){
+              setErr("Wybrany login jest zajęty");
+              return
+            } else if(result.message === "Error: Email is already in use!"){
+              setErr("Wybrany email jest zajęty");
+              return
+            } else if(result.error === "Internal Server Error"){
+              setErr("Błąd przy zakładaniu konta");
+              return
+            } else if(result.message === "User registered successfully!"){  
+              console.log(result);
+              setOpen(false);
+            }
+        });
+  
+      };
 
     return (
       <div>
@@ -78,6 +150,54 @@ export default function SignUp(props){
                                 shrink: true,
                             }}
                             fullWidth
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Name"
+                            type="text"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={handleName}
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="surename"
+                            label="Surename"
+                            type="text"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={handleSurename}
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="personalId"
+                            label="PESEL"
+                            type="text"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={handlePersonalId}
+                        />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="phoneNumber"
+                            label="Numer Telefonu"
+                            type="text"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            fullWidth
+                            onChange={handlePhoneNumber}
                         />
                         <TextField
                             autoFocus
