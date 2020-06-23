@@ -6,7 +6,8 @@ import AccountPage from './AccountPage';
 import ViewFlights from './Flights/ViewFlights';
 import OnlineBriefing from './Customer/OnlineBriefing';
 import EmployeeViewFlights from './Employee/EmployeeViewFlights';
-import ViewEmployees from './Manager/ViewEmployees';
+import ManagerViewFlights from "./Manager/AdministerFights/ManagerViewFlights";
+import ViewEmployees from './Manager/AdministerEmployees/ViewEmployees';
 import CustomerReservations from './Customer/CustomerReservations';
 
 export default function Content(props){
@@ -26,6 +27,8 @@ export default function Content(props){
             return <OnlineBriefing />;
           case "Employee View Flights":
             return <EmployeeViewFlights />;
+          case "Manager View Flights":
+            return <ManagerViewFlights />;
           case "View Employees":
             return <ViewEmployees />;
           case "Customer Reservations":

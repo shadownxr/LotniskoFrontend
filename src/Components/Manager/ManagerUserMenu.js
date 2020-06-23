@@ -10,6 +10,7 @@ export default function ManagerUserMenu(props){
         <div>
             <div className="UserMenu">
                 <Button onClick={() => handleMenuChoice("View Employees")}>Przeglądaj pracowników</Button>
+                <Button onClick={() => handleMenuChoice("Manager View Flights")}>Przeglądaj loty</Button>
             </div>
         </div>
     )

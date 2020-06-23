@@ -6,50 +6,50 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchButton from '../Flights/SearchFlightButton';
-import EmployeeViewFlightsList from './EmployeeViewFlightsList';
+import SearchButton from '../../Flights/SearchFlightButton';
+import ManagerViewFlightsList from "./ManagerViewFlightsList";
 import AddButton from './AddFlightButton';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+        backgroundColor: theme.palette.common.black,
+        color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+        fontSize: 14,
     },
-  }))(TableCell);
-  
-  const StyledTableRow = withStyles((theme) => ({
+}))(TableCell);
+
+const StyledTableRow = withStyles((theme) => ({
     root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
-      },
+        '&:nth-of-type(odd)': {
+            backgroundColor: theme.palette.action.hover,
+        },
     },
-  }))(TableRow);
+}))(TableRow);
 
 const useStyles = makeStyles({
     table: {
-      minWidth: 650,
+        minWidth: 650,
     },
 });
 
-export default function EmployeeViewFlights(){
-    const flights = [{
+export default function ManagerViewFlight(){
+    const flightsManager = [{
         id: 1,
         from: "Szczecin",
         to: "Kraków",
         date: "2020-07-02",
         class: "Ekonomiczna",
-        cost: "200PLN" 
-     },{
+        cost: "200PLN"
+    },{
         id: 2,
         from: "Kraków",
         to: "Raków",
         date: "2020-07-20",
         class: "Biznes",
         cost: "400PLN"
-     }]
+    }]
 
     return(
         <div>
@@ -69,7 +69,7 @@ export default function EmployeeViewFlights(){
                             <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchButton /><AddButton /></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewFlightsList flightsData={flights}/>
+                    <ManagerViewFlightsList flightsData={flightsManager}/>
                 </Table>
             </TableContainer>
         </div>
