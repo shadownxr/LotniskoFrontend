@@ -27,11 +27,13 @@ export default function ViewEmployeesList(props){
     const employeesList = props.employeesData.map((employee,i) => {
         return(
             <StyledTableRow key={i} className="EmployeeList">
-                <StyledTableCell align="center">{employee.id}</StyledTableCell>
+                <StyledTableCell align="center">{employee.position}</StyledTableCell>
+                <StyledTableCell align="center">{employee.salary}</StyledTableCell>
                 <StyledTableCell align="center">{employee.name}</StyledTableCell>
                 <StyledTableCell align="center">{employee.surname}</StyledTableCell>
-                <StyledTableCell align="center">{employee.position}</StyledTableCell>
-                <StyledTableCell align="center">{employee.date}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personalID}</StyledTableCell>
+                <StyledTableCell align="center">{employee.phoneNumber}</StyledTableCell>
+                <StyledTableCell align="center">{employee.email}</StyledTableCell>
                 <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
             </StyledTableRow>
         )

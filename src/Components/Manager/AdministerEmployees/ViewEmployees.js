@@ -58,11 +58,12 @@ export default function ViewEmployees(){
                             <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Id</StyledTableCell>
+                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
+                            <StyledTableCell align="center">Pensja</StyledTableCell>
                             <StyledTableCell align="center">Imię</StyledTableCell>
                             <StyledTableCell align="center">Nazwisko</StyledTableCell>
-                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
-                            <StyledTableCell align="center">Zatrudniony od</StyledTableCell>
+                            <StyledTableCell align="center">Numer pesel</StyledTableCell>
+                            <StyledTableCell align="center">Numer telefonu</StyledTableCell>
                             <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton /></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
