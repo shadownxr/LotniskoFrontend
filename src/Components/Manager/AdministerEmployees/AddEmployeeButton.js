@@ -8,7 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
-import { useCookies } from 'react-cookie';
+import Cookie from 'react-cookies'
 
 const MyButton = styled(Button)({
     color: 'white'
@@ -25,7 +25,6 @@ export default function AddButton(props){
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [err, setErr] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['userToken']);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -80,13 +79,15 @@ export default function AddButton(props){
         }
 
         console.log(payload);
+        console.log(Cookie.load('userToken').token);
+
 
         const options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Authorization': cookies.tokenType+ " "+ cookies.token,
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
             },
             body: JSON.stringify(payload),
         };
