@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,9 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchButton from '../../Flights/SearchFlightButton';
+import SearchButton from "../../Flights/SearchFlightButton";
 import ManagerViewFlightsList from "./ManagerViewFlightsList";
-import AddButton from './AddFlightButton';
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -34,22 +34,27 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ManagerViewFlight(){
-    const flightsManager = [{
-        id: 1,
-        from: "Szczecin",
-        to: "Kraków",
-        date: "2020-07-02",
-        class: "Ekonomiczna",
-        cost: "200PLN"
-    },{
-        id: 2,
-        from: "Kraków",
-        to: "Raków",
-        date: "2020-07-20",
-        class: "Biznes",
-        cost: "400PLN"
-    }]
+export default function ManagerViewFlights(){
+    const [flights,setFlights] = useState([]);
+
+    useEffect(() => {
+        fetchFlights();
+    },[]);
+
+    const fetchFlights = () => {
+        const url = "http://localhost:8080/api/flights/list";
+
+        let options = {
+            method: 'GET',
+        }
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setFlights(result);
+            });
+    }
 
     return(
         <div>
@@ -57,7 +62,7 @@ export default function ManagerViewFlight(){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Lista lotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">Nr</StyledTableCell>
@@ -66,10 +71,10 @@ export default function ManagerViewFlight(){
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
                             <StyledTableCell align="center">Klasa</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchButton /><AddButton /></div></StyledTableCell>
+                            <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ManagerViewFlightsList flightsData={flightsManager}/>
+                    <ManagerViewFlightsList flightsData={flights}/>
                 </Table>
             </TableContainer>
         </div>
