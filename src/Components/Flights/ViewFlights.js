@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ViewFlightsList from './ViewFlightsList';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -35,21 +35,26 @@ const useStyles = makeStyles({
 });
 
 export default function ViewFlights(){
-    const flights = [{
-       id: 1,
-       from: "Szczecin",
-       to: "Kraków",
-       date: "2020-07-02",
-       class: "Ekonomiczna",
-       cost: "200PLN" 
-    },{
-       id: 2,
-       from: "Kraków",
-       to: "Raków",
-       date: "2020-07-20",
-       class: "Biznes",
-       cost: "400PLN"
-    }]
+    const [flights,setFlights] = useState([]);
+
+    useEffect(() => {
+      fetchFlights();
+    },[]);
+
+    const fetchFlights = () => {
+      const url = "http://localhost:8080/api/flights/list";
+
+      let options = {
+        method: 'GET',
+      }
+
+      fetch(url, options)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
+          setFlights(result);
+        });
+    }
 
     return(
         <div>

@@ -8,7 +8,7 @@ export default function NoLoginMenu(props){
 
     return(
         <div>
-            <div className="UserMenu"><Button onClick={() => handleMenuChoice("View")}>Przeglądaj loty</Button></div>
+            <div className="UserMenu"><Button onClick={() => handleMenuChoice("View Flights")}>Przeglądaj loty</Button></div>
         </div>
     )
 }

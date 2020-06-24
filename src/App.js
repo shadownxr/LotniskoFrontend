@@ -9,8 +9,6 @@ function App() {
   const [menuChoice, setMenuChoice] = useState(0);
   const [accountData, setAccountData] = useState();
 
-  console.log(accountData);
-
   return (
     <div className="App">
       <div className="Header">
