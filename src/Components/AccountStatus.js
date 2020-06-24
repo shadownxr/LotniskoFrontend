@@ -44,6 +44,7 @@ export default function AccountStatus(props){
             console.log("Logged out");
             Cookie.remove('userToken');
             setIsLogged(false);
+            window.location.reload();
         }
     } 
 
