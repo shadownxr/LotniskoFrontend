@@ -30,11 +30,11 @@ export default function ViewEmployeesList(props){
             <StyledTableRow key={i} className="EmployeeList">
                 <StyledTableCell align="center">{employee.position}</StyledTableCell>
                 <StyledTableCell align="center">{employee.salary}</StyledTableCell>
-                <StyledTableCell align="center">{employee.name}</StyledTableCell>
-                <StyledTableCell align="center">{employee.surname}</StyledTableCell>
-                <StyledTableCell align="center">{employee.personalID}</StyledTableCell>
-                <StyledTableCell align="center">{employee.phoneNumber}</StyledTableCell>
-                <StyledTableCell align="center">{employee.email}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.name}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.surname}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.personalID}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.email}</StyledTableCell>
                 <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
             </StyledTableRow>
         )
