@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ViewFlights(){
+export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
 
     useEffect(() => {
@@ -74,7 +74,7 @@ export default function ViewFlights(){
                             <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewFlightsList flightsData={flights}/>
+                    <ViewFlightsList flightsData={flights} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>

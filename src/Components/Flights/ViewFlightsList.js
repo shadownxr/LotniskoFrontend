@@ -4,6 +4,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import Cookie from 'react-cookies';
+import BuyButton from './BuyButton';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -28,12 +30,12 @@ export default function ViewFlightsList(props){
         return(
             <StyledTableRow key={i} className="FlightList">
                 <StyledTableCell align="center">{flight.id}</StyledTableCell>
-                <StyledTableCell align="center">{flight.from}</StyledTableCell>
-                <StyledTableCell align="center">{flight.to}</StyledTableCell>
-                <StyledTableCell align="center">{flight.date}</StyledTableCell>
+                <StyledTableCell align="center">{flight.sapid.cityName}</StyledTableCell>
+                <StyledTableCell align="center">{flight.dapid.cityName}</StyledTableCell>
+                <StyledTableCell align="center">{flight.startDate}</StyledTableCell>
                 <StyledTableCell align="center">{flight.class}</StyledTableCell>
-                <StyledTableCell align="center">{flight.cost}</StyledTableCell>
-                <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
+                <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
+                <StyledTableCell align="center"><div style={{display:"flex"}}><Button>Szczegóły</Button>{(Cookie.load('userToken'))?<BuyButton accountData={props.accountData} flightId={flight.id}/>:" "}</div></StyledTableCell>
             </StyledTableRow>
         )
     })
