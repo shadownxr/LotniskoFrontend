@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,9 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchButton from "../../Flights/SearchFlightButton";
-import ManagerViewFlightsList from "./ManagerViewFlightsList";
-
+import SearchEmployeeButton from "./SearchEmployeeButton";
+import Cookie from 'react-cookies';
+import ViewFiredEmployeesList from "./ViewFiredEmpolyeesList";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -34,27 +34,32 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ManagerViewFlights(){
-    const [flights,setFlights] = useState([]);
+export default function ViewEmployees(props){
+    const [employees,setEmployees] = useState([]);
 
     useEffect(() => {
-        fetchFlights();
+        fetchEmployees();
     },[]);
 
-    const fetchFlights = () => {
-        const url = "http://localhost:8080/api/flights/list";
+    const fetchEmployees = () => {
+        const url = "http://localhost:8080/api/employees/list";
 
         let options = {
             method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
         }
 
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                setFlights(result);
+                setEmployees(result);
             });
     }
+
+
 
     return(
         <div>
@@ -62,19 +67,18 @@ export default function ManagerViewFlights(){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nr</StyledTableCell>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Klasa</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchButton /></StyledTableCell>
+                            <StyledTableCell align="center">Imię</StyledTableCell>
+                            <StyledTableCell align="center">Nazwisko</StyledTableCell>
+                            <StyledTableCell align="center">Numer telefonu</StyledTableCell>
+                            <StyledTableCell align="center">Data zatrudnienia</StyledTableCell>
+                            <StyledTableCell align="center">Data zwolnienia</StyledTableCell>
+                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ManagerViewFlightsList flightsData={flights}/>
+                    <ViewFiredEmployeesList employeesData={employees} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>

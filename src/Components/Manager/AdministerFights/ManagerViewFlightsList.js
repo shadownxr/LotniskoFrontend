@@ -23,7 +23,7 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-export default function ManagerViewFlightList(props){
+export default function ManagerViewFlightsList(props){
     const flightList = props.flightsData.map((flight,i) => {
         return(
             <StyledTableRow key={i} className="FlightList">

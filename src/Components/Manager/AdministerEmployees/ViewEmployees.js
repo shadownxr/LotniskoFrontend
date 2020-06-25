@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,6 +9,8 @@ import Paper from '@material-ui/core/Paper';
 import ViewEmployeesList from "./ViewEmployeesList";
 import SearchEmployeeButton from "./SearchEmployeeButton";
 import AddEmployeeButton from "./AddEmployeeButton";
+import Cookie from 'react-cookies';
+import Refresh from '@material-ui/icons/Refresh';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -34,20 +36,33 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ViewEmployees(){
-    const employees = [{
-        id: 1,
-        name: "Adam",
-        surname: "Kowalski",
-        position: "Starszy zarządca lotów",
-        date: "2015-01-01",
-    },{
-        id: 2,
-        name: "Anna",
-        surname: "Nowak",
-        position: "Młodszy zarządca lotów",
-        date: "2019-06-01",
-    }]
+export default function ViewEmployees(props){
+    const [employees,setEmployees] = useState([]);
+
+    useEffect(() => {
+        fetchEmployees();
+    },[]);
+
+    const fetchEmployees = () => {
+        const url = "http://localhost:8080/api/employees/list";
+
+        let options = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
+        }
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setEmployees(result);
+            });
+
+    }
+
+
 
     return(
         <div>
@@ -58,15 +73,17 @@ export default function ViewEmployees(){
                             <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Id</StyledTableCell>
+                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
+                            <StyledTableCell align="center">Pensja</StyledTableCell>
                             <StyledTableCell align="center">Imię</StyledTableCell>
                             <StyledTableCell align="center">Nazwisko</StyledTableCell>
-                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
-                            <StyledTableCell align="center">Zatrudniony od</StyledTableCell>
-                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton /></div></StyledTableCell>
+                            <StyledTableCell align="center">Numer pesel</StyledTableCell>
+                            <StyledTableCell align="center">Numer telefonu</StyledTableCell>
+                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton />
+                            </div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewEmployeesList employeesData={employees}/>
+                    <ViewEmployeesList employeesData={employees} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>
