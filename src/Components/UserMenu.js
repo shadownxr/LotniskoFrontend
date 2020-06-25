@@ -5,11 +5,8 @@ import EmployeeUserMenu from './Employee/EmployeeUserMenu';
 import ManagerUserMenu from './Manager/ManagerUserMenu';
 
 export default function UserMenu(props){
-    const [userType,setUserType] = useState("Not Logged");
+    const [userType,setUserType] = useState("ROLE_EMPLOYEE");
 
-    useEffect(() => {
-        setUserType(props.userType);
-    },[props.userType])
 
     const renderMenuSwitch = () => {
         switch(userType){

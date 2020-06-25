@@ -8,123 +8,198 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Cookie from 'react-cookies'
 
 const MyButton = styled(Button)({
-  color: 'white'
+    color: 'white'
 });
 
 
-export default function AddButton(props){
+export default function AddFlightButton(props){
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState('');
-    const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
-    const [cost, setCost] = useState('');
-    const [ticketClass, setTicketClass] = useState('');
+    const [starts, setStarts] = useState('');
+    const [ends, setEnds] = useState('');
+    const [sourceID, setSourceID] = useState('');
+    const [destID, setDestID] = useState('');
+    const [planeID, setPlaneID] = useState('');
+    const [priceEco, setPriceEco] = useState('');
+    const [priceBusi, setPriceBusi] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
-      setOpen(true);
+        setOpen(true);
     };
 
     const handleClose = () => {
-      setErr("");
-      setOpen(false);
+        setErr("");
+        setOpen(false);
+    };
+    const handleStarts = (event) => {
+        setStarts(event.target.value);
     };
 
-    const handleFrom = (event) => {
-      setFrom(event.target.value);
+    const handleEnds = (event) => {
+        setEnds(event.target.value);
     };
 
-    const handleTo = (event) => {
-      setTo(event.target.value);
+    const handleSourceID = (event) => {
+        setSourceID(event.target.value);
     };
 
-    const handleDate = (event) => {
-      setDate(event.target.value);
+    const handleDestID = (event) => {
+        setDestID(event.target.value);
     };
 
-    
-    const handleCost = (event) => {
-      setCost(event.target.value);
+    const handlePlaneID = (event) => {
+        setPlaneID(event.target.value);
     };
 
-
-    const handleTicketClass = (event) => {
-      setTicketClass(event.target.value);
+    const handlePriceEco = (event) => {
+        setPriceEco(event.target.value);
+    };
+    const handlePriceBusi = (event) => {
+        setPriceBusi(event.target.value);
     };
 
     const handleAdd = () => {
-        console.log(from+" "+to+" "+date+" "+ticketClass+" "+cost);
+        console.log(starts+" "+ends+" "+sourceID+" "+destID+" "+planeID+" "+priceEco+" "+priceBusi);
+        fetchAddFlight();
         setOpen(false);
+
     }
+    const fetchAddFlight = () => {
+        let payload = {
+            "starts": starts,
+            "ends": ends,
+            "sourceID": sourceID,
+            "destID": destID,
+            "planeID": planeID,
+            "priceEco": priceEco,
+            "priceBusi": priceBusi,
+        }
+
+        console.log(payload);
+        console.log(Cookie.load('userToken').token);
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
+            body: JSON.stringify(payload),
+        };
+
+        const url = "http://localhost:8080/api/flights/add";
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                if(result.message === "Error: Invalid source airport!"){
+                    setErr("Wybrana rola nie istnieje");
+                    return
+                } else if(result.message === "Employee added successfully!"){
+                    console.log(result);
+                    setOpen(false);
+                    return
+                }
+                else if(result.message === "Error: Invalid plane id!"){
+                    console.log(result);
+                    setOpen(false);
+                }
+            });
+
+    };
 
     return (
         <div>
-        <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Dodaj lot</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Podaj miejsce początkowe, dolecowe, datę odlotu i klasę<br/>
-              {err}
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="from"
-              label="Miejsce początkowe"
-              type="text"
-              onChange={handleFrom}
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="to"
-              label="Miejsce Docelowe"
-              type="text"
-              onChange={handleTo}
-              fullWidth
-            />
-            <TextField
-                id="date"
-                label="Data odlotu"
-                type="date"
-                value={to}
-                onChange={handleDate}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="cost"
-              label="Cena"
-              type="text"
-              onChange={handleCost}
-              fullWidth
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="class"
-              label="Klasa"
-              type="text"
-              onChange={handleTicketClass}
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="primary">
-              Anuluj
-            </Button>
-            <Button onClick={handleAdd} color="primary">
-              Dodaj
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+            <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">Dodaj lot</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {err}
+                    </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="starts"
+                        label="Data startu"
+                        type="datetime-local"
+                        onChange={handleStarts}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="ends"
+                        label="Spodziewane lądawanie"
+                        type="datetime-local"
+                        onChange={handleEnds}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="sourceID"
+                        label="Z"
+                        type="text"
+                        onChange={handleSourceID}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="destID"
+                        label="Do"
+                        type="text"
+                        onChange={handleDestID}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="planeID"
+                        label="Numer samolotu"
+                        type="text"
+                        onChange={handlePlaneID}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="priceEco"
+                        label="Koszt klasy ekonomicznej"
+                        type="text"
+                        onChange={handlePriceEco}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="priceBusi"
+                        label="Koszt klasy biznesowej"
+                        type="text"
+                        onChange={handlePriceBusi}
+                        fullWidth
+                    />
+
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        Anuluj
+                    </Button>
+                    <Button onClick={handleAdd} color="primary">
+                        Dodaj
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </div>
     )
 }
