@@ -65,6 +65,7 @@ export default function AddButton(props){
         console.log(position+" "+name+" "+surname+" "+personalID+" "+phoneNumber+" "+email);
         fetchAddEmployee();
         setOpen(false);
+
     }
     const fetchAddEmployee = () => {
         let payload = {

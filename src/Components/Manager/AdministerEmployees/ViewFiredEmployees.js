@@ -6,11 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import ViewEmployeesList from "./ViewEmployeesList";
 import SearchEmployeeButton from "./SearchEmployeeButton";
-import AddEmployeeButton from "./AddEmployeeButton";
 import Cookie from 'react-cookies';
-import Refresh from '@material-ui/icons/Refresh';
+import ViewFiredEmployeesList from "./ViewFiredEmpolyeesList";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -59,7 +57,6 @@ export default function ViewEmployees(props){
                 console.log(result);
                 setEmployees(result);
             });
-
     }
 
 
@@ -73,17 +70,15 @@ export default function ViewEmployees(props){
                             <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
-                            <StyledTableCell align="center">Pensja</StyledTableCell>
                             <StyledTableCell align="center">Imię</StyledTableCell>
                             <StyledTableCell align="center">Nazwisko</StyledTableCell>
-                            <StyledTableCell align="center">Numer pesel</StyledTableCell>
                             <StyledTableCell align="center">Numer telefonu</StyledTableCell>
-                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton />
-                            </div></StyledTableCell>
+                            <StyledTableCell align="center">Data zatrudnienia</StyledTableCell>
+                            <StyledTableCell align="center">Data zwolnienia</StyledTableCell>
+                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewEmployeesList employeesData={employees} accountData={props.accountData}/>
+                    <ViewFiredEmployeesList employeesData={employees} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>

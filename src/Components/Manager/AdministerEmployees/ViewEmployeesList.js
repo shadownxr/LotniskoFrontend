@@ -4,7 +4,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
-import Cookie from 'react-cookies';
+import DeleteButton from "./DeleteEmployee";
+
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -26,6 +27,7 @@ const StyledTableRow = withStyles((theme) => ({
 
 export default function ViewEmployeesList(props){
     const employeesList = props.employeesData.map((employee,i) => {
+        if(employee.firingDate==null){
         return(
             <StyledTableRow key={i} className="EmployeeList">
                 <StyledTableCell align="center">{employee.position}</StyledTableCell>
@@ -36,8 +38,11 @@ export default function ViewEmployeesList(props){
                 <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.email}</StyledTableCell>
                 <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
+                <StyledTableCell align="center"><DeleteButton>{employee.id}</DeleteButton></StyledTableCell>
+
             </StyledTableRow>
-        )
+        )}
+        else i++;
     })
 
     return(

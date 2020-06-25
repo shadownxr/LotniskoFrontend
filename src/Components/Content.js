@@ -8,6 +8,7 @@ import OnlineBriefing from './Customer/OnlineBriefing';
 import EmployeeViewFlights from './Employee/EmployeeViewFlights';
 import ManagerViewFlights from "./Manager/AdministerFights/ManagerViewFlights";
 import ViewEmployees from './Manager/AdministerEmployees/ViewEmployees';
+import ViewFiredEmployees from "./Manager/AdministerEmployees/ViewFiredEmployees";
 import CustomerReservations from './Customer/CustomerReservations';
 
 export default function Content(props){
@@ -31,6 +32,8 @@ export default function Content(props){
             return <ManagerViewFlights accountData={props.accountData}/>;
           case "View Employees":
             return <ViewEmployees accountData={props.accountData}/>;
+          case "View Fired Employees":
+            return <ViewFiredEmployees accountData={props.accountData}/>;
           case "Customer Reservations":
             return <CustomerReservations accountData={props.accountData}/>;
           default:
