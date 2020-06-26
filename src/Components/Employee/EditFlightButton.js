@@ -39,7 +39,7 @@ export default function EditFlightButton(props){
 
 
     const handleEdit = () => {
-        console.log(props.lot+" "+props.startuje+" "+ props.koniec);
+        console.log(props.lot+" "+starts+" "+ends);
         fetchEditFlight();
         setOpen(false);
 
@@ -47,15 +47,15 @@ export default function EditFlightButton(props){
     const fetchEditFlight = () => {
         let payload = {
             "id": props.lot,
-            "starts": starts,
-            "ends": ends,
+            "newStart": starts,
+            "newEnd": ends,
         }
 
         console.log(payload);
         console.log(Cookie.load('userToken').token);
 
         const options = {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -100,7 +100,7 @@ export default function EditFlightButton(props){
                         label="Data wylotu"
                         type="datetime-local"
                         onChange={handleStarts}
-                        defaultValue = {props.startuje}
+                        //defaultValue = {props.startuje}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -112,7 +112,7 @@ export default function EditFlightButton(props){
                         label="Data przylotu"
                         type="datetime-local"
                         onChange={handleEnds}
-                        defaultValue = {props.koniec}
+                        //defaultValue = {props.koniec}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -123,7 +123,7 @@ export default function EditFlightButton(props){
                         Anuluj
                     </Button>
                     <Button onClick={handleEdit} color="primary">
-                        Dodaj
+                        Edytuj
                     </Button>
                 </DialogActions>
             </Dialog>
