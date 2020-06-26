@@ -3,8 +3,13 @@ import { withStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+<<<<<<< Updated upstream
 import Button from '@material-ui/core/Button';
 import Cookie from 'react-cookies';
+=======
+import DeleteFlightButton from "./DeleteFlightButton";
+import EditFlightButton from "./EditFlightButton";
+>>>>>>> Stashed changes
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -32,8 +37,15 @@ export default function EmployeeViewFlightsList(props){
                 <StyledTableCell align="center">{flight.sapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{flight.dapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{flight.startDate}</StyledTableCell>
+<<<<<<< Updated upstream
                 <StyledTableCell align="center">{flight.planeID.planeName}</StyledTableCell>
                 <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
+=======
+                <StyledTableCell align="center">{flight.endDate}</StyledTableCell>
+                <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
+                <StyledTableCell align="center"><DeleteFlightButton>{flight.id}</DeleteFlightButton>
+                    <EditFlightButton lot={flight.id} startuje={flight.startDate} koniec={flight.endDate} /> </StyledTableCell>
+>>>>>>> Stashed changes
             </StyledTableRow>
         )
     })

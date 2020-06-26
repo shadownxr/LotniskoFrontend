@@ -76,7 +76,7 @@ export default function AddButton(props){
             "personalID": personalID,
             "phoneNumber": phoneNumber,
             "eMail": email,
-            "role": ["Employee"]
+            "role": ["employee"]
         }
 
         console.log(payload);

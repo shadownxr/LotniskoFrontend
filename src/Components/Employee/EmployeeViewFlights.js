@@ -6,9 +6,14 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+<<<<<<< Updated upstream
 import SearchFlightButton from "../Flights/SearchFlightButton";
 import AddFlightButton from './AddFlightButton'
 import EmployeeViewFlightsList from "./EmployeeViewFlightsList";
+=======
+import EmployeeViewFlightsList from "./EmployeeViewFlightsList";
+import AddFlightButton from "./AddFlightButton";
+>>>>>>> Stashed changes
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -69,9 +74,15 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center">Z</StyledTableCell>
                             <StyledTableCell align="center">Do</StyledTableCell>
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
+<<<<<<< Updated upstream
                             <StyledTableCell align="center">Samolot</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
                             <StyledTableCell align="center"><SearchFlightButton /><AddFlightButton /></StyledTableCell>
+=======
+                            <StyledTableCell align="center">Data przylotu</StyledTableCell>
+                            <StyledTableCell align="center">Ceny</StyledTableCell>
+                            <StyledTableCell align="center"><AddFlightButton /></StyledTableCell>
+>>>>>>> Stashed changes
                         </StyledTableRow>
                     </TableHead>
                     <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData}/>
