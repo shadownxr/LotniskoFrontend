@@ -85,23 +85,23 @@ export default function SignIn(props){
                         {err}
                     </DialogContentText>
                         <TextField
-                            id="login"
-                            label="Login"
-                            type="login"
-                            onChange={handleLogin}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            fullWidth
+                          autoFocus
+                          id="login"
+                          label="Login"
+                          type="login"
+                          onChange={handleLogin}
+                          InputLabelProps={{
+                              shrink: true,
+                          }}
+                          fullWidth
                         />
                         <TextField
-                            autoFocus
-                            margin="dense"
-                            id="password"
-                            label="Password"
-                            type="password"
-                            fullWidth
-                            onChange={handlePassword}
+                          margin="dense"
+                          id="password"
+                          label="Password"
+                          type="password"
+                          fullWidth
+                          onChange={handlePassword}
                         />
                 </DialogContent>
             <DialogActions className="DialogButtons">

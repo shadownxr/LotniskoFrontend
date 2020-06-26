@@ -3,8 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import DetailsButton from './DetailsButton';
-import CancelButton from './CancelButton';
+import Button from '@material-ui/core/Button';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -24,20 +23,23 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-export default function CustomerReservationsList(props){
+export default function BriefableReservationsList(props){
+    const handleBriefing = (reservation) => {
+        props.reservation(reservation);
+        props.screen(2);
+    }
+
     const reservationList = props.customerReservationsData.map((reservation,i) => {
         return(
             <StyledTableRow key={i} className="FlightList">
+                <StyledTableCell align="center">{reservation.flightID.sapid.airportName}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.flightID.sapid.cityName}</StyledTableCell>
+                <StyledTableCell align="center">{reservation.flightID.dapid.airportName}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.flightID.dapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(reservation.flightID.startDate).toLocaleDateString()}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.className}</StyledTableCell>
-                <StyledTableCell align="center">{reservation.price}USD</StyledTableCell>
                 <StyledTableCell align="center">
-                    <div style={{display:"flex",justifyContent:"center"}}>
-                        <DetailsButton reservation={reservation}/>
-                        <CancelButton reservation={reservation} refresh={(refresh) => {props.refresh(refresh)}}/>
-                    </div>
+                    <Button onClick={() => handleBriefing(reservation)}>Odpraw</Button>
                 </StyledTableCell>
             </StyledTableRow>
         )
