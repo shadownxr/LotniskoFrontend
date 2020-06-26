@@ -6,9 +6,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchFlightButton from "../Flights/SearchFlightButton";
-import AddFlightButton from './AddFlightButton'
-import EmployeeViewFlightsList from "./EmployeeViewFlightsList";
+import SearchFlightButton from "../../Flights/SearchFlightButton";
+import EmployeeViewPlanesList from "./EmployeeViewPlanesList";
+import AddPlaneButton from "./AddPlaneButton";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -34,15 +34,15 @@ const useStyles = makeStyles({
     },
 });
 
-export default function ViewFlights(props){
-    const [flights,setFlights] = useState([]);
+export default function EmployeeViewPlanes(props){
+    const [planes,setPlanes] = useState([]);
 
     useEffect(() => {
         fetchFlights();
     },[]);
 
     const fetchFlights = () => {
-        const url = "http://localhost:8080/api/flights/list";
+        const url = "http://localhost:8080/api/planes/list";
 
         let options = {
             method: 'GET',
@@ -52,7 +52,7 @@ export default function ViewFlights(props){
             .then(response => response.json())
             .then(result => {
                 console.log(result);
-                setFlights(result);
+                setPlanes(result);
             });
     }
 
@@ -62,20 +62,18 @@ export default function ViewFlights(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Przeglądarka samolotów</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">Nr</StyledTableCell>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Data przylotu</StyledTableCell>
-                            <StyledTableCell align="center">Samolot</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchFlightButton /><AddFlightButton /></StyledTableCell>
+                            <StyledTableCell align="center">Nazwa</StyledTableCell>
+                            <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
+                            <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>
+                            <StyledTableCell align="center">Obecnie na</StyledTableCell>
+                            <StyledTableCell align="center"><SearchFlightButton /><AddPlaneButton/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData}/>
+                    <EmployeeViewPlanesList planesData={planes} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>
