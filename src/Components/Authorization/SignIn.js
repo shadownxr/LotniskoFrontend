@@ -76,8 +76,8 @@ export default function SignIn(props){
     };
 
     return (
-      <div>
-        <Button onClick={handleClickOpen}>Kliknij aby się zalogować.</Button>
+      <div className={'authButton'} onClick={handleClickOpen}>
+        <Button >Sign in</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" className="FormTitle">SignIn</DialogTitle>
                 <DialogContent>
