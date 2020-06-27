@@ -7,7 +7,6 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies'
 
 const MyButton = styled(Button)({
@@ -15,7 +14,7 @@ const MyButton = styled(Button)({
 });
 
 
-export default function DeleteButton(id){
+export default function DeleteButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');
 
@@ -29,14 +28,14 @@ export default function DeleteButton(id){
     };
 
     const handleFire = () => {
-        console.log(id);
+        console.log(props.employee);
         fetchFireEmployee();
         setOpen(false);
     }
 
     const fetchFireEmployee = () => {
         let payload = {
-            "id": id.children
+            "id": props.employee
         }
 
         console.log(payload);
@@ -64,6 +63,7 @@ export default function DeleteButton(id){
                     return
                 } else if(result.message === "Employee fired successfully!"){
                     console.log(result);
+                    props.refresh(true);
                     setOpen(false);
                 }
             });

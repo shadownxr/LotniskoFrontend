@@ -6,30 +6,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies';
-import Autocomplete from '@material-ui/lab/Autocomplete'
-import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const MyButton = styled(Button)({
   color: 'black'
 });
-const useStyles = makeStyles((theme) => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-}));
 
-export default function SearchButton(props){
-    const classes = useStyles();
-
+export default function CancelButton(props){
     const [open, setOpen] = useState(false);
-    const [ticketClass, setTicketClass] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
@@ -39,26 +23,23 @@ export default function SearchButton(props){
     const handleClose = () => {
       setErr("");
       setOpen(false);
-    };
-
-    const handleBuy = () => {
-        fetchBuy();
     }
 
-    const fetchBuy = () => {
+    const handleCancel = () => {
+        fetchCancel();
+    }
+
+    const fetchCancel = () => {
         let payload = {
-            "flightId": props.flightId,
-            "userId": props.accountData.id,
-            "ticketClass": ticketClass,
-            "paid": false
+            "id": props.reservation.id
         }
 
         console.log(payload);
 
-        const url = "http://localhost:8080/api/tickets/add";
+        const url = "http://localhost:8080/api/tickets/delete";
   
         const options = {
-            method: 'POST',
+            method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json',
@@ -71,38 +52,28 @@ export default function SearchButton(props){
           .then(response => response.json())
           .then(result => {
             console.log(result);
+            props.refresh(true);
             setOpen(false);
           });
       }
 
-    const ticketClasses = ['Economic','Buisness'];
-
     return (
       <div>
-      <MyButton color="primary" onClick={handleClickOpen}>Kup</MyButton>
+      <MyButton color="primary" onClick={handleClickOpen}>Usuń</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Kup</DialogTitle>
+        <DialogTitle id="form-dialog-title">Usuń rezerwację</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Wybierz klasę<br/>
+            Czy napewno chcesz usunąć rezerwacje?<br/>
             {err}
           </DialogContentText>
-          <Autocomplete
-            onChange={(event, newValue) => {
-              setTicketClass(newValue);
-            }}
-            id="class"
-            options={ticketClasses}
-            style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label={"Klasa"} variant="outlined" />}
-          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Anuluj
           </Button>
-          <Button onClick={handleBuy} color="primary">
-            Kup
+          <Button onClick={handleCancel} color="primary">
+            Usuń
           </Button>
         </DialogActions>
       </Dialog>

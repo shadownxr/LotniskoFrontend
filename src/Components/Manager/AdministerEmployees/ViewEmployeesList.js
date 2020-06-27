@@ -3,9 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 import DeleteButton from "./DeleteEmployee";
-
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -36,10 +34,7 @@ export default function ViewEmployeesList(props){
                 <StyledTableCell align="center">{employee.personID.surname}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.personalID}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
-                <StyledTableCell align="center">{employee.personID.email}</StyledTableCell>
-                <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
-                <StyledTableCell align="center"><DeleteButton>{employee.id}</DeleteButton></StyledTableCell>
-
+                <StyledTableCell align="center"><DeleteButton employee={employee.id} refresh={(refresh) => {props.refresh(refresh)}}/></StyledTableCell>
             </StyledTableRow>
         )}
         else i++;

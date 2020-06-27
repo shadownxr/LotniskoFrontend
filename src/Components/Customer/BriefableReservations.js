@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SearchButton from './SearchReservationButton';
-import CustomerReservationsList from './CustomerReservationsList';
+import BriefableReservationsList from './BriefableReservationsList';
 import Cookie from 'react-cookies';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -34,12 +34,11 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CustomerReservations(props){
+export default function BriefableReservations(props){
     const [reservations,setReservations] = useState([]);
-    const [refresh,setRefresh] = useState(false);
+    const [refresh,setRefresh] = useState(props.refresh);
 
     useEffect(() => {
-      console.log(props.reservation);
       fetchReservations();
     },[]);
 
@@ -48,7 +47,7 @@ export default function CustomerReservations(props){
         fetchReservations();
         setRefresh(false);
       }
-    },[refresh])
+    },[refresh]);
 
     const fetchReservations = () => {
         let payload = {
@@ -83,19 +82,17 @@ export default function CustomerReservations(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={8}>Moje rezerwacje</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Możliwe odprawy</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={2}>Z</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={2}>Do</StyledTableCell>
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
                             <StyledTableCell align="center">Klasa</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center">Przeprowadzona odprawa</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <CustomerReservationsList customerReservationsData={reservations} refresh={(refresh) => {setRefresh(true)}}/>
+                    <BriefableReservationsList customerReservationsData={reservations} reservation={(reservation) => {props.reservation(reservation)}} screen={(screen) => {props.screen(screen)}}/>
                 </Table>
             </TableContainer>
         </div>

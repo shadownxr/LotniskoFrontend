@@ -105,7 +105,7 @@ export default function SignUp(props){
           .then(response => response.json())
           .then(result => {
             console.log(result);
-            if(result.message === "Error: Username is already taken!"){
+              if(result.message === "Error: Username is already taken!"){
               setErr("Wybrany login jest zajęty");
               return
             } else if(result.message === "Error: Email is already in use!"){
@@ -114,8 +114,9 @@ export default function SignUp(props){
             } else if(result.error === "Internal Server Error"){
               setErr("Błąd przy zakładaniu konta");
               return
-            } else if(result.message === "User registered successfully!"){  
+            } else if(result.message === "User registered successfully!"){
               console.log(result);
+              props.refresh(true);
               setOpen(false);
             }
         });
@@ -123,8 +124,8 @@ export default function SignUp(props){
       };
 
     return (
-      <div>
-        <Button onClick={handleClickOpen}>Kliknij aby założyć konto.</Button>
+      <div className={'authButton'}>
+        <Button onClick={handleClickOpen}>Join</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" className="FormTitle">SignUp</DialogTitle>
                 <DialogContent>

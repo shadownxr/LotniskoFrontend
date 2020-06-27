@@ -62,14 +62,13 @@ export default function ViewFlights(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={6}>Przeglądarka lotów</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Z</StyledTableCell>
                             <StyledTableCell align="center">Do</StyledTableCell>
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Klasa</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
