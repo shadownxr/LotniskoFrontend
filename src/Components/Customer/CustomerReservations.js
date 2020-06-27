@@ -61,7 +61,6 @@ export default function CustomerReservations(props){
     },[search,ref])
 
     const handleSearch = () => {
-      console.log(search);
       let searched = reservations.filter((reservation) => {
         return(
           (reservation.flightID.sapid.cityName === search.from) && 
