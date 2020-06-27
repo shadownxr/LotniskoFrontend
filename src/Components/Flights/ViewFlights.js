@@ -37,6 +37,7 @@ const useStyles = makeStyles({
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
     const [search,setSearch] = useState("");
+    const [searchedFlights,setSearchedFlights] = useState("");
 
     const ref = useRef(null);
     ref.current = "";
@@ -61,7 +62,7 @@ export default function ViewFlights(props){
         )
       }).map((flight) => flight);
       console.log(searched);
-      setFlights(searched);
+      setSearchedFlights(searched);
     }
 
     const fetchFlights = () => {
@@ -96,7 +97,7 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewFlightsList flightsData={flights} accountData={props.accountData}/>
+                    <ViewFlightsList flightsData={(search === "")?flights:searchedFlights} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>
