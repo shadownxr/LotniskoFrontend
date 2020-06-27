@@ -8,11 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies';
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import Input from "@material-ui/core/Input";
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 const MyButton = styled(Button)({
   color: 'black'
@@ -42,10 +38,6 @@ export default function SearchButton(props){
     const handleClose = () => {
       setErr("");
       setOpen(false);
-    };
-
-    const handleTicketClass = (event) => {
-      setTicketClass(event.target.value);
     };
 
     const handleBuy = () => {
@@ -82,26 +74,28 @@ export default function SearchButton(props){
           });
       }
 
+    const ticketClasses = ['Economic','Buisness'];
+
     return (
       <div>
       <MyButton color="primary" onClick={handleClickOpen}>Kup</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogContent>
-              <form className={classes.container}>
-                  <FormControl className={classes.formControl}>
-                      <InputLabel htmlFor="demo-dialog-native">Klasa</InputLabel>
-                      <Select
-                          native
-                          value={ticketClass}
-                          onChange={handleTicketClass}
-                          input={<Input id="class" />}
-                      >
-                          <option value={'economic'}>Ekonomiczna</option>
-                          <option value={'business'}>Biznesowa</option>
-                      </Select>
-                  </FormControl>
-              </form>
-          </DialogContent>
+        <DialogTitle id="form-dialog-title">Kup</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Wybierz klasę<br/>
+            {err}
+          </DialogContentText>
+          <Autocomplete
+            onChange={(event, newValue) => {
+              setTicketClass(newValue);
+            }}
+            id="class"
+            options={ticketClasses}
+            style={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label={"Klasa"} variant="outlined" />}
+          />
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Anuluj

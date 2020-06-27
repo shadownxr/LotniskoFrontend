@@ -39,6 +39,7 @@ export default function CustomerReservations(props){
     const [refresh,setRefresh] = useState(false);
 
     useEffect(() => {
+      console.log(props.reservation);
       fetchReservations();
     },[]);
 
@@ -82,7 +83,7 @@ export default function CustomerReservations(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Moje rezerwacje</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={8}>Moje rezerwacje</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">Z</StyledTableCell>
@@ -90,6 +91,7 @@ export default function CustomerReservations(props){
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
                             <StyledTableCell align="center">Klasa</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
+                            <StyledTableCell align="center">Przeprowadzona odprawa</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

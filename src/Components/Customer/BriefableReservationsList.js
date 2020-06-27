@@ -29,7 +29,7 @@ export default function BriefableReservationsList(props){
         props.screen(2);
     }
 
-    const reservationList = props.customerReservationsData.map((reservation,i) => {
+    const reservationList = props.customerReservationsData.filter((reservation) => {if(reservation.paid === false){return reservation}}).map((reservation,i) => {
         return(
             <StyledTableRow key={i} className="FlightList">
                 <StyledTableCell align="center">{reservation.flightID.sapid.airportName}</StyledTableCell>
