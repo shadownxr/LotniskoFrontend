@@ -14,7 +14,7 @@ const MyButton = styled(Button)({
 });
 
 
-export default function DeleteFlightButton(id){
+export default function DeleteFlightButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');
 
@@ -28,14 +28,14 @@ export default function DeleteFlightButton(id){
     };
 
     const handleFire = () => {
-        console.log(id);
+        console.log(props.lot);
         fetchDeleteFlight();
         setOpen(false);
     }
 
     const fetchDeleteFlight = () => {
         let payload = {
-            "id": id.children
+            "id": props.lot
         }
 
         console.log(payload);
@@ -63,6 +63,7 @@ export default function DeleteFlightButton(id){
                     return
                 } else if(result.message === "Flight removed successfully!"){
                     console.log(result);
+                    props.refresh(true);
                     setOpen(false);
                 }
             });

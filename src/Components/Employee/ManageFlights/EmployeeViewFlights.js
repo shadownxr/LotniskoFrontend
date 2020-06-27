@@ -36,10 +36,15 @@ const useStyles = makeStyles({
 
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
+    const [refresh,setRefresh] = useState(true);
+
 
     useEffect(() => {
-        fetchFlights();
-    },[]);
+        if(refresh === true){
+            fetchFlights();
+            setRefresh(false);
+        }
+    },[refresh])
 
     const fetchFlights = () => {
         const url = "http://localhost:8080/api/flights/list";
@@ -72,10 +77,11 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center">Data przylotu</StyledTableCell>
                             <StyledTableCell align="center">Samolot</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchFlightButton /><AddFlightButton /></StyledTableCell>
+                            <StyledTableCell align="center"><SearchFlightButton refresh={(refresh) => {setRefresh(true)}}/>
+                            <AddFlightButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData}/>
+                    <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>

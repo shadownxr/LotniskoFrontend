@@ -108,6 +108,7 @@ export default function AddFlightButton(props){
                     return;
                 } else if(result.message === "Flight added successfully!"){
                     console.log(result);
+                    props.refresh(true);
                     setOpen(false);
                 }
             });

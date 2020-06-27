@@ -36,12 +36,17 @@ const useStyles = makeStyles({
 
 export default function EmployeeViewPlanes(props){
     const [planes,setPlanes] = useState([]);
+    const [refresh,setRefresh] = useState(true);
+
 
     useEffect(() => {
-        fetchFlights();
-    },[]);
+        if(refresh === true){
+            fetchPlanes();
+            setRefresh(false);
+        }
+    },[refresh])
 
-    const fetchFlights = () => {
+    const fetchPlanes = () => {
         const url = "http://localhost:8080/api/planes/list";
 
         let options = {
@@ -70,10 +75,10 @@ export default function EmployeeViewPlanes(props){
                             <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
                             <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>
                             <StyledTableCell align="center">Obecnie na</StyledTableCell>
-                            <StyledTableCell align="center"><SearchFlightButton /><AddPlaneButton/></StyledTableCell>
+                            <StyledTableCell align="center"><SearchFlightButton /><AddPlaneButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewPlanesList planesData={planes} accountData={props.accountData}/>
+                    <EmployeeViewPlanesList planesData={planes} accountData={props.accountData} />
                 </Table>
             </TableContainer>
         </div>

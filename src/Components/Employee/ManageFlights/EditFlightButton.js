@@ -78,6 +78,7 @@ export default function EditFlightButton(props){
                     return;
                 } else if(result.message === "Flight edited successfully!"){
                     console.log(result);
+                    props.refresh(true);
                     setOpen(false);
                 }
             });

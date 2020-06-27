@@ -35,8 +35,8 @@ export default function EmployeeViewFlightsList(props){
                 <StyledTableCell align="center">{flight.endDate}</StyledTableCell>
                 <StyledTableCell align="center">{flight.planeID.planeName}</StyledTableCell>
                 <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
-                <StyledTableCell align="center"><DeleteFlightButton>{flight.id}</DeleteFlightButton>
-                    <EditFlightButton lot={flight.id} startuje={flight.startDate} koniec={flight.endDate} /> </StyledTableCell>
+                <StyledTableCell align="center"><DeleteFlightButton lot={flight.id} refresh={(refresh) => {props.refresh(refresh)}}/>
+                    <EditFlightButton lot={flight.id} startuje={flight.startDate} koniec={flight.endDate} refresh={(refresh) => {props.refresh(refresh)}}/> </StyledTableCell>
             </StyledTableRow>
         )
     })

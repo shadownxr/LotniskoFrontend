@@ -85,6 +85,7 @@ export default function AddPlaneButton(props){
                     return
                 } else if(result.message === "Plane added successfully!"){
                     console.log(result);
+                    props.refresh(true);
                     setOpen(false);
                 }
             });
