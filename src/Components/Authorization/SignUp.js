@@ -226,6 +226,9 @@ export default function SignUp(props){
                         />
                 </DialogContent>
             <DialogActions className="DialogButtons">
+                <Button onClick={handleClose} color="primary">
+                    Anuluj
+                </Button>
                 <Button onClick={handleAdd} color="primary">
                     Stwórz konto
                 </Button>
