@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ViewFlightsList from './ViewFlightsList';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -36,10 +36,32 @@ const useStyles = makeStyles({
 
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
+    const [search,setSearch] = useState("");
+
+    const ref = useRef(null);
+    ref.current = "";
 
     useEffect(() => {
       fetchFlights();
     },[]);
+
+    useEffect(() => {
+      if(ref !== search){
+        handleSearch();
+      }
+    },[search,ref])
+
+    const handleSearch = () => {
+      let searched = flights.filter((flight) => {
+        return(
+          (flight.sapid.cityName === search.from) && 
+          (flight.dapid.cityName === search.to) && 
+          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString()) &&
+          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())
+        )
+      }).map((flight) => flight);
+      setFlights(searched);
+    }
 
     const fetchFlights = () => {
       const url = "http://localhost:8080/api/flights/list";
@@ -70,7 +92,7 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center">Do</StyledTableCell>
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchButton /></StyledTableCell>
+                            <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <ViewFlightsList flightsData={flights} accountData={props.accountData}/>

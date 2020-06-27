@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, useRef } from "react";
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -36,7 +36,11 @@ const useStyles = makeStyles({
 
 export default function CustomerReservations(props){
     const [reservations,setReservations] = useState([]);
+    const [search, setSearch] = useState("");
     const [refresh,setRefresh] = useState(false);
+
+    const ref = useRef();
+    ref.current = "";
 
     useEffect(() => {
       console.log(props.reservation);
@@ -49,6 +53,25 @@ export default function CustomerReservations(props){
         setRefresh(false);
       }
     },[refresh])
+
+    useEffect(() => {
+      if(ref !== search){
+        handleSearch();
+      }
+    },[search,ref])
+
+    const handleSearch = () => {
+      let searched = reservations.filter((reservation) => {
+        return(
+          (reservation.flightID.sapid.cityName === search.from) && 
+          (reservation.flightID.dapid.cityName === search.to) && 
+          (new Date(reservation.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString()) &&
+          //(new Date(reservation.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString()) &&
+          (reservation.paid === search.paid)
+        )
+      }).map((reservation) => reservation);
+      setReservations(searched);
+    }
 
     const fetchReservations = () => {
         let payload = {
@@ -92,7 +115,7 @@ export default function CustomerReservations(props){
                             <StyledTableCell align="center">Klasa</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
                             <StyledTableCell align="center">Przeprowadzona odprawa</StyledTableCell>
-                            <StyledTableCell align="center"><SearchButton /></StyledTableCell>
+                            <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <CustomerReservationsList customerReservationsData={reservations} refresh={(refresh) => {setRefresh(true)}}/>

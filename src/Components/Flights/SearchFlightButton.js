@@ -15,10 +15,10 @@ const MyButton = styled(Button)({
 
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState('');
+    const [dateTo, setDateTo] = useState('');
+    const [dateFrom, setDateFrom] = useState('');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
-    const [ticketClass, setTicketClass] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
@@ -38,17 +38,21 @@ export default function SearchButton(props){
       setTo(event.target.value);
     };
 
-    const handleDate = (event) => {
-      setDate(event.target.value);
-    };
+    const handleDateFrom = (event) => {
+      setDateFrom(event.target.value);
+    }
 
-    const handleTicketClass = (event) => {
-      setTicketClass(event.target.value);
-    };
+    const handleDateTo = (event) => {
+      setDateTo(event.target.value);
+    }
 
     const handleSearch = () => {
-        console.log(from+" "+to+" "+date+" "+ticketClass);
+      if(from&&to&&dateFrom&&dateTo){
+        props.search({from: from, to: to, dateFrom: dateFrom, dateTo: dateTo});
         setOpen(false);
+      } else {
+        setErr("Wypełnij wszystkie pola!");
+      }
     }
 
     return (
@@ -71,7 +75,6 @@ export default function SearchButton(props){
             fullWidth
           />
           <TextField
-            autoFocus
             margin="dense"
             id="to"
             label="Miejsce Docelowe"
@@ -81,22 +84,23 @@ export default function SearchButton(props){
           />
           <TextField
               id="date"
-              label="Data odlotu"
+              label="Data odlotu od"
               type="date"
-              value={to}
-              onChange={handleDate}
+              value={dateFrom}
+              onChange={handleDateFrom}
               InputLabelProps={{
                 shrink: true,
               }}
           />
           <TextField
-            autoFocus
-            margin="dense"
-            id="class"
-            label="Klasa"
-            type="tex"
-            onChange={handleTicketClass}
-            fullWidth
+              id="date"
+              label="Data odlotu do"
+              type="date"
+              value={dateTo}
+              onChange={handleDateTo}
+              InputLabelProps={{
+                shrink: true,
+              }}
           />
         </DialogContent>
         <DialogActions>
