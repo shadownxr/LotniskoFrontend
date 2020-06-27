@@ -17,6 +17,7 @@ const MyButton = styled(Button)({
 
 export default function AddEmployeeButton(props){
     const [open, setOpen] = useState(false);
+    const [openResult, setOpenResult] = useState(false);
     const [position, setPosition] = useState('');
     const [salary, setSalary] = useState('');
     const [name, setName] = useState('');
@@ -24,12 +25,19 @@ export default function AddEmployeeButton(props){
     const [personalID, setPersonalID] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
+    const [answ, setAnsw] = useState('');
+    const [answ2, setAnsw2] = useState('');
+
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
+
+    const handleCloseResult = () => {
+        setOpenResult(false);
+    };
     const handleClose = () => {
         setErr("");
         setOpen(false);
@@ -65,6 +73,7 @@ export default function AddEmployeeButton(props){
         console.log(position+" "+name+" "+surname+" "+personalID+" "+phoneNumber+" "+email);
         fetchAddEmployee();
         setOpen(false);
+        setOpenResult(true);
 
     }
     const fetchAddEmployee = () => {
@@ -98,7 +107,10 @@ export default function AddEmployeeButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
+                setAnsw(result.password);
+                setAnsw2(result.login);
                 console.log(result);
+                console.log(answ+ " "+answ2);
                 props.refresh(true);
                 if(result.message === "Error: Role is not found."){
                     setErr("Wybrana rola nie istnieje");
@@ -194,6 +206,23 @@ export default function AddEmployeeButton(props){
                     </Button>
                 </DialogActions>
             </Dialog>
+            <Dialog open={openResult} onClose={handleCloseResult} aria-labelledby="form-dialog-title">
+                <DialogContentText>
+                    Poprawnie dodano pracownika, oraz utworzono jego konto.
+                </DialogContentText>
+                <DialogContentText>
+                    Użytkownik: {answ2}
+                </DialogContentText>
+                <DialogContentText>
+                    Hasło: {answ}
+                </DialogContentText>
+                <DialogActions>
+                    <Button onClick={handleCloseResult} color="primary">
+                        Ok
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
         </div>
     )
 }

@@ -12,30 +12,37 @@
   flex-direction: row;
   width: 100%;
   max-height: 12.5%;
-  background-color: blue;
+  background-color:  #01a9b4;
   flex: 1;
 }
 
 .Logo {
   flex: 1;
   width: 25%;
-  background-color: green;
+  background-color: #01a9b4;
+}
+
+.LogoImage{
+  width: 100%;
+  border-radius: 40px;
 }
 
 .Login {
   flex: 1;
   align-content: flex-end;
   justify-content: flex-end;
-  background-color: silver;
+  background-color: #fbfd8a;
 }
 
 .AirportPageMenu {
   flex: 2;
   align-content: center;
-  justify-content: center;
-  background-color: yellow;
+  background-color: #01a9b4;
   vertical-align: middle;
-  display: grid;
+}
+
+.AirportMenuButtonCluster{
+  height: 100%;
 }
 
 .Main {
@@ -52,13 +59,13 @@
 .UserMenu {
   flex: 1;
   max-height: 5%;
-  background-color: aqua;
+  background-color: #086972;
 }
 
 .Content {
   flex: 2;
   min-height: 95%;
-  background-color: gold;
+  background-color: #87dfd6;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -71,10 +78,66 @@
 }
 
 .Footer {
-  display: flex;
+  text-align: center;
   width: 100%;
   max-height: 7.5%;
-  background-color: chocolate;
+  background-color: #fbfd8a;
+  padding-top: 24px;
+  color: #505739;
   flex: 3;
+}
+
+.thymeDiv{
+  background-color: #086972;
+  flex: 3;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.authButton {
+  box-shadow: 0px 1px 0px 0px #1c1b18;
+  background: #e4e67e linear-gradient(to bottom, #fbfd8a 5%, #feffc2 100%);
+  border-left: black 2px solid;
+  border-right:black 2px solid;
+  margin-left: 25px;
+  display:inline-block;
+  cursor:pointer;
+  color:#505739;
+  font-family: Trebuchet MS, serif;
+  font-size:22px;
+  padding:12px 38px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+}
+.authButton:hover {
+  background: #d2d477 linear-gradient(to bottom, #d2d477 5%, #e4e67e 100%);
+}
+.authButton:active {
+  position: relative;
+  top: 1px;
+}
+
+.menuButton {
+  box-shadow:inset 0px 1px 0px 0px #01a8b4;
+  background: #01a8b4 linear-gradient(to bottom, #01a8b4 5%, #0298b3 100%);
+  border-radius:3px;
+
+  border-right: black 2px solid;
+  min-height: 100%;
+  cursor:pointer;
+  color:red;
+  font-family: Arial, serif;
+  font-size:13px;
+  text-decoration:none;
+  width: 25%;
+
+
+}
+.menuButton:hover {
+  background: #0298b3 linear-gradient(to bottom, #0298b3 5%, #01a8b4 100%);
+}
+.menuButton:active {
+  position:relative;
+  top:1px;
 }
 

@@ -3,9 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 import DeleteButton from "./DeleteEmployee";
-import Info from '@material-ui/icons/Info';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {

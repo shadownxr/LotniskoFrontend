@@ -10,7 +10,6 @@ import ViewEmployeesList from "./ViewEmployeesList";
 import SearchEmployeeButton from "./SearchEmployeeButton";
 import AddEmployeeButton from "./AddEmployeeButton";
 import Cookie from 'react-cookies';
-import Refresh from '@material-ui/icons/Refresh';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
