@@ -15,7 +15,7 @@ const MyButton = styled(Button)({
 });
 
 
-export default function AddButton(props){
+export default function AddEmployeeButton(props){
     const [open, setOpen] = useState(false);
     const [position, setPosition] = useState('');
     const [salary, setSalary] = useState('');
@@ -99,6 +99,7 @@ export default function AddButton(props){
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                props.refresh(true);
                 if(result.message === "Error: Role is not found."){
                     setErr("Wybrana rola nie istnieje");
                     return

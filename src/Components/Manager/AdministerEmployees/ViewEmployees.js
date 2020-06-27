@@ -38,10 +38,14 @@ const useStyles = makeStyles({
 
 export default function ViewEmployees(props){
     const [employees,setEmployees] = useState([]);
+    const [refresh,setRefresh] = useState(true);
 
     useEffect(() => {
-        fetchEmployees();
-    },[]);
+        if(refresh === true){
+            fetchEmployees();
+            setRefresh(false);
+        }
+    },[refresh])
 
     const fetchEmployees = () => {
         const url = "http://localhost:8080/api/employees/list";
@@ -70,7 +74,7 @@ export default function ViewEmployees(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={9}>Lista pracowników</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">Stanowisko</StyledTableCell>
@@ -79,11 +83,10 @@ export default function ViewEmployees(props){
                             <StyledTableCell align="center">Nazwisko</StyledTableCell>
                             <StyledTableCell align="center">Numer pesel</StyledTableCell>
                             <StyledTableCell align="center">Numer telefonu</StyledTableCell>
-                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton />
-                            </div></StyledTableCell>
+                            <StyledTableCell align="center"><div style={{display:"inline-flex"}}><SearchEmployeeButton /><AddEmployeeButton refresh={(refresh) => {setRefresh(true)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewEmployeesList employeesData={employees} accountData={props.accountData}/>
+                    <ViewEmployeesList employeesData={employees} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>
