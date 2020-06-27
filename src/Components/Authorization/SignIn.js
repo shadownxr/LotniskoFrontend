@@ -105,6 +105,9 @@ export default function SignIn(props){
                         />
                 </DialogContent>
             <DialogActions className="DialogButtons">
+                <Button onClick={handleClose} color="primary">
+                    Anuluj
+                </Button>
                 <Button onClick={handleSignIn} color="primary">
                     Zaloguj
                 </Button>

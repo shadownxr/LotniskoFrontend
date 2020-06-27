@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const MyButton = styled(Button)({
   color: 'white'
@@ -15,11 +16,12 @@ const MyButton = styled(Button)({
 
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
-    const [date, setDate] = useState('');
+    const [dateTo, setDateTo] = useState('');
+    const [dateFrom, setDateFrom] = useState('');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
-    const [ticketClass, setTicketClass] = useState('');
     const [err, setErr] = useState('');
+    const [paid, setPaid] = useState('');
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -38,18 +40,24 @@ export default function SearchButton(props){
       setTo(event.target.value);
     };
 
-    const handleDate = (event) => {
-      setDate(event.target.value);
-    };
+    const handleDateFrom = (event) => {
+      setDateFrom(event.target.value);
+    }
 
-    const handleTicketClass = (event) => {
-      setTicketClass(event.target.value);
-    };
+    const handleDateTo = (event) => {
+      setDateTo(event.target.value);
+    }
 
     const handleSearch = () => {
-        console.log(from+" "+to+" "+date+" "+ticketClass);
+      if(from&&to&&dateFrom&&dateTo&&paid){
+        props.search({from: from, to: to, dateFrom: dateFrom, dateTo: dateTo,paid: paid});
         setOpen(false);
+      } else {
+        setErr("Wypełnij wszystkie pola!");
+      }
     }
+
+    const paidArr = [{value: true, label: "Tak"},{value: false, label: "Nie"}];
 
     return (
       <div>
@@ -71,7 +79,6 @@ export default function SearchButton(props){
             fullWidth
           />
           <TextField
-            autoFocus
             margin="dense"
             id="to"
             label="Miejsce Docelowe"
@@ -79,25 +86,37 @@ export default function SearchButton(props){
             onChange={handleTo}
             fullWidth
           />
+          <Autocomplete
+            onChange={(event, newValue) => {
+              setPaid(newValue.value);
+            }}
+            id="class"
+            options={paidArr}
+            getOptionSelected={(option) => option.label}
+            getOptionLabel={(option) => option.label}
+            style={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label={"Przeprowadzona odprawa"} variant="outlined" />}
+          />
           <TextField
               id="date"
-              label="Data odlotu"
+              label="Data odlotu od"
               type="date"
-              value={to}
-              onChange={handleDate}
+              value={dateFrom}
+              onChange={handleDateFrom}
               InputLabelProps={{
                 shrink: true,
               }}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="class"
-            label="Klasa"
-            type="tex"
-            onChange={handleTicketClass}
-            fullWidth
-          />
+          {/*<TextField
+              id="date"
+              label="Data odlotu do"
+              type="date"
+              value={dateTo}
+              onChange={handleDateTo}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />*/}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

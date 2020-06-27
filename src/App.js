@@ -55,9 +55,8 @@ function App() {
         </div>
       </div>
 
-      <div  dangerouslySetInnerHTML={{__html: thyme}} />
       <div className="Footer">
-        Footer
+      <div  dangerouslySetInnerHTML={{__html: thyme}} />
       </div>
     </div>
   );
