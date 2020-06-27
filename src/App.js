@@ -1,20 +1,41 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Button from '@material-ui/core/button';
 import UserMenu from './Components/UserMenu';
 import AccountStatus from './Components/AccountStatus';
 import Content from './Components/Content';
+import Cookie from "react-cookies";
 
 function App() {
   const [menuChoice, setMenuChoice] = useState(0);
   const [accountData, setAccountData] = useState();
+  const [thyme, setThyme] = useState("");
+  const [refresh,setRefresh] = useState(true);
 
+    useEffect(() => {
+        if(refresh === true){
+            fetchUsers();
+            setRefresh(false);
+        }
+    },[refresh])
+
+    const fetchUsers = () => {
+        const url = "http://localhost:8080/thyme";
+
+        fetch(url)
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+                setThyme(result);
+            });
+
+    }
   return (
     <div className="App">
       <div className="Header">
         <div className="Logo">Logo</div>
         <div style={{display:"flex",flexDirection:"column",flex:2}}>
-          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}}/></div>
+          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} refresh={(refresh) => {setRefresh(true)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
             <Button onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
@@ -34,7 +55,8 @@ function App() {
         </div>
       </div>
 
-      <div className="Footer">
+      <div dangerouslySetInnerHTML={{__html: thyme}} />
+      <div>
         Footer
       </div>
     </div>

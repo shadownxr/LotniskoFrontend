@@ -51,11 +51,11 @@ export default function AccountStatus(props){
     const accountStatusSwitch = () => {
         switch(isLogged){
             case false:
-                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} accountData={(accountData) => {setAccountData(accountData)}}/><SignUp style={{flex:"2"}} /></div>;
+                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} accountData={(accountData) => {setAccountData(accountData)}}/><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}} /></div>;
             case true:
                 return <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>Witaj {accountData.username}!<Button>Dane Konta</Button><Button onClick={() => logout()}>Wyloguj</Button></div>;
             default:
-                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} /></div>;
+                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}}/></div>;
         }
     }
     return(
