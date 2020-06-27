@@ -4,7 +4,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
-import Cookie from 'react-cookies';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
