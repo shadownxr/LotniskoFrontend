@@ -70,6 +70,7 @@ export default function CustomerReservations(props){
           (reservation.paid === search.paid)
         )
       }).map((reservation) => reservation);
+      console.log(searched);
       setReservations(searched);
     }
 

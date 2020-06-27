@@ -56,10 +56,11 @@ export default function ViewFlights(props){
         return(
           (flight.sapid.cityName === search.from) && 
           (flight.dapid.cityName === search.to) && 
-          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString()) &&
-          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())
+          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())/* &&
+          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())*/
         )
       }).map((flight) => flight);
+      console.log(searched);
       setFlights(searched);
     }
 
