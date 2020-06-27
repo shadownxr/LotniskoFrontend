@@ -99,6 +99,7 @@ export default function AddButton(props){
             .then(response => response.json())
             .then(result => {
                 console.log(result);
+                props.refresh(true);
                 if(result.message === "Error: Role is not found."){
                     setErr("Wybrana rola nie istnieje");
                     return
