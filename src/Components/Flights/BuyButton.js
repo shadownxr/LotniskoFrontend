@@ -13,8 +13,20 @@ import Autocomplete from '@material-ui/lab/Autocomplete'
 const MyButton = styled(Button)({
   color: 'black'
 });
+const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        flexWrap: 'wrap',
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+}));
 
 export default function SearchButton(props){
+    const classes = useStyles();
+
     const [open, setOpen] = useState(false);
     const [ticketClass, setTicketClass] = useState('');
     const [err, setErr] = useState('');

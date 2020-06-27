@@ -4,6 +4,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button';
+import DeleteButton from "./DeleteEmployee";
+import Info from '@material-ui/icons/Info';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -25,16 +27,19 @@ const StyledTableRow = withStyles((theme) => ({
 
 export default function ViewEmployeesList(props){
     const employeesList = props.employeesData.map((employee,i) => {
+        if(employee.firingDate==null){
         return(
             <StyledTableRow key={i} className="EmployeeList">
-                <StyledTableCell align="center">{employee.id}</StyledTableCell>
-                <StyledTableCell align="center">{employee.name}</StyledTableCell>
-                <StyledTableCell align="center">{employee.surname}</StyledTableCell>
                 <StyledTableCell align="center">{employee.position}</StyledTableCell>
-                <StyledTableCell align="center">{employee.date}</StyledTableCell>
-                <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
+                <StyledTableCell align="center">{employee.salary}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.name}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.surname}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.personalID}</StyledTableCell>
+                <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
+                <StyledTableCell align="center"><DeleteButton employee={employee.id} refresh={(refresh) => {props.refresh(refresh)}}/></StyledTableCell>
             </StyledTableRow>
-        )
+        )}
+        else i++;
     })
 
     return(

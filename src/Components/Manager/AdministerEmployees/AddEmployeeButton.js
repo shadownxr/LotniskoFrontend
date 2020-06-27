@@ -8,18 +8,22 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
+import Cookie from 'react-cookies'
 
 const MyButton = styled(Button)({
     color: 'white'
 });
 
 
-export default function AddButton(props){
+export default function AddEmployeeButton(props){
     const [open, setOpen] = useState(false);
+    const [position, setPosition] = useState('');
+    const [salary, setSalary] = useState('');
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
-    const [position, setPosition] = useState('');
-    const [date, setDate] = useState('');
+    const [personalID, setPersonalID] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
@@ -29,6 +33,9 @@ export default function AddButton(props){
     const handleClose = () => {
         setErr("");
         setOpen(false);
+    };
+    const handleSalary = (event) => {
+        setSalary(event.target.value);
     };
 
     const handleName = (event) => {
@@ -43,25 +50,94 @@ export default function AddButton(props){
         setPosition(event.target.value);
     };
 
-    const handleDate = (event) => {
-        setDate(event.target.value);
+    const handlePersonalID = (event) => {
+        setPersonalID(event.target.value);
+    };
+
+    const handlePhoneNumber = (event) => {
+        setPhoneNumber(event.target.value);
+    };
+    const handleEmail = (event) => {
+        setEmail(event.target.value);
     };
 
     const handleAdd = () => {
-        console.log(name+" "+surname+" "+position+" "+date);
+        console.log(position+" "+name+" "+surname+" "+personalID+" "+phoneNumber+" "+email);
+        fetchAddEmployee();
         setOpen(false);
+
     }
+    const fetchAddEmployee = () => {
+        let payload = {
+            "position": position,
+            "salary": salary,
+            "name": name,
+            "surname": surname,
+            "personalID": personalID,
+            "phoneNumber": phoneNumber,
+            "eMail": email,
+            "role": ["employee"]
+        }
+
+        console.log(payload);
+        console.log(Cookie.load('userToken').token);
+
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
+            body: JSON.stringify(payload),
+        };
+
+        const url = "http://localhost:8080/api/employees/add";
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                props.refresh(true);
+                if(result.message === "Error: Role is not found."){
+                    setErr("Wybrana rola nie istnieje");
+                    return
+                } else if(result.message === "Employee added successfully!"){
+                    console.log(result);
+                    setOpen(false);
+                }
+            });
+
+    };
 
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Dodaj lot</DialogTitle>
+                <DialogTitle id="form-dialog-title">Dodaj pracownika</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Podaj imie, nazwisko, stanowisko i datę zatrudnienia<br/>
                         {err}
                     </DialogContentText>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="position"
+                        label="Stanowisko"
+                        type="text"
+                        onChange={handlePosition}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="salary"
+                        label="Wynagordzenie"
+                        type="text"
+                        onChange={handleSalary}
+                        fullWidth
+                    />
                     <TextField
                         autoFocus
                         margin="dense"
@@ -83,22 +159,29 @@ export default function AddButton(props){
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="position"
-                        label="Stanowisko"
+                        id="personalID"
+                        label="Pesel"
                         type="text"
-                        onChange={handlePosition}
+                        onChange={handlePersonalID}
                         fullWidth
                     />
-
                     <TextField
-                        id="date"
-                        label="Data zatrudnienia"
-                        type="date"
-                        value={surname}
-                        onChange={handleDate}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        autoFocus
+                        margin="dense"
+                        id="phoneNumber"
+                        label="Numer telefonu"
+                        type="text"
+                        onChange={handlePhoneNumber}
+                        fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        onChange={handleEmail}
+                        fullWidth
                     />
 
                 </DialogContent>
