@@ -15,7 +15,7 @@ const MyButton = styled(Button)({
 });
 
 
-export default function AddButton(props){
+export default function AddEmployeeButton(props){
     const [open, setOpen] = useState(false);
     const [position, setPosition] = useState('');
     const [salary, setSalary] = useState('');
