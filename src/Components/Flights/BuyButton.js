@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies';
+import Autocomplete from '@material-ui/lab/Autocomplete'
 
 const MyButton = styled(Button)({
   color: 'black'
@@ -25,10 +26,6 @@ export default function SearchButton(props){
     const handleClose = () => {
       setErr("");
       setOpen(false);
-    };
-
-    const handleTicketClass = (event) => {
-      setTicketClass(event.target.value);
     };
 
     const handleBuy = () => {
@@ -65,24 +62,26 @@ export default function SearchButton(props){
           });
       }
 
+    const ticketClasses = ['Economic','Buisness'];
+
     return (
       <div>
       <MyButton color="primary" onClick={handleClickOpen}>Kup</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
+        <DialogTitle id="form-dialog-title">Kup</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Wybierz klasę<br/>
             {err}
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
+          <Autocomplete
+            onChange={(event, newValue) => {
+              setTicketClass(newValue);
+            }}
             id="class"
-            label="Klasa"
-            type="tex"
-            onChange={handleTicketClass}
-            fullWidth
+            options={ticketClasses}
+            style={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label={"Klasa"} variant="outlined" />}
           />
         </DialogContent>
         <DialogActions>

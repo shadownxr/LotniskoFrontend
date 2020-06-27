@@ -36,10 +36,18 @@ const useStyles = makeStyles({
 
 export default function BriefableReservations(props){
     const [reservations,setReservations] = useState([]);
-    
+    const [refresh,setRefresh] = useState(props.refresh);
+
     useEffect(() => {
       fetchReservations();
     },[]);
+
+    useEffect(() => {
+      if(refresh === true){
+        fetchReservations();
+        setRefresh(false);
+      }
+    },[refresh]);
 
     const fetchReservations = () => {
         let payload = {
