@@ -9,6 +9,7 @@ import Paper from '@material-ui/core/Paper';
 import SearchFlightButton from "../../Flights/SearchFlightButton";
 import EmployeeViewPlanesList from "./EmployeeViewPlanesList";
 import AddPlaneButton from "./AddPlaneButton";
+import Cookie from "react-cookies";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -51,6 +52,7 @@ export default function EmployeeViewPlanes(props){
 
         let options = {
             method: 'GET',
+            'Authorization': 'Bearer ' + Cookie.load('userToken').token,
         }
 
         fetch(url, options)
@@ -74,7 +76,6 @@ export default function EmployeeViewPlanes(props){
                             <StyledTableCell align="center">Nazwa</StyledTableCell>
                             <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
                             <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>
-                            <StyledTableCell align="center">Obecnie na</StyledTableCell>
                             <StyledTableCell align="center"><SearchFlightButton /><AddPlaneButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

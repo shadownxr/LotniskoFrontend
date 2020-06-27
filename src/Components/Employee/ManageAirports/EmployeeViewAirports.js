@@ -8,6 +8,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import SearchFlightButton from "../../Flights/SearchFlightButton";
 import EmployeeViewAirportsList from "./EmployeeViewAirportsList";
+import Cookie from "react-cookies";
+import AddPlaneButton from "../ManagePlanes/AddPlaneButton";
+import AddAirportButton from "./AddAirportButton";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -35,16 +38,24 @@ const useStyles = makeStyles({
 
 export default function EmployeeViewPlanes(props){
     const [airports,setAirports] = useState([]);
+    const [refresh,setRefresh] = useState(true);
+
 
     useEffect(() => {
-        fetchFlights();
-    },[]);
+        if(refresh === true){
+            fetchAirports();
+            setRefresh(false);
+        }
+    },[refresh])
 
-    const fetchFlights = () => {
+    const fetchAirports = () => {
         const url = "http://localhost:8080/api/airports/list";
 
         let options = {
             method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
         }
 
         fetch(url, options)
@@ -66,8 +77,8 @@ export default function EmployeeViewPlanes(props){
                         <StyledTableRow>
                             <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Nazwa</StyledTableCell>
-                            <StyledTableCell align="center">Kod</StyledTableCell>
                             <StyledTableCell align="center">Miasto</StyledTableCell>
+                            <StyledTableCell align="center"><AddAirportButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <EmployeeViewAirportsList airportsData={airports} accountData={props.accountData}/>

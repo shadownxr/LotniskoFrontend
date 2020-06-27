@@ -28,7 +28,6 @@ export default function EmployeeViewPlanesList(props){
             <StyledTableRow key={i} className="AirportList">
                 <StyledTableCell align="center">{airport.id}</StyledTableCell>
                 <StyledTableCell align="center">{airport.airportName}</StyledTableCell>
-                <StyledTableCell align="center">{airport.code}</StyledTableCell>
                 <StyledTableCell align="center">{airport.cityName}</StyledTableCell>
                 <StyledTableCell align="center"></StyledTableCell>
             </StyledTableRow>

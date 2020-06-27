@@ -30,7 +30,6 @@ export default function EmployeeViewPlanesList(props){
                 <StyledTableCell align="center">{plane.planeName}</StyledTableCell>
                 <StyledTableCell align="center">{plane.seatsInEconomic}</StyledTableCell>
                 <StyledTableCell align="center">{plane.seatsInBuisness}</StyledTableCell>
-                <StyledTableCell align="center">{plane.aPID}</StyledTableCell>
                 <StyledTableCell align="center"></StyledTableCell>
             </StyledTableRow>
         )
