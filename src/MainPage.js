@@ -13,25 +13,36 @@ function MainPage(props) {
   const [thyme, setThyme] = useState("");
   const [refresh,setRefresh] = useState(true);
 
-    useEffect(() => {
-        if(refresh === true){
-            fetchUsers();
-            setRefresh(false);
-        }
-    },[refresh])
+  let dt = new Date();
+  dt.setMinutes( dt.getMinutes() + 15 );
 
-    const fetchUsers = () => {
-        const url = "https://localhost:8443/thyme";
+  useEffect(() => {
+      if(refresh === true){
+          fetchUsers();
+          setRefresh(false);
+      }
+  },[refresh])
 
-        fetch(url)
-            .then(response => response.text())
-            .then(result => {
-                console.log(result);
-                setThyme(result);
-            });
-
+  useEffect(() => {
+    if(localStorage.getItem('accessToken') != null){
+      setAccountData(props.location.state.accountData);
+      Cookie.save('userToken',{token:localStorage.getItem('accessToken'),tokenType:"Bearer"},{expires:dt});
     }
-    console.log(accountData)
+  })
+
+  const fetchUsers = () => {
+      const url = "https://localhost:8443/thyme";
+
+      fetch(url)
+          .then(response => response.text())
+          .then(result => {
+              console.log(result);
+              setThyme(result);
+          });
+
+  }
+    //console.log(localStorage.getItem('accessToken'));
+    //console.log(props.location.state.accountData);
   return (
     <div className="App">
       <div className="Header">

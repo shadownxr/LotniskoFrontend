@@ -1,12 +1,7 @@
-import React, {Component, useState} from 'react';
+import React, { Component, useState } from 'react';
 import { Redirect } from 'react-router-dom'
 
-
-
-
 class OAuth2RedirectHandler extends Component {
-
-
     getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
         var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
@@ -15,7 +10,6 @@ class OAuth2RedirectHandler extends Component {
     };
 
     render() {
-
         const token = this.getUrlParameter('token');
         const error = this.getUrlParameter('error');
         const id = this.getUrlParameter('id');
@@ -25,7 +19,7 @@ class OAuth2RedirectHandler extends Component {
             localStorage.setItem('accessToken', token);
             console.log("TOKEN = " + token);
             console.log(this.props.location);
-            const accountData = {id: id,roles: 'ROLE_USER',username:username,email:email};
+            const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
             console.log(accountData);
             return <Redirect to={{
                 pathname: "",
