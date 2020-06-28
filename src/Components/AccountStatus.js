@@ -53,7 +53,11 @@ export default function AccountStatus(props){
             case false:
                 return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} accountData={(accountData) => {setAccountData(accountData)}}/><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}} /></div>;
             case true:
-                return <div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>Witaj {accountData.username}!<Button>Dane Konta</Button><Button onClick={() => logout()}>Wyloguj</Button></div>;
+                return (<div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
+                            <div className={'userGreet'}>Hello {accountData.username}!</div>
+                            <div className={'authButton'}><Button>My Account</Button></div>
+                            <div className={'authButton'} onClick={() => logout()}><Button >Sign out</Button></div>
+                        </div>)
             default:
                 return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}}/></div>;
         }

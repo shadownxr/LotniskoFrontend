@@ -64,7 +64,7 @@ export default function SignIn(props){
         .then(result => {
           if(result.error === "Unauthorized"){
             console.log(result);
-            setErr("Błędny login lub hasło");
+            setErr("Incorrect input");
             return
           } else {
             setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt});

@@ -37,6 +37,7 @@ const useStyles = makeStyles({
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
     const [search,setSearch] = useState("");
+    const [searchedFlights,setSearchedFlights] = useState("");
 
     const ref = useRef(null);
     ref.current = "";
@@ -56,11 +57,12 @@ export default function ViewFlights(props){
         return(
           (flight.sapid.cityName === search.from) && 
           (flight.dapid.cityName === search.to) && 
-          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString()) &&
-          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())
+          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())/* &&
+          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())*/
         )
       }).map((flight) => flight);
-      setFlights(searched);
+      console.log(searched);
+      setSearchedFlights(searched);
     }
 
     const fetchFlights = () => {
@@ -84,18 +86,17 @@ export default function ViewFlights(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={6}>Przeglądarka lotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={6}>Aviable Flights</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nr</StyledTableCell>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
+                            <StyledTableCell align="center">From</StyledTableCell>
+                            <StyledTableCell align="center">To</StyledTableCell>
+                            <StyledTableCell align="center">Departure</StyledTableCell>
+                            <StyledTableCell align="center">Price</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewFlightsList flightsData={flights} accountData={props.accountData}/>
+                    <ViewFlightsList flightsData={(search === "")?flights:searchedFlights} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>

@@ -38,6 +38,10 @@ export default function CustomerReservations(props){
     const [reservations,setReservations] = useState([]);
     const [search, setSearch] = useState("");
     const [refresh,setRefresh] = useState(false);
+    const [searchedReservations,setSearchedReservations] = useState([]);
+
+    const ref = useRef();
+    ref.current = "";
 
     const ref = useRef();
     ref.current = "";
@@ -70,7 +74,8 @@ export default function CustomerReservations(props){
           (reservation.paid === search.paid)
         )
       }).map((reservation) => reservation);
-      setReservations(searched);
+      console.log(searched);
+      setSearchedReservations(searched);
     }
 
     const fetchReservations = () => {
@@ -118,7 +123,7 @@ export default function CustomerReservations(props){
                             <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <CustomerReservationsList customerReservationsData={reservations} refresh={(refresh) => {setRefresh(true)}}/>
+                    <CustomerReservationsList customerReservationsData={(search === "")?reservations:searchedReservations} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>

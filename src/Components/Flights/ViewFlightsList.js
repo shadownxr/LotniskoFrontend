@@ -29,11 +29,10 @@ export default function ViewFlightsList(props){
     const flightList = props.flightsData.map((flight,i) => {
         return(
             <StyledTableRow key={i} className="FlightList">
-                <StyledTableCell align="center">{flight.id}</StyledTableCell>
                 <StyledTableCell align="center">{flight.sapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{flight.dapid.cityName}</StyledTableCell>
-                <StyledTableCell align="center">{new Date(flight.startDate).toLocaleDateString()}</StyledTableCell>
-                <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
+                <StyledTableCell align="center">{new Date(flight.startDate).toUTCString()}</StyledTableCell>
+                <StyledTableCell align="center">{flight.priceEconomic}USD</StyledTableCell>
                 <StyledTableCell align="center"><div style={{display:"flex",justifyContent:"center"}}><DetailsButton flight={flight}/>{(Cookie.load('userToken'))?<BuyButton accountData={props.accountData} flightId={flight.id}/>:" "}</div></StyledTableCell>
             </StyledTableRow>
         )
