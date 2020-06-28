@@ -9,6 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies'
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const MyButton = styled(Button)({
     color: 'white'
@@ -16,6 +17,7 @@ const MyButton = styled(Button)({
 
 
 export default function AddFlightButton(props){
+    const [airports,setAirports] = useState([]);
     const [open, setOpen] = useState(false);
     const [starts, setStarts] = useState('');
     const [ends, setEnds] = useState('');
@@ -27,6 +29,7 @@ export default function AddFlightButton(props){
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
+        fetchAirports();
         setOpen(true);
     };
 
@@ -42,12 +45,12 @@ export default function AddFlightButton(props){
         setEnds(event.target.value);
     };
 
-    const handleSourceID = (event) => {
-        setSourceID(event.target.value);
+    const handleSourceID = (value) => {
+        setSourceID(value);
     };
 
-    const handleDestID = (event) => {
-        setDestID(event.target.value);
+    const handleDestID = (value) => {
+        setSourceID(value);
     };
 
     const handlePlaneID = (event) => {
@@ -71,8 +74,8 @@ export default function AddFlightButton(props){
         let payload = {
             "starts": starts,
             "ends": ends,
-            "sourceID": sourceID,
-            "destID": destID,
+            "sourceID": sourceID.id,
+            "destID": destID.id,
             "planeID": planeID,
             "priceEco": priceEco,
             "priceBusi": priceBusi
@@ -115,6 +118,24 @@ export default function AddFlightButton(props){
 
     };
 
+    const fetchAirports = () => {
+        const url = "http://localhost:8080/api/airports/list";
+
+        let options = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
+        }
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setAirports(result);
+            });
+    }
+
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
@@ -128,7 +149,7 @@ export default function AddFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="starts"
-                        label="Data wylotu"
+                        label="Departure"
                         type="datetime-local"
                         onChange={handleStarts}
                         InputLabelProps={{
@@ -139,36 +160,34 @@ export default function AddFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="ends"
-                        label="Data przylotu"
+                        label="Arrival"
                         type="datetime-local"
                         onChange={handleEnds}
                         InputLabelProps={{
                             shrink: true,
                         }}
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
+                    <Autocomplete
                         id="sourceID"
-                        label="Od"
-                        type="text"
-                        onChange={handleSourceID}
-                        fullWidth
+                        options={airports}
+                        getOptionLabel={(option) => option.airportName}
+                        style={{ width: 300 }}
+                        onChange={(event, value) =>handleSourceID(value)}
+                        renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
+                    <Autocomplete
                         id="destID"
-                        label="Do"
-                        type="text"
-                        onChange={handleDestID}
-                        fullWidth
+                        options={airports}
+                        getOptionLabel={(option) => option.airportName}
+                        style={{ width: 300 }}
+                        onChange={(event, value) =>handleDestID(value)}
+                        renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
                     />
                     <TextField
                         autoFocus
                         margin="dense"
                         id="planeID"
-                        label="Samolot"
+                        label="Plane"
                         type="text"
                         onChange={handlePlaneID}
                         fullWidth
@@ -177,7 +196,7 @@ export default function AddFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="priceEco"
-                        label="Cena ekonomii"
+                        label="Economic price"
                         type="text"
                         onChange={handlePriceEco}
                         fullWidth
@@ -186,7 +205,7 @@ export default function AddFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="priceBusi"
-                        label="Cena biznesu"
+                        label="Business price"
                         type="text"
                         onChange={handlePriceBusi}
                         fullWidth

@@ -24,22 +24,39 @@ export default function SearchButton(props){
 
     return (
       <div>
-      <MyButton color="primary" onClick={handleClickOpen}>Szczegóły</MyButton>
+      <MyButton color="primary" onClick={handleClickOpen}>MORE</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Szczegóły</DialogTitle>
+        <DialogTitle id="form-dialog-title"> <h1 style={{textAlign: 'center'}}>{props.flight.sapid.cityName} - {props.flight.dapid.cityName}</h1></DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Z : {props.flight.sapid.airportName} || Lotnisko : {props.flight.sapid.cityName} <br/>
-            Do : {props.flight.dapid.airportName} || Lotnisko : {props.flight.dapid.cityName} <br/>
-            Data wylotu : {new Date(props.flight.startDate).toLocaleDateString()} <br/>
-            Data przylotu : {new Date(props.flight.endDate).toLocaleDateString()} <br/>
-            Cena za bilet Biznesowy : {props.flight.priceBuisness} <br/>
-            Cena za bilet Ekonomiczny : {props.flight.priceEconomic} <br/>
+              <table style={{width: '100%'}}>
+                  <tr>
+                      <td>From:</td><td>{props.flight.sapid.airportName}</td>
+                  </tr>
+                  <tr>
+                      <td>To:</td><td>{props.flight.dapid.airportName}</td>
+                  </tr>
+                  <tr>
+                      <td>Departure:</td><td> {new Date(props.flight.startDate).toUTCString()}</td>
+                  </tr>
+                  <tr>
+                      <td>Arrival:</td><td> {new Date(props.flight.endDate).toUTCString()}</td>
+                  </tr>
+              </table>
+              <h2 style={{textAlign: 'center'}} >Ticket Prices</h2>
+              <table style={{width: '100%'}}>
+                  <tr>
+                      <td>Economic</td><td> {props.flight.priceBuisness}USD</td>
+                  </tr>
+                  <tr>
+                    <td>Business</td><td> {props.flight.priceEconomic}USD</td>
+                  </tr>
+              </table>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Wróć
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

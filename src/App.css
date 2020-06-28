@@ -125,7 +125,7 @@
   border-right: black 2px solid;
   min-height: 100%;
   cursor:pointer;
-  color:red;
+  color: #ff0000;
   font-family: Arial, serif;
   font-size:13px;
   text-decoration:none;
@@ -141,3 +141,7 @@
   top:1px;
 }
 
+.userGreet{
+  margin-right: 10px;
+  margin-top: 10px;
+}
