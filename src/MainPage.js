@@ -7,7 +7,7 @@ import Content from './Components/Content';
 import logo from './resources/logo.png';
 import Cookie from "react-cookies";
 
-function MainPage() {
+function MainPage(props) {
   const [menuChoice, setMenuChoice] = useState(0);
   const [accountData, setAccountData] = useState();
   const [thyme, setThyme] = useState("");
@@ -21,7 +21,7 @@ function MainPage() {
     },[refresh])
 
     const fetchUsers = () => {
-        const url = "http://localhost:8080/thyme";
+        const url = "https://localhost:8443/thyme";
 
         fetch(url)
             .then(response => response.text())
@@ -31,6 +31,7 @@ function MainPage() {
             });
 
     }
+    console.log(accountData)
   return (
     <div className="App">
       <div className="Header">

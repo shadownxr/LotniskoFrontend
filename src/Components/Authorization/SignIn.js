@@ -58,7 +58,7 @@ export default function SignIn(props){
       let dt = new Date();
       dt.setMinutes( dt.getMinutes() + 15 );
 
-      const url = "http://localhost:8080/api/auth/signin";
+      const url = "https://localhost:8080/api/auth/signin";
 
       fetch(url, options)
         .then(response => response.json())
