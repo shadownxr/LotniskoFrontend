@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
 import { useCookies } from 'react-cookie';
+import Facebook from './Facebook';
 
 export default function SignIn(props){
     const [open, setOpen] = useState(false);
@@ -104,6 +105,7 @@ export default function SignIn(props){
                           onChange={handlePassword}
                         />
                 </DialogContent>
+                <Facebook />
             <DialogActions className="DialogButtons">
                 <Button onClick={handleClose} color="primary">
                     Anuluj
