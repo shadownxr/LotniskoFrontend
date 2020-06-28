@@ -33,7 +33,7 @@ export default function ViewFlightsList(props){
                 <StyledTableCell align="center">{flight.dapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(flight.startDate).toUTCString()}</StyledTableCell>
                 <StyledTableCell align="center">{flight.priceEconomic}USD</StyledTableCell>
-                <StyledTableCell align="center"><div style={{display:"flex",justifyContent:"center"}}><DetailsButton flight={flight}/>{(Cookie.load('userToken'))?<BuyButton accountData={props.accountData} flightId={flight.id}/>:" "}</div></StyledTableCell>
+                <StyledTableCell align="center"><div style={{display:"flex",justifyContent:"center"}}><DetailsButton flight={flight}/>{(Cookie.load('userToken'))?<BuyButton accountData={props.accountData} flightId={flight.id} flight={flight}/>:" "}</div></StyledTableCell>
             </StyledTableRow>
         )
     })
