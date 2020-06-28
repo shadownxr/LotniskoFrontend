@@ -58,6 +58,7 @@ function App() {
         </div>
       </div>
 
+      <div  dangerouslySetInnerHTML={{__html: thyme}} />
       <div className="Footer">
         3ID12B Filipowicz Artur, Grzyb Piotr, Klusek Tobiasz, Świątek Kamil
       </div>
