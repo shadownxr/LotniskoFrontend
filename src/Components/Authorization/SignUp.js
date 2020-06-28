@@ -99,7 +99,7 @@ export default function SignUp(props){
           body: JSON.stringify(payload),
         };
   
-        const url = "http://localhost:8080/api/auth/signup";
+        const url = "https://localhost:8080/api/auth/signup";
   
         fetch(url, options)
           .then(response => response.json())
