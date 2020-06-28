@@ -50,7 +50,7 @@ export default function AddFlightButton(props){
     };
 
     const handleDestID = (value) => {
-        setSourceID(value);
+        setDestID(value);
     };
 
     const handlePlaneID = (event) => {
