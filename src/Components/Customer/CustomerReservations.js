@@ -43,6 +43,9 @@ export default function CustomerReservations(props){
     const ref = useRef();
     ref.current = "";
 
+    const ref = useRef();
+    ref.current = "";
+
     useEffect(() => {
       console.log(props.reservation);
       fetchReservations();

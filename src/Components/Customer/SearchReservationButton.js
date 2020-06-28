@@ -49,6 +49,7 @@ export default function SearchButton(props){
     }
 
     const handleSearch = () => {
+
       if(from&&to&&dateFrom&&!dateTo&&paid){
         props.search({from: from, to: to, dateFrom: dateFrom, dateTo: dateTo,paid: paid});
         setOpen(false);

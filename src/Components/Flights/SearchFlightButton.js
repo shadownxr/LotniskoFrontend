@@ -47,6 +47,7 @@ export default function SearchButton(props){
     }
 
     const handleSearch = () => {
+
       if(from&&to&&dateFrom&&!dateTo){
         props.search({from: from, to: to, dateFrom: dateFrom, dateTo: dateTo});
         setOpen(false);
@@ -92,16 +93,6 @@ export default function SearchButton(props){
                 shrink: true,
               }}
           />
-          {/*<TextField
-              id="date"
-              label="Data odlotu do"
-              type="date"
-              value={dateTo}
-              onChange={handleDateTo}
-              InputLabelProps={{
-                shrink: true,
-              }}
-          />*/}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
