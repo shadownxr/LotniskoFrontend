@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -37,7 +37,11 @@ const useStyles = makeStyles({
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
     const [refresh,setRefresh] = useState(true);
+    const [search,setSearch] = useState("");
+    const [searchedFlights,setSearchedFlights] = useState("");
 
+    const ref = useRef(null);
+    ref.current = "";
 
     useEffect(() => {
         if(refresh === true){
@@ -45,6 +49,23 @@ export default function ViewFlights(props){
             setRefresh(false);
         }
     },[refresh])
+    useEffect(() => {
+        if(ref !== search){
+            handleSearch();
+        }
+    },[search,ref])
+
+    const handleSearch = () => {
+        let searched = flights.filter((flight) => {
+            return(
+                (flight.sapid.cityName === search.from) &&
+                (flight.dapid.cityName === search.to) &&
+                (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())
+            )
+        }).map((flight) => flight);
+        console.log(searched);
+        setSearchedFlights(searched);
+    }
 
     const fetchFlights = () => {
         const url = "http://localhost:8080/api/flights/list";
@@ -77,11 +98,11 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center">Data przylotu</StyledTableCell>
                             <StyledTableCell align="center">Samolot</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchFlightButton refresh={(refresh) => {setRefresh(true)}}/>
+                            <StyledTableCell align="center"><SearchFlightButton search={(search) => {setSearch(search)}}/>
                             <AddFlightButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
+                    <EmployeeViewFlightsList flightsData={(search === "")?flights:searchedFlights} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -36,10 +36,32 @@ const useStyles = makeStyles({
 
 export default function ViewEmployees(props){
     const [employees,setEmployees] = useState([]);
+    const [search,setSearch] = useState("");
+    const [searchedEmployees,setSearchedEmployees] = useState("");
+
+    const ref = useRef(null);
+    ref.current = "";
 
     useEffect(() => {
         fetchEmployees();
     },[]);
+
+    useEffect(() => {
+        if(ref !== search){
+            handleSearch();
+        }
+    },[search,ref])
+
+    const handleSearch = () => {
+        let searched = employees.filter((employee) => {
+            return(
+                (employee.personID.name === search.name) &&
+                (employee.personID.surname === search.surname)
+            )
+        }).map((employee) => employee);
+        console.log(searched);
+        setSearchedEmployees(searched);
+    }
 
     const fetchEmployees = () => {
         const url = "http://localhost:8080/api/employees/list";
@@ -75,10 +97,10 @@ export default function ViewEmployees(props){
                             <StyledTableCell align="center">Numer telefonu</StyledTableCell>
                             <StyledTableCell align="center">Data zatrudnienia</StyledTableCell>
                             <StyledTableCell align="center">Data zwolnienia</StyledTableCell>
-                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton /></div></StyledTableCell>
+                            <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton search={(search) => {setSearch(search)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewFiredEmployeesList employeesData={employees} accountData={props.accountData}/>
+                    <ViewFiredEmployeesList employeesData={(search === "")?employees:searchedEmployees} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>
