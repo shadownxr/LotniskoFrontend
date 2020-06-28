@@ -6,8 +6,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import SearchFlightButton from "../../Flights/SearchFlightButton";
 import EmployeeViewAirportsList from "./EmployeeViewAirportsList";
 import Cookie from "react-cookies";
+import AddPlaneButton from "../ManagePlanes/AddPlaneButton";
 import AddAirportButton from "./AddAirportButton";
 
 const StyledTableCell = withStyles((theme) => ({

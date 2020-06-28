@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableCell from '@material-ui/core/TableCell';
@@ -10,7 +10,6 @@ import SearchFlightButton from "../../Flights/SearchFlightButton";
 import EmployeeViewPlanesList from "./EmployeeViewPlanesList";
 import AddPlaneButton from "./AddPlaneButton";
 import Cookie from "react-cookies";
-import SearchPlaneButton from "./SearchPlaneButton";
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -39,11 +38,7 @@ const useStyles = makeStyles({
 export default function EmployeeViewPlanes(props){
     const [planes,setPlanes] = useState([]);
     const [refresh,setRefresh] = useState(true);
-    const [search,setSearch] = useState("");
-    const [searchedPlanes,setSearchedPlanes] = useState("");
 
-    const ref = useRef(null);
-    ref.current = "";
 
     useEffect(() => {
         if(refresh === true){
@@ -51,22 +46,6 @@ export default function EmployeeViewPlanes(props){
             setRefresh(false);
         }
     },[refresh])
-
-    useEffect(() => {
-        if(ref !== search){
-            handleSearch();
-        }
-    },[search,ref])
-
-    const handleSearch = () => {
-        let searched = planes.filter((plane) => {
-            return(
-                (plane.planeName === search.planeName)
-            )
-        }).map((plane) => plane);
-        console.log(searched);
-        setSearchedPlanes(searched);
-    }
 
     const fetchPlanes = () => {
         const url = "http://localhost:8080/api/planes/list";
@@ -97,11 +76,10 @@ export default function EmployeeViewPlanes(props){
                             <StyledTableCell align="center">Nazwa</StyledTableCell>
                             <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
                             <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>
-                            <StyledTableCell align="center"><SearchPlaneButton search={(search) => {setSearch(search)}}/>
-                            <AddPlaneButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
+                            <StyledTableCell align="center"><SearchFlightButton /><AddPlaneButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewPlanesList planesData={(search === "")?planes:searchedPlanes} accountData={props.accountData} />
+                    <EmployeeViewPlanesList planesData={planes} accountData={props.accountData} />
                 </Table>
             </TableContainer>
         </div>

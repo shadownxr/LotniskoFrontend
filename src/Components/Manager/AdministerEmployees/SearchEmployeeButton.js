@@ -13,10 +13,12 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
-export default function SearchEmployeeButton(props){
+export default function SearchButton(props){
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
+    const [position, setPosition] = useState('');
+    const [date, setDate] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
@@ -36,14 +38,17 @@ export default function SearchEmployeeButton(props){
         setSurname(event.target.value);
     };
 
+    const handlePosition = (event) => {
+        setPosition(event.target.value);
+    };
+
+    const handleDate = (event) => {
+        setDate(event.target.value);
+    };
 
     const handleSearch = () => {
-        if(name&&surname){
-            props.search({name: name, surname: surname});
-            setOpen(false);
-        } else {
-            setErr("Wypełnij pola!");
-        }
+        console.log(name+" "+surname+" "+position+" "+date);
+        setOpen(false);
     }
 
     return (
@@ -53,7 +58,7 @@ export default function SearchEmployeeButton(props){
                 <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Podaj imię i nazwisko szukanego pracowwnika<br/>
+                        Podaj imie, nazwisko, stanowisko i datę zatrudnienia <br/>
                         {err}
                     </DialogContentText>
                     <TextField
@@ -66,12 +71,33 @@ export default function SearchEmployeeButton(props){
                         fullWidth
                     />
                     <TextField
+                        autoFocus
                         margin="dense"
                         id="surname"
                         label="Nazwisko"
                         type="text"
                         onChange={handleSurname}
                         fullWidth
+                    />
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="position"
+                        label="Stanowisko"
+                        type="text"
+                        onChange={handlePosition}
+                        fullWidth
+                    />
+
+                    <TextField
+                        id="date"
+                        label="Data zatrudnienia"
+                        type="date"
+                        value={surname}
+                        onChange={handleDate}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
                     />
                 </DialogContent>
                 <DialogActions>
