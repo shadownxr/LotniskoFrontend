@@ -13,10 +13,9 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
-export default function SearchEmployeeButton(props){
+export default function SearchPlaneButton(props){
     const [open, setOpen] = useState(false);
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [planeName, setPlaneName] = useState('');
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
@@ -28,21 +27,16 @@ export default function SearchEmployeeButton(props){
         setOpen(false);
     };
 
-    const handleName = (event) => {
-        setName(event.target.value);
+    const handleId = (event) => {
+        setPlaneName(event.target.value);
     };
-
-    const handleSurname = (event) => {
-        setSurname(event.target.value);
-    };
-
 
     const handleSearch = () => {
-        if(name&&surname){
-            props.search({name: name, surname: surname});
+        if(planeName){
+            props.search({planeName: planeName});
             setOpen(false);
         } else {
-            setErr("Wypełnij pola!");
+            setErr("Wypełnij pole!");
         }
     }
 
@@ -53,24 +47,16 @@ export default function SearchEmployeeButton(props){
                 <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Podaj imię i nazwisko szukanego pracowwnika<br/>
+                        Podaj nazwe samolotu<br/>
                         {err}
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
-                        id="name"
-                        label="Imie"
+                        id="planeName"
+                        label="Nazwa"
                         type="text"
-                        onChange={handleName}
-                        fullWidth
-                    />
-                    <TextField
-                        margin="dense"
-                        id="surname"
-                        label="Nazwisko"
-                        type="text"
-                        onChange={handleSurname}
+                        onChange={handleId}
                         fullWidth
                     />
                 </DialogContent>
