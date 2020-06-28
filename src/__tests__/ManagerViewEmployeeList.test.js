@@ -6,6 +6,7 @@ import ViewEmployees from "../Components/Manager/AdministerEmployees/ViewEmploye
 import SearchEmployeeButton from "../Components/Manager/AdministerEmployees/SearchEmployeeButton";
 import AddEmployeeButton from "../Components/Manager/AdministerEmployees/AddEmployeeButton";
 import ViewEmployeesList from "../Components/Manager/AdministerEmployees/ViewEmployeesList";
+import ViewFiredEmployeesList from "../Components/Manager/AdministerEmployees/ViewFiredEmpolyeesList";
 
 configure({ adapter: new Adapter() });
 
@@ -30,7 +31,7 @@ it('includes AddEmployeeButton', () => {
 
 it('Opens and displayes text', () => {
     const usersList = shallow(<SearchEmployeeButton search={() => {setSearch()}} />);
-    expect(usersList.text()).toContain("SzukajPodaj imię i nazwisko szukanego pracowwnikaAnulujSzukaj")
+    expect(usersList.text()).toContain("SzukajPodaj imie, nazwisko, stanowisko i datę zatrudnienia AnulujSzukaj")
 });
 
 it('Opens and displayes text', () => {
@@ -47,7 +48,7 @@ it(`shows a list of employees`, () => {
         employee.hiringDate="2020-06-01";
         employee.firingDate=null;
 
-    let list = shallow(<ViewEmployeesList search={""} employeesData={employee} />);
+    let list = shallow(<ViewFiredEmployeesList employeesData={employee} />);
     expect(list.find('li').length).toEqual(employee.length);
 });
 
@@ -61,7 +62,7 @@ describe('Passing employees works', () => {
     employee.hiringDate="2020-06-01";
     employee.firingDate=null;
 
-    let list = shallow(<ViewEmployeesList search={""} employeesData={employee} />);
+    let list = shallow(<ViewFiredEmployeesList employeesData={employee} />);
         it(`it passes name Adam`, () => {
             expect(list.containsMatchingElement(name)).not.toEqual(true)
         });

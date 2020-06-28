@@ -2,9 +2,8 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import { shallow } from 'enzyme';
-import EmployeeViewPlanesList from "../Components/Employee/ManagePlanes/EmployeeViewPlanesList";
-import AddPlaneButton from "../Components/Employee/ManagePlanes/AddPlaneButton";
-import EmployeeViewPlanes from "../Components/Employee/ManagePlanes/EmployeeViewPlanes";
+import EmployeeViewPlanes from "../Components/Employee/ManageAirports/EmployeeViewAirports";
+import AddAirportButton from "../Components/Employee/ManageAirports/AddAirportButton";
 import EmployeeViewAirportsList from "../Components/Employee/ManageAirports/EmployeeViewAirportsList";
 
 
@@ -16,18 +15,20 @@ it('renders without crashing', () => {
 
 it('includes AddAirportButton', () => {
     const app = shallow(<EmployeeViewPlanes />);
-    expect(app.containsMatchingElement(<EmployeeViewPlanesList />)).toEqual(true)
+    expect(app.containsMatchingElement(<AddAirportButton />)).toEqual(true)
 });
-
 it('includes EmployeeViewAirportsList', () => {
     const app = shallow(<EmployeeViewPlanes />);
-    expect(app.containsMatchingElement(<AddPlaneButton />)).toEqual(true)
+    expect(app.containsMatchingElement(<EmployeeViewAirportsList />)).toEqual(true)
 });
 
+
 it('Opens and displayes text', () => {
-    const usersList = shallow(<AddPlaneButton search={() => {setSearch()}} />);
+    const usersList = shallow(<AddAirportButton search={() => {setSearch()}} />);
     expect(usersList.text()).toContain("Dodaj samolotAnulujDodaj")
 });
+
+
 
 it(`shows a list of planes`, () => {
     const airport = [];
@@ -52,7 +53,6 @@ describe('Passing employees works', () => {
         expect(list.containsMatchingElement(name)).not.toEqual(true)
     });
 });
-
 
 
 
