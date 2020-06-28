@@ -14,7 +14,9 @@
     "react-cookie": "^4.0.3",
     "react-cookies": "^0.1.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "enzyme-adapter-react-16": "latest",
+    "enzyme": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
