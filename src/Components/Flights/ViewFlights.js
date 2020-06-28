@@ -86,7 +86,7 @@ export default function ViewFlights(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={6}>Aviable Flights</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={6}>Available Flights</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
                             <StyledTableCell align="center">From</StyledTableCell>
