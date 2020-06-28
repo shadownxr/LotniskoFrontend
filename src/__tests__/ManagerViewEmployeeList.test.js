@@ -46,7 +46,7 @@ it(`shows a list of employees`, () => {
         employee.surname="Adamowicz";
         employee. phoneNumber="123456789";
         employee.hiringDate="2020-06-01";
-        employee.firingDate=null;
+        employee.firingDate="2020-06-02";
 
     let list = shallow(<ViewFiredEmployeesList employeesData={employee} />);
     expect(list.find('li').length).toEqual(employee.length);
@@ -60,7 +60,7 @@ describe('Passing employees works', () => {
     employee.surname="Adamowicz";
     employee. phoneNumber="123456789";
     employee.hiringDate="2020-06-01";
-    employee.firingDate=null;
+    employee.firingDate="2020-06-02";
 
     let list = shallow(<ViewFiredEmployeesList employeesData={employee} />);
         it(`it passes name Adam`, () => {
