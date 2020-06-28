@@ -7,6 +7,7 @@ import ViewFlights from "../Components/Employee/ManageFlights/EmployeeViewFlight
 import AddFlightButton from "../Components/Employee/ManageFlights/AddFlightButton";
 import EmployeeViewFlightsList from "../Components/Employee/ManageFlights/EmployeeViewFlightsList";
 import SearchFlightButton from "../Components/Flights/SearchFlightButton";
+import EmployeeViewAirportsList from "../Components/Employee/ManageAirports/EmployeeViewAirportsList";
 
 
 configure({ adapter: new Adapter() });
@@ -38,3 +39,34 @@ it('Opens and displayes text', () => {
     expect(usersList.text()).toContain("SzukajPodaj miejsce początkowe, dolecowe, datę odlotu i klasęAnulujSzukaj")
 });
 
+
+it(`shows a list of planes`, () => {
+    const flight = [];
+    flight.id = 1;
+    flight.cityName = "TestoweOD";
+    flight. cityName="TestoweDO";
+    flight.startDate="2020-10-02";
+    flight.endDate="2020-10-03";
+    flight.planeID=3
+    flight.priceEconomic=100;
+    let list = shallow(<EmployeeViewFlightsList flightsData={flight} />);
+    expect(list.find('li').length).toEqual(flight.length);
+});
+
+describe('Passing employees works', () => {
+    const id = 1;
+
+    const flight = [];
+    flight.id = 1;
+    flight.cityName = "TestoweOD";
+    flight. cityName="TestoweDO";
+    flight.startDate="2020-10-02";
+    flight.endDate="2020-10-03";
+    flight.planeID=3
+    flight.priceEconomic=100;
+
+    let list = shallow(<EmployeeViewFlightsList flightsData={flight} />);
+    it(`it passes airport`, () => {
+        expect(list.containsMatchingElement(id)).not.toEqual(true)
+    });
+});
