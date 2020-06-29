@@ -37,7 +37,11 @@ const useStyles = makeStyles({
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
     const [refresh,setRefresh] = useState(true);
+    const [search,setSearch] = useState("");
+    const [searchedFlights,setSearchedFlights] = useState("");
 
+    const ref = useRef(null);
+    ref.current = "";
 
     useEffect(() => {
         if(refresh === true){
@@ -45,6 +49,24 @@ export default function ViewFlights(props){
             setRefresh(false);
         }
     },[refresh])
+
+    useEffect(() => {
+        if(ref !== search){
+            handleSearch();
+        }
+    },[search,ref])
+
+    const handleSearch = () => {
+        let searched = flights.filter((flight) => {
+            return(
+                (flight.sapid.cityName === search.from) &&
+                (flight.dapid.cityName === search.to) &&
+                (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())
+            )
+        }).map((flight) => flight);
+        console.log(searched);
+        setSearchedFlights(searched);
+    }
 
     const fetchFlights = () => {
         const url = "https://localhost:8443/api/flights/list";
@@ -81,7 +103,7 @@ export default function ViewFlights(props){
                             <AddFlightButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewFlightsList flightsData={flights} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
+                    <EmployeeViewFlightsList flightsData={(search === "")?flights:searchedFlights} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>
