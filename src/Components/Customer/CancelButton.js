@@ -36,7 +36,7 @@ export default function CancelButton(props){
 
         console.log(payload);
 
-        const url = "http://localhost:8080/api/tickets/delete";
+        const url = "https://localhost:8443/api/tickets/delete";
   
         const options = {
             method: 'DELETE',

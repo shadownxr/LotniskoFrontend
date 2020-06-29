@@ -82,7 +82,7 @@ export default function CustomerReservations(props){
 
       console.log(payload);
 
-      const url = "http://localhost:8080/api/tickets/listByClientID";
+      const url = "https://localhost:8443/api/tickets/listByClientID";
 
       const options = {
           method: 'POST',

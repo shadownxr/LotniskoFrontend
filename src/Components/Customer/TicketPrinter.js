@@ -30,7 +30,7 @@ export default function TicketPrinter(props){
             "seat": props.seat
           }
   
-        const url = "http://localhost:8080/api/tickets/checkIn";
+        const url = "https://localhost:8443/api/tickets/checkIn";
   
         const options = {
             method: 'POST',

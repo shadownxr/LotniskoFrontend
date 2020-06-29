@@ -94,7 +94,7 @@ export default function AddFlightButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/flights/add";
+        const url = "https://localhost:8443/api/flights/add";
 
         fetch(url, options)
             .then(response => response.json())
@@ -119,7 +119,7 @@ export default function AddFlightButton(props){
     };
 
     const fetchAirports = () => {
-        const url = "http://localhost:8080/api/airports/list";
+        const url = "https://localhost:8443/api/airports/list";
 
         let options = {
             method: 'GET',

@@ -8,6 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
 import { useCookies } from 'react-cookie';
+import Facebook from './Facebook';
 
 export default function SignIn(props){
     const [open, setOpen] = useState(false);
@@ -57,7 +58,7 @@ export default function SignIn(props){
       let dt = new Date();
       dt.setMinutes( dt.getMinutes() + 15 );
 
-      const url = "http://localhost:8080/api/auth/signin";
+      const url = "https://localhost:8443/api/auth/signin";
 
       fetch(url, options)
         .then(response => response.json())
@@ -67,7 +68,7 @@ export default function SignIn(props){
             setErr("Incorrect input");
             return
           } else {
-            setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt});
+            setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt,path:'/'});
             props.accountData({id: result.id,roles:result.roles,username:result.username,email:result.email});
             setOpen(false);
           }
@@ -104,6 +105,7 @@ export default function SignIn(props){
                           onChange={handlePassword}
                         />
                 </DialogContent>
+                <Facebook />
             <DialogActions className="DialogButtons">
                 <Button onClick={handleClose} color="primary">
                     Anuluj

@@ -102,7 +102,7 @@ export default function AddEmployeeButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/employees/add";
+        const url = "https://localhost:8443/api/employees/add";
 
         fetch(url, options)
             .then(response => response.json())

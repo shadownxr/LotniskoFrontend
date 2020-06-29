@@ -47,7 +47,7 @@ export default function ViewEmployees(props){
     },[refresh])
 
     const fetchEmployees = () => {
-        const url = "http://localhost:8080/api/employees/list";
+        const url = "https://localhost:8443/api/employees/list";
 
         let options = {
             method: 'GET',
