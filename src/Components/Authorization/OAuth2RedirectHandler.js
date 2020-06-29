@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
 class OAuth2RedirectHandler extends Component {

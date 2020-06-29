@@ -16,7 +16,7 @@ const MyButton = styled(Button)({
 
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
-    const [dateTo, setDateTo] = useState('');
+    //const [dateTo, setDateTo] = useState('');
     const [dateFrom, setDateFrom] = useState('');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
@@ -44,13 +44,13 @@ export default function SearchButton(props){
       setDateFrom(event.target.value);
     }
 
-    const handleDateTo = (event) => {
+    /*const handleDateTo = (event) => {
       setDateTo(event.target.value);
-    }
+    }*/
 
     const handleSearch = () => {
-      if(from&&to&&dateFrom&&!dateTo&&paid){
-        props.search({from: from, to: to, dateFrom: dateFrom, dateTo: dateTo,paid: paid});
+      if(from&&to&&dateFrom&&paid){
+        props.search({from: from, to: to, dateFrom: dateFrom, paid: paid});
         setOpen(false);
       } else {
         setErr("Wypełnij wszystkie pola!");

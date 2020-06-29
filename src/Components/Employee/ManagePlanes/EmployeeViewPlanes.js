@@ -6,7 +6,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import SearchFlightButton from "../../Flights/SearchFlightButton";
 import EmployeeViewPlanesList from "./EmployeeViewPlanesList";
 import AddPlaneButton from "./AddPlaneButton";
 import Cookie from "react-cookies";

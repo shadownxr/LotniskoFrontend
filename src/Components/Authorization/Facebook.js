@@ -1,5 +1,5 @@
 import React from 'react';
-import fbLogo from './fb-logo.png';
+//import fbLogo from './fb-logo.png';
 import Link from '@material-ui/core/Link';
 
 export default function Facebook(){

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -8,26 +8,13 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import PaypalButton from './PaypalButton';
 
 const MyButton = styled(Button)({
   color: 'black'
 });
-const useStyles = makeStyles((theme) => ({
-    container: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-}));
 
 export default function SearchButton(props){
-    const classes = useStyles();
-
     const [open, setOpen] = useState(false);
     const [ticketClass, setTicketClass] = useState('');
     const [err, setErr] = useState('');
@@ -45,40 +32,6 @@ export default function SearchButton(props){
       setErr("");
       setOpen(close);
     };
-
-    /*const handleBuy = () => {
-        fetchBuy();
-    }*/
-
-    /*const fetchBuy = () => {
-        let payload = {
-            "flightId": props.flightId,
-            "userId": props.accountData.id,
-            "ticketClass": ticketClass,
-            "paid": false
-        }
-
-        console.log(payload);
-
-        const url = "https://localhost:8443/api/tickets/add";
-  
-        const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': 'Bearer ' + Cookie.load('userToken').token,
-            },
-            body: JSON.stringify(payload),
-        };
-  
-        fetch(url, options)
-          .then(response => response.json())
-          .then(result => {
-            console.log(result);
-            setOpen(false);
-          });
-      }*/
 
     const ticketClasses = ['Economic','Buisness'];
 
@@ -107,9 +60,6 @@ export default function SearchButton(props){
           <Button onClick={handleClose} color="primary">
             Anuluj
           </Button>
-          {/*<Button onClick={handleBuy} color="primary">
-            Kup
-          </Button>*/}
         </DialogActions>
       </Dialog>
     </div>
