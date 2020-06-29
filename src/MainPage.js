@@ -24,12 +24,12 @@ function MainPage(props) {
   },[refresh])
 
   useEffect(() => {
-    if(localStorage.getItem('facebookToken') !== null){
+    if(Cookie.load('userToken')){
       setAccountData(props.location.state.accountData);
-      Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
+      //Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
       console.log(Cookie.load('userToken').token);
     }
-  },[props.location.state.accountData, dt])
+  },[dt]);
 
   const fetchUsers = () => {
       const url = "https://localhost:8443/thyme";
