@@ -13,9 +13,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-            <Route exact path="/" component={Homepage}></Route>
-            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
-            <Route component={NotFound}></Route>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler} />
+            <Route component={NotFound} />
       </Switch>
     </div>
   );

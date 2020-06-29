@@ -24,9 +24,9 @@ function MainPage(props) {
   },[refresh])
 
   useEffect(() => {
-    if(Cookie.load('userToken')){
+    if(localStorage.getItem('facebookToken') !== null){
       setAccountData(props.location.state.accountData);
-      //Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
+      Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
       console.log(Cookie.load('userToken').token);
     }
   },[dt]);

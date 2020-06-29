@@ -22,7 +22,7 @@ class OAuth2RedirectHandler extends Component {
             console.log(this.props.location);
             let dt = new Date();
             dt.setMinutes( dt.getMinutes() + 15 );
-            Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
+            //Cookie.save('facebookToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
             const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
             //console.log(accountData);
             return <Redirect to={{
