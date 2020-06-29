@@ -16,11 +16,11 @@ class OAuth2RedirectHandler extends Component {
         const username = this.getUrlParameter('username');
         const email = this.getUrlParameter('email');
         if(token) {
-            localStorage.setItem('accessToken', token);
-            console.log("TOKEN = " + token);
-            console.log(this.props.location);
+            localStorage.setItem('facebookToken', token);
+            //console.log("TOKEN = " + token);
+            //console.log(this.props.location);
             const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
-            console.log(accountData);
+            //console.log(accountData);
             return <Redirect to={{
                 pathname: "",
                 state: { accountData: accountData }

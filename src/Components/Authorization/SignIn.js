@@ -68,7 +68,7 @@ export default function SignIn(props){
             setErr("Incorrect input");
             return
           } else {
-            setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt});
+            setCookie('userToken',{token:result.accessToken,tokenType:result.tokenType},{expires: dt,path:'/'});
             props.accountData({id: result.id,roles:result.roles,username:result.username,email:result.email});
             setOpen(false);
           }

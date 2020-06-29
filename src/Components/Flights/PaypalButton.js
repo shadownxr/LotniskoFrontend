@@ -31,7 +31,7 @@ class PaypalButton extends React.Component {
   fetchBuy = () => {
     let payload = {
         "flightId": this.props.flightId,
-        "userId": this.props.accountData.id,
+        "userId": parseInt(this.props.accountData.id),
         "ticketClass": this.props.ticketClass,
         "paid": false
     }

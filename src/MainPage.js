@@ -24,11 +24,12 @@ function MainPage(props) {
   },[refresh])
 
   useEffect(() => {
-    if(localStorage.getItem('accessToken') != null){
+    if(localStorage.getItem('facebookToken') !== null){
       setAccountData(props.location.state.accountData);
-      Cookie.save('userToken',{token:localStorage.getItem('accessToken'),tokenType:"Bearer"},{expires:dt});
+      Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
+      console.log(Cookie.load('userToken').token);
     }
-  })
+  },[props.location.state.accountData, dt])
 
   const fetchUsers = () => {
       const url = "https://localhost:8443/thyme";
@@ -41,8 +42,6 @@ function MainPage(props) {
           });
 
   }
-    //console.log(localStorage.getItem('accessToken'));
-    //console.log(props.location.state.accountData);
   return (
     <div className="App">
       <div className="Header">
@@ -50,7 +49,7 @@ function MainPage(props) {
             <img alt="logo" src={logo} className={'LogoImage'}/>
         </div>
         <div style={{display:"flex",flexDirection:"column",flex:2, height:"100%"}}>
-          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} refresh={(refresh) => {setRefresh(true)}}/></div>
+          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} accountData2={accountData} refresh={(refresh) => {setRefresh(true)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
                 <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>Home</Button>

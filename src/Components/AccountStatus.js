@@ -33,12 +33,16 @@ export default function AccountStatus(props){
  
     useEffect(() => {
         if(Cookie.load('userToken')){
+            setAccountData(props.accountData2);
             setIsLogged(true);
         } else {
             setIsLogged(false);
         };
-        props.accountData(accountData);
     },[isLogged,props,accountData])
+
+    const handleMyAccount = () => {
+        
+    }
 
     const logout = () => {
         if(Cookie.load('userToken')){
@@ -53,11 +57,14 @@ export default function AccountStatus(props){
     const accountStatusSwitch = () => {
         switch(isLogged){
             case false:
-                return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} accountData={(accountData) => {setAccountData(accountData)}}/><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}} /></div>;
+                return <div style={{display:"flex",flexDirection:"row-reverse"}}>
+                        <SignIn style={{flex:"1"}} accountData={(accountData) => {props.accountData(accountData)}/*(accountData) => {setAccountData(accountData)}*/}/>
+                        <SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}} />
+                    </div>;
             case true:
                 return (<div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
-                            <div className={'userGreet'}>Hello {/*(accountData.username !== "")?accountData.username:"Facebook User"*/}!</div>
-                            <div className={'authButton'}><Button>My Account</Button></div>
+                            {/*<div className={'userGreet'}>Hello {accountData.username}!</div>*/}
+                            <div className={'authButton'}><Button onClick={() => handleMyAccount()}>My Account</Button></div>
                             <div className={'authButton'} onClick={() => logout()}><Button >Sign out</Button></div>
                         </div>)
             default:

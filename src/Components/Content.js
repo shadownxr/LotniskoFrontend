@@ -13,6 +13,7 @@ import EmployeeViewPlanes from "./Employee/ManagePlanes/EmployeeViewPlanes";
 import EmployeeViewAirports from "./Employee/ManageAirports/EmployeeViewAirports";
 
 export default function Content(props){
+  console.log(props.accountData);
     const renderContentSwitch = () => {
         switch(props.menuChoice){
           case "Main Page":
