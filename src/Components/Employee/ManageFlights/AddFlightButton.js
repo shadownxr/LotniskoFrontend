@@ -18,7 +18,6 @@ const MyButton = styled(Button)({
 
 export default function AddFlightButton(props){
     const [airports,setAirports] = useState([]);
-    const [planes2,setPlanes2] = useState([]);
     const [open, setOpen] = useState(false);
     const [starts, setStarts] = useState('');
     const [ends, setEnds] = useState('');
@@ -31,7 +30,6 @@ export default function AddFlightButton(props){
 
     const handleClickOpen = () => {
         fetchAirports();
-        fetchPlanes();
         setOpen(true);
     };
 
@@ -138,22 +136,6 @@ export default function AddFlightButton(props){
             });
     }
 
-    const fetchPlanes = () => {
-        const url = "https://localhost:8443/api/planes/list";
-
-        let options = {
-            method: 'GET',
-            'Authorization': 'Bearer ' + Cookie.load('userToken').token,
-        }
-
-        fetch(url, options)
-            .then(response => response.json())
-            .then(result => {
-                console.log(result);
-                setPlanes2(result.map((id) => id.toString()));
-            });
-    }
-
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
@@ -201,14 +183,14 @@ export default function AddFlightButton(props){
                         onChange={(event, value) =>handleDestID(value)}
                         renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
                     />
-                    <Autocomplete
-                        onChange={(event, newValue) => {
-                            setPlaneID(newValue);
-                        }}
+                    <TextField
+                        autoFocus
+                        margin="dense"
                         id="planeID"
-                        options={planes2}
-                        style={{ width: 300 }}
-                        renderInput={(params) => <TextField {...params} label={props.newValue.planeName} variant="outlined" />}
+                        label="Plane"
+                        type="text"
+                        onChange={handlePlaneID}
+                        fullWidth
                     />
                     <TextField
                         autoFocus
