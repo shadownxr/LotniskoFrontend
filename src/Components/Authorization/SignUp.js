@@ -124,8 +124,8 @@ export default function SignUp(props){
       };
 
     return (
-      <div className={'authButton'} onClick={handleClickOpen}>
-        <Button>Join</Button>
+      <div>
+        <Button onClick={handleClickOpen}>Join</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title" className="FormTitle">SignUp</DialogTitle>
                 <DialogContent>

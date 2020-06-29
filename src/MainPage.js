@@ -58,6 +58,10 @@ function MainPage(props) {
           });
 
   }
+
+  console.log(props.location.state.accountData);
+  console.log(localStorage.getItem('facebookToken'));
+
   return (
     <div className="App">
       <div className="Header">
@@ -68,9 +72,9 @@ function MainPage(props) {
           <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} accountData2={accountData} refresh={(refresh) => {setRefresh(true)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
-                <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>Home</Button>
-                <Button className={"menuButton"} onClick={() => setMenuChoice("News")}>News</Button>
-                <Button className={"menuButton"} onClick={() => setMenuChoice("About Us")}>About</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("News")}>Nowości</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("About Us")}>O nas</Button>
             </div>
           </div>
         </div>

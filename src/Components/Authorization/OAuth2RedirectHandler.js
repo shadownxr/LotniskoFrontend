@@ -17,8 +17,9 @@ class OAuth2RedirectHandler extends Component {
         const email = this.getUrlParameter('email');
         if(token) {
             localStorage.setItem('facebookToken', token);
-            console.log("TOKEN = " + token);
-            console.log(this.props.location);
+            console.log("OAUTHLOADED");
+            //console.log("TOKEN = " + token);
+            //console.log(this.props.location);
             const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
             //console.log(accountData);
             return <Redirect to={{

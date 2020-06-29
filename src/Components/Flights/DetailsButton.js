@@ -24,7 +24,7 @@ export default function SearchButton(props){
 
     return (
       <div>
-      <MyButton color="primary" onClick={handleClickOpen}>MORE</MyButton>
+      <MyButton color="primary" onClick={handleClickOpen}>Szczegóły</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title"> <h1 style={{textAlign: 'center'}}>{props.flight.sapid.cityName} - {props.flight.dapid.cityName}</h1></DialogTitle>
         <DialogContent>
