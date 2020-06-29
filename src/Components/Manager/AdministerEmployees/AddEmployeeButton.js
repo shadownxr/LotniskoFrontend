@@ -73,7 +73,9 @@ export default function AddEmployeeButton(props){
         console.log(position+" "+name+" "+surname+" "+personalID+" "+phoneNumber+" "+email);
         fetchAddEmployee();
         setOpen(false);
-        setOpenResult(true);
+        if(answ2!=null&&email){
+            setOpenResult(true);
+        }
 
     }
     const fetchAddEmployee = () => {

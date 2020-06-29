@@ -29,8 +29,12 @@ export default function DeleteButton(props){
 
     const handleFire = () => {
         console.log(props.employee);
+        if(props.employee==0){
+            setErr("NIE MOZNA USUNĄC MENADZERA")
+        }
+        else{
         fetchFireEmployee();
-        setOpen(false);
+        setOpen(false);}
     }
 
     const fetchFireEmployee = () => {
