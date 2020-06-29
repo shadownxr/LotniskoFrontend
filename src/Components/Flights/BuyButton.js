@@ -60,7 +60,7 @@ export default function SearchButton(props){
 
         console.log(payload);
 
-        const url = "http://localhost:8080/api/tickets/add";
+        const url = "https://localhost:8443/api/tickets/add";
   
         const options = {
             method: 'POST',

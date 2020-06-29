@@ -64,7 +64,7 @@ export default function EditFlightButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/flights/update";
+        const url = "https://localhost:8443/api/flights/update";
 
         fetch(url, options)
             .then(response => response.json())

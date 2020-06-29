@@ -68,7 +68,7 @@ export default function AddAirportButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/airports/add";
+        const url = "https://localhost:8443/api/airports/add";
 
         fetch(url, options)
             .then(response => response.json())

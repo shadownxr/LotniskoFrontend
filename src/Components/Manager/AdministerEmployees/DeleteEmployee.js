@@ -52,7 +52,7 @@ export default function DeleteButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/employees/fire";
+        const url = "https://localhost:8443/api/employees/fire";
 
         fetch(url, options)
             .then(response => response.json())

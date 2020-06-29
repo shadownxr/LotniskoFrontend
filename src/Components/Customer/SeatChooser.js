@@ -24,7 +24,7 @@ export default function SeatChooser(props){
             "className": props.reservation.className
           }
   
-        const url = "http://localhost:8080/api/flights/getFreeSeats";
+        const url = "https://localhost:8443/api/flights/getFreeSeats";
   
         const options = {
             method: 'POST',

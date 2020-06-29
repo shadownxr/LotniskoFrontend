@@ -47,7 +47,7 @@ export default function ViewFlights(props){
     },[refresh])
 
     const fetchFlights = () => {
-        const url = "http://localhost:8080/api/flights/list";
+        const url = "https://localhost:8443/api/flights/list";
 
         let options = {
             method: 'GET',

@@ -48,7 +48,7 @@ export default function EmployeeViewPlanes(props){
     },[refresh])
 
     const fetchPlanes = () => {
-        const url = "http://localhost:8080/api/planes/list";
+        const url = "https://localhost:8443/api/planes/list";
 
         let options = {
             method: 'GET',

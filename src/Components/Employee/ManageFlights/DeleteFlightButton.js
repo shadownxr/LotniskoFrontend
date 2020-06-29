@@ -52,7 +52,7 @@ export default function DeleteFlightButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/flights/delete";
+        const url = "https://localhost:8443/api/flights/delete";
 
         fetch(url, options)
             .then(response => response.json())

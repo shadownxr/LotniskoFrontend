@@ -74,7 +74,7 @@ export default function AddPlaneButton(props){
             body: JSON.stringify(payload),
         };
 
-        const url = "http://localhost:8080/api/planes/add";
+        const url = "https://localhost:8443/api/planes/add";
 
         fetch(url, options)
             .then(response => response.json())
