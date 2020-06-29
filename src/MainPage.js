@@ -26,9 +26,13 @@ function MainPage(props) {
 
   useEffect(() => {
     if(localStorage.getItem('facebookToken') !== null){
+      console.log("FacebookLogin");
+      const {location,history} = props;
       setAccountData(props.location.state.accountData);
       Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
+      localStorage.clear()
       console.log(Cookie.load('userToken').token);
+      history.replace();
     }
   },[dt]);
 
@@ -59,9 +63,6 @@ function MainPage(props) {
 
   }
 
-  console.log(props.location.state.accountData);
-  console.log(localStorage.getItem('facebookToken'));
-
   return (
     <div className="App">
       <div className="Header">
@@ -69,7 +70,7 @@ function MainPage(props) {
             <img alt="logo" src={logo} className={'LogoImage'}/>
         </div>
         <div style={{display:"flex",flexDirection:"column",flex:2, height:"100%"}}>
-          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} accountData2={accountData} refresh={(refresh) => {setRefresh(true)}}/></div>
+          <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} menuChoice={(choice) => setMenuChoice(choice)} accountData2={accountData} refresh={(refresh) => {setRefresh(true)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
                 <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
@@ -82,7 +83,7 @@ function MainPage(props) {
 
       <div className="Main">
         <div className="UserMenu">
-          <UserMenu userType={role/*accountData?accountData.roles[accountData.roles.length - 1]:"Not logged"*/} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
+          <UserMenu userType={role} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
         </div>
         <div className="Content">
           <div className="ContentContainer"><Content menuChoice={menuChoice} accountData={accountData}/></div>

@@ -41,7 +41,7 @@ export default function AccountStatus(props){
     },[isLogged,props,accountData])
 
     const handleMyAccount = () => {
-        
+        props.menuChoice("Account Page");
     }
 
     const logout = () => {
@@ -58,14 +58,14 @@ export default function AccountStatus(props){
         switch(isLogged){
             case false:
                 return <div style={{display:"flex",flexDirection:"row-reverse"}}>
-                        <SignIn style={{flex:"1"}} accountData={(accountData) => {props.accountData(accountData)}/*(accountData) => {setAccountData(accountData)}*/}/>
+                        <SignIn style={{flex:"1"}} accountData={(accountData) => {props.accountData(accountData)}}/>
                         <SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}} />
                     </div>;
             case true:
                 return (<div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
                             {/*<div className={'userGreet'}>Hello {accountData.username}!</div>*/}
-                            <div className={'authButton'}><Button onClick={() => handleMyAccount()}>My Account</Button></div>
-                            <div className={'authButton'} onClick={() => logout()}><Button >Sign out</Button></div>
+                            <div><Button onClick={() => handleMyAccount()}>My Account</Button></div>
+                            <div onClick={() => logout()}><Button >Sign out</Button></div>
                         </div>)
             default:
                 return <div style={{display:"flex",flexDirection:"row-reverse"}}><SignIn style={{flex:"1"}} /><SignUp style={{flex:"2"}} refresh={(refresh) => {props.refresh(refresh)}}/></div>;
