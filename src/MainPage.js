@@ -12,6 +12,7 @@ function MainPage(props) {
   const [accountData, setAccountData] = useState();
   const [thyme, setThyme] = useState("");
   const [refresh,setRefresh] = useState(true);
+  const [role, setRole] = useState("Not logged");
 
   let dt = new Date();
   dt.setMinutes( dt.getMinutes() + 15 );
@@ -30,6 +31,21 @@ function MainPage(props) {
       console.log(Cookie.load('userToken').token);
     }
   },[dt]);
+
+  useEffect(() => {
+    if(accountData){
+      if(accountData.roles.indexOf("ROLE_MANAGER") > -1){
+        setRole("ROLE_MANAGER");
+        return;
+      } else if(accountData.roles.indexOf("ROLE_EMPLOYEE") > -1){
+        setRole("ROLE_EMPLOYEE");
+        return;
+      } else if(accountData.roles.indexOf("ROLE_USER") > -1){
+        setRole("ROLE_USER");
+        return;
+      }
+    }
+  })
 
   const fetchUsers = () => {
       const url = "https://localhost:8443/thyme";
@@ -62,7 +78,7 @@ function MainPage(props) {
 
       <div className="Main">
         <div className="UserMenu">
-          <UserMenu userType={accountData?accountData.roles[accountData.roles.length - 1]:"Not logged"} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
+          <UserMenu userType={role/*accountData?accountData.roles[accountData.roles.length - 1]:"Not logged"*/} menuChoice={(choice) => setMenuChoice(choice)} accountData={accountData}/>
         </div>
         <div className="Content">
           <div className="ContentContainer"><Content menuChoice={menuChoice} accountData={accountData}/></div>

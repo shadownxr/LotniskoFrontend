@@ -1,6 +1,5 @@
 import React, { Component, useState } from 'react';
 import { Redirect } from 'react-router-dom'
-import Cookie from 'react-cookies';
 
 class OAuth2RedirectHandler extends Component {
     getUrlParameter(name) {
@@ -20,9 +19,6 @@ class OAuth2RedirectHandler extends Component {
             localStorage.setItem('facebookToken', token);
             console.log("TOKEN = " + token);
             console.log(this.props.location);
-            let dt = new Date();
-            dt.setMinutes( dt.getMinutes() + 15 );
-            //Cookie.save('facebookToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
             const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
             //console.log(accountData);
             return <Redirect to={{
