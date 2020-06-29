@@ -102,7 +102,7 @@ export default function EmployeeViewPlanes(props){
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <EmployeeViewPlanesList planesData={planes} accountData={props.accountData} />
+                    <EmployeeViewPlanesList planesData={(search === "")?planes:searchedPlanes} accountData={props.accountData} />
                 </Table>
             </TableContainer>
         </div>
