@@ -99,7 +99,7 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center">Data przylotu</StyledTableCell>
                             <StyledTableCell align="center">Samolot</StyledTableCell>
                             <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center"><SearchFlightButton refresh={(refresh) => {setRefresh(true)}}/>
+                            <StyledTableCell align="center"><SearchFlightButton search={(search) => {setSearch(search)}}/>
                             <AddFlightButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

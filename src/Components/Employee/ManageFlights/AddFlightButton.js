@@ -18,6 +18,7 @@ const MyButton = styled(Button)({
 
 export default function AddFlightButton(props){
     const [airports,setAirports] = useState([]);
+    const [planes2, setPlanes2] = useState([]);
     const [open, setOpen] = useState(false);
     const [starts, setStarts] = useState('');
     const [ends, setEnds] = useState('');
@@ -30,6 +31,7 @@ export default function AddFlightButton(props){
 
     const handleClickOpen = () => {
         fetchAirports();
+        fetchPlanes();
         setOpen(true);
     };
 
@@ -50,11 +52,11 @@ export default function AddFlightButton(props){
     };
 
     const handleDestID = (value) => {
-        setSourceID(value);
+        setDestID(value);
     };
 
-    const handlePlaneID = (event) => {
-        setPlaneID(event.target.value);
+    const handlePlaneID = (value) => {
+        setPlaneID(value);
     };
 
     const handlePriceEco = (event) => {
@@ -65,8 +67,8 @@ export default function AddFlightButton(props){
     };
 
     const handleAdd = () => {
-        //console.log(starts+" "+ends+" "+sourceID+" "+destID+" "+planeID+" "+priceEco+" "+priceBusi);
         fetchAddFlight();
+        console.log(starts+" "+ends+" "+sourceID.id+" "+destID.id+" "+planeID.id+" "+priceEco+" "+priceBusi)
         setOpen(false);
 
     }
@@ -76,7 +78,7 @@ export default function AddFlightButton(props){
             "ends": ends,
             "sourceID": sourceID.id,
             "destID": destID.id,
-            "planeID": planeID,
+            "planeID": planeID.id,
             "priceEco": priceEco,
             "priceBusi": priceBusi
         }
@@ -136,6 +138,23 @@ export default function AddFlightButton(props){
             });
     }
 
+    const fetchPlanes = () => {
+        const url = "https://localhost:8443/api/planes/list";
+
+        let options = {
+            method: 'GET',
+            'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+        }
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setPlanes2(result);
+
+            });
+    }
+
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
@@ -183,15 +202,16 @@ export default function AddFlightButton(props){
                         onChange={(event, value) =>handleDestID(value)}
                         renderInput={(params) => <TextField {...params} label="To" variant="outlined" />}
                     />
-                    <TextField
-                        autoFocus
-                        margin="dense"
+                    <Autocomplete
                         id="planeID"
-                        label="Plane"
-                        type="text"
-                        onChange={handlePlaneID}
-                        fullWidth
+                        options={planes2}
+                        getOptionLabel={option => option.id.toString()}
+                        renderOption={option => <span>{"Nr."+option.id.toString()+" "+option.planeName}</span>}
+                        style={{ width: 300 }}
+                        onChange={(event, value) =>handlePlaneID(value)}
+                        renderInput={(params) => <TextField {...params} label="Numer samolotu" variant="outlined" />}
                     />
+
                     <TextField
                         autoFocus
                         margin="dense"
