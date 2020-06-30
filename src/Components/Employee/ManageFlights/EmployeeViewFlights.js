@@ -92,7 +92,6 @@ export default function ViewFlights(props){
                             <StyledTableCell align="center" colSpan={7}>Przeglądarka lotów</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Z</StyledTableCell>
                             <StyledTableCell align="center">Do</StyledTableCell>
                             <StyledTableCell align="center">Data wylotu</StyledTableCell>

@@ -28,11 +28,10 @@ export default function EmployeeViewFlightsList(props){
     const flightList = props.flightsData.map((flight,i) => {
         return(
             <StyledTableRow key={i} className="FlightList">
-                <StyledTableCell align="center">{flight.id}</StyledTableCell>
                 <StyledTableCell align="center">{flight.sapid.cityName}</StyledTableCell>
                 <StyledTableCell align="center">{flight.dapid.cityName}</StyledTableCell>
-                <StyledTableCell align="center">{flight.startDate}</StyledTableCell>
-                <StyledTableCell align="center">{flight.endDate}</StyledTableCell>
+                <StyledTableCell align="center">{new Date(flight.startDate).toUTCString()}</StyledTableCell>
+                <StyledTableCell align="center">{new Date(flight.endDate).toUTCString()}</StyledTableCell>
                 <StyledTableCell align="center">{flight.planeID.planeName}</StyledTableCell>
                 <StyledTableCell align="center">Od {flight.priceEconomic}USD</StyledTableCell>
                 <StyledTableCell align="center"><DeleteFlightButton lot={flight.id} refresh={(refresh) => {props.refresh(refresh)}}/>

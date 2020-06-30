@@ -26,7 +26,6 @@ export default function EmployeeViewPlanesList(props){
     const planesList = props.planesData.map((plane,i) => {
             return(
             <StyledTableRow key={i} className="PlaneList">
-                <StyledTableCell align="center">{plane.id}</StyledTableCell>
                 <StyledTableCell align="center">{plane.planeName}</StyledTableCell>
                 <StyledTableCell align="center">{plane.seatsInEconomic}</StyledTableCell>
                 <StyledTableCell align="center">{plane.seatsInBuisness}</StyledTableCell>

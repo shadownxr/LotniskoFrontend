@@ -73,7 +73,6 @@ export default function EmployeeViewPlanes(props){
                             <StyledTableCell align="center" colSpan={7}>Przeglądarka lotnisk</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Nazwa</StyledTableCell>
                             <StyledTableCell align="center">Miasto</StyledTableCell>
                             <StyledTableCell align="center"><AddAirportButton refresh={(refresh) => {setRefresh(true)}}/></StyledTableCell>

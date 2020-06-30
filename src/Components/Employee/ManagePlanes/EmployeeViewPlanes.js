@@ -92,7 +92,6 @@ export default function EmployeeViewPlanes(props){
                             <StyledTableCell align="center" colSpan={7}>Przeglądarka samolotów</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nr</StyledTableCell>
                             <StyledTableCell align="center">Nazwa</StyledTableCell>
                             <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
                             <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>

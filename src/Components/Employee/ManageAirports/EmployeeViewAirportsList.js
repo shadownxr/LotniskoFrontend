@@ -26,7 +26,6 @@ export default function EmployeeViewPlanesList(props){
     const airportsList = props.airportsData.map((airport,i) => {
         return(
             <StyledTableRow key={i} className="AirportList">
-                <StyledTableCell align="center">{airport.id}</StyledTableCell>
                 <StyledTableCell align="center">{airport.airportName}</StyledTableCell>
                 <StyledTableCell align="center">{airport.cityName}</StyledTableCell>
                 <StyledTableCell align="center"></StyledTableCell>
