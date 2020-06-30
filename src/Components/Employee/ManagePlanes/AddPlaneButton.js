@@ -9,6 +9,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies'
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const MyButton = styled(Button)({
     color: 'white'
@@ -17,6 +18,7 @@ const MyButton = styled(Button)({
 
 export default function AddPlaneButton(props){
     const [open, setOpen] = useState(false);
+    const [airports,setAirports] = useState([]);
     const [airportId, setAirportId] = useState('');
     const [businessSeats, setBusinessSeats] = useState('');
     const [ecoSeats, setEcoSeats] = useState('');
@@ -24,6 +26,7 @@ export default function AddPlaneButton(props){
     const [err, setErr] = useState('');
 
     const handleClickOpen = () => {
+        fetchAirports();
         setOpen(true);
     };
 
@@ -31,8 +34,8 @@ export default function AddPlaneButton(props){
         setErr("");
         setOpen(false);
     };
-    const handleAirportId = (event) => {
-        setAirportId(event.target.value);
+    const handleAirportId = (value) => {
+        setAirportId(value);
     };
 
     const handleBusinessSeats = (event) => {
@@ -55,7 +58,7 @@ export default function AddPlaneButton(props){
     }
     const fetchAddPlane = () => {
         let payload = {
-            "airportId": airportId,
+            "airportId": airportId.id,
             "businessSeats": businessSeats,
             "ecoSeats": ecoSeats,
             "name": name,
@@ -92,6 +95,24 @@ export default function AddPlaneButton(props){
 
     };
 
+    const fetchAirports = () => {
+        const url = "https://localhost:8443/api/airports/list";
+
+        let options = {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + Cookie.load('userToken').token,
+            },
+        }
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(result => {
+                console.log(result);
+                setAirports(result);
+            });
+    }
+
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
@@ -101,14 +122,13 @@ export default function AddPlaneButton(props){
                     <DialogContentText>
                         {err}
                     </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
+                    <Autocomplete
                         id="airportId"
-                        label="Nr lotniska"
-                        type="text"
-                        onChange={handleAirportId}
-                        fullWidth
+                        options={airports}
+                        getOptionLabel={(option) => option.airportName}
+                        style={{ width: 300 }}
+                        onChange={(event, value) =>handleAirportId(value)}
+                        renderInput={(params) => <TextField {...params} label="From" variant="outlined" />}
                     />
                     <TextField
                         autoFocus
