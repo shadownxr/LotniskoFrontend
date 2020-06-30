@@ -15,7 +15,7 @@ export default function TicketPrinter(props){
         doc.text(20,110,"Numer domu/mieszkania: "+props.ticketData.homeNr);
 
         doc.text(300,20,"Z: "+props.reservation.flightID.sapid.airportName+" "+props.reservation.flightID.sapid.cityName);
-        doc.text(300,35,"Do: "+props.reservation.flightID.dapid.airportNam+" "+props.reservation.flightID.dapid.cityName);
+        doc.text(300,35,"Do: "+props.reservation.flightID.dapid.airportName+" "+props.reservation.flightID.dapid.cityName);
         doc.text(300,50,"Data wylotu: "+new Date(props.reservation.flightID.startDate).toLocaleDateString());
         doc.text(300,65,"Data przylotu: "+new Date(props.reservation.flightID.endDate).toLocaleDateString());
         doc.text(300,80,"Nazwa samolotu: "+props.reservation.flightID.planeID.planeName);
