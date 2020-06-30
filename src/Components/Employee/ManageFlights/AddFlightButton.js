@@ -68,6 +68,7 @@ export default function AddFlightButton(props){
 
     const handleAdd = () => {
         fetchAddFlight();
+        console.log(starts+" "+ends+" "+sourceID.id+" "+destID.id+" "+planeID.id+" "+priceEco+" "+priceBusi)
         setOpen(false);
 
     }
@@ -77,7 +78,7 @@ export default function AddFlightButton(props){
             "ends": ends,
             "sourceID": sourceID.id,
             "destID": destID.id,
-            "planeID": planeID,
+            "planeID": planeID.id,
             "priceEco": priceEco,
             "priceBusi": priceBusi
         }
