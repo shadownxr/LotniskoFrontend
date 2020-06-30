@@ -100,7 +100,7 @@ export default function ViewEmployees(props){
                             <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton search={(search) => {setSearch(search)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewFiredEmployeesList employeesData={employees} accountData={props.accountData}/>
+                    <ViewFiredEmployeesList employeesData={(search === "")?employees:searchedEmployees} accountData={props.accountData}/>
                 </Table>
             </TableContainer>
         </div>
