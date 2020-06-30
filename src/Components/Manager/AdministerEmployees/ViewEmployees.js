@@ -107,7 +107,7 @@ export default function ViewEmployees(props){
                             <StyledTableCell align="center"><div style={{display:"inline-flex"}}><SearchEmployeeButton search={(search) => {setSearch(search)}}/><AddEmployeeButton refresh={(refresh) => {setRefresh(true)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
-                    <ViewEmployeesList employeesData={employees} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
+                    <ViewEmployeesList employeesData={(search === "")?employees:searchedEmployees} accountData={props.accountData} refresh={(refresh) => {setRefresh(true)}}/>
                 </Table>
             </TableContainer>
         </div>
