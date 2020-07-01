@@ -89,14 +89,14 @@ export default function ViewEmployees(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Lista pracowników</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Former employees</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Imię</StyledTableCell>
-                            <StyledTableCell align="center">Nazwisko</StyledTableCell>
-                            <StyledTableCell align="center">Numer telefonu</StyledTableCell>
-                            <StyledTableCell align="center">Data zatrudnienia</StyledTableCell>
-                            <StyledTableCell align="center">Data zwolnienia</StyledTableCell>
+                            <StyledTableCell align="center">Name</StyledTableCell>
+                            <StyledTableCell align="center">Surname</StyledTableCell>
+                            <StyledTableCell align="center">Phone</StyledTableCell>
+                            <StyledTableCell align="center">Employed</StyledTableCell>
+                            <StyledTableCell align="center">Fired</StyledTableCell>
                             <StyledTableCell align="right"><div style={{display:"inline-flex"}}><SearchEmployeeButton search={(search) => {setSearch(search)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
