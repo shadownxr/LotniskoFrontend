@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMenu test Renders ROLE_EMPLOYEE menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders ROLE_MANAGER menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders ROLE_USER menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders when loaded 1`] = `ShallowWrapper {}`;
