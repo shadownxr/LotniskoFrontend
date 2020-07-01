@@ -57,6 +57,7 @@
 }
 
 .UserMenu {
+  color: #e4e67e;
   flex: 1;
   max-height: 5%;
   background-color: #086972;
@@ -92,6 +93,10 @@
   flex: 3;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.userMenuButton{
+ color: #fbfd8a;
 }
 
 .authButton {
@@ -165,3 +170,5 @@
 .facebookButton:hover{
   text-decoration: none;
 }
+
+

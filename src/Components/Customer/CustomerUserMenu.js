@@ -9,9 +9,9 @@ export default function CustomerUserMenu(props){
     return(
         <div>
             <div className="UserMenu">
-                <Button onClick={() => handleMenuChoice("View Flights")}>Przeglądaj loty</Button>
-                <Button onClick={() => handleMenuChoice("Customer Reservations")}>Zarządzaj rezerwacjami</Button>
-                <Button onClick={() => handleMenuChoice("Online Briefing")}>Odprawa online</Button>
+                <Button style={{color: '#fbfd8a'}} onClick={() => handleMenuChoice("View Flights")}>FLIGHTS</Button>
+                <Button style={{color: '#fbfd8a'}}  onClick={() => handleMenuChoice("Customer Reservations")}>MY TICKETS</Button>
+                <Button style={{color: '#fbfd8a'}}  onClick={() => handleMenuChoice("Online Briefing")}>CHECK IN</Button>
             </div>
         </div>
     )
