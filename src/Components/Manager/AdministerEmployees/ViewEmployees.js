@@ -95,15 +95,15 @@ export default function ViewEmployees(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={9}>Lista pracowników</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={9}>Current Employees</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Stanowisko</StyledTableCell>
-                            <StyledTableCell align="center">Pensja</StyledTableCell>
-                            <StyledTableCell align="center">Imię</StyledTableCell>
-                            <StyledTableCell align="center">Nazwisko</StyledTableCell>
-                            <StyledTableCell align="center">Numer pesel</StyledTableCell>
-                            <StyledTableCell align="center">Numer telefonu</StyledTableCell>
+                            <StyledTableCell align="center">Position</StyledTableCell>
+                            <StyledTableCell align="center">Name</StyledTableCell>
+                            <StyledTableCell align="center">Surname</StyledTableCell>
+                            <StyledTableCell align="center">Personal ID</StyledTableCell>
+                            <StyledTableCell align="center">Phone</StyledTableCell>
+                            <StyledTableCell align="center">Salary</StyledTableCell>
                             <StyledTableCell align="center"><div style={{display:"inline-flex"}}><SearchEmployeeButton search={(search) => {setSearch(search)}}/><AddEmployeeButton refresh={(refresh) => {setRefresh(true)}}/></div></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

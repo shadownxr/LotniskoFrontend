@@ -60,14 +60,30 @@ export default function SignUp(props){
     const handleRepeatPassword = (event) => {
         setRPassword(event.target.value);
     };
+    const validateEmail =(email)=> {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    const validateInput = () =>{
+        if(password.length < 6){setErr("Password must be at least 6 characters long!");return false}
+        if(login.length < 6){setErr("User name must be at least 6 characters long!");return false}
+        if(!validateEmail(email)){setErr("Valid email must be provided!");return false}
+        if(password !== rPassword){setErr("Passwords are not identical!"); return false}
+
+        if(name === ""){setErr("Please enter your name."); return false}
+        if(surename === ""){setErr("Please enter your surname."); return false}
+        if(personalId === ""){setErr("All fields must be filled."); return false}
+        if(phoneNumber === ""){setErr("All fields must be filled."); return false}
+
+        return true;
+    }
 
     const handleAdd = () => {
-      console.log(password+" "+rPassword+" "+login+" "+email);
-        if(password === rPassword){
+        if(validateInput()){
+            setErr("");
             fetchRegister();
             setOpen(false);
-        } else {
-            setErr("Hasła nie zgadzają się");
         }
     };
 
@@ -83,10 +99,7 @@ export default function SignUp(props){
           "surname": surename
         }
   
-        if(password.length < 6){
-            err("Hasło musi mieć conajmniej 6 znaków");
-            return
-        }
+
 
         console.log(payload);
   
@@ -106,16 +119,15 @@ export default function SignUp(props){
           .then(result => {
             console.log(result);
               if(result.message === "Error: Username is already taken!"){
-              setErr("Wybrany login jest zajęty");
+              setErr("Username is already taken!");
               return
             } else if(result.message === "Error: Email is already in use!"){
-              setErr("Wybrany email jest zajęty");
+              setErr("Error: Email is already in use!");
               return
             } else if(result.error === "Internal Server Error"){
-              setErr("Błąd przy zakładaniu konta");
+              setErr("Error has occurred during account creation.");
               return
             } else if(result.message === "User registered successfully!"){
-              console.log(result);
               props.refresh(true);
               setOpen(false);
             }
@@ -125,16 +137,16 @@ export default function SignUp(props){
 
     return (
       <div>
-        <Button onClick={handleClickOpen}>Join</Button>
+        <Button className={'authButton'} onClick={handleClickOpen}>Join</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title" className="FormTitle">SignUp</DialogTitle>
+            <DialogTitle id="form-dialog-title" className="FormTitle">Sign Up</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
+                    <DialogContentText style={{color: "red", textAlign: "center"}}>
                         {err}
                     </DialogContentText>
                         <TextField
                             id="login"
-                            label="Login"
+                            label="User Name"
                             type="login"
                             onChange={handleLogin}
                             InputLabelProps={{
@@ -168,7 +180,7 @@ export default function SignUp(props){
                             autoFocus
                             margin="dense"
                             id="surename"
-                            label="Surename"
+                            label="Surname"
                             type="text"
                             InputLabelProps={{
                                 shrink: true,
@@ -180,7 +192,7 @@ export default function SignUp(props){
                             autoFocus
                             margin="dense"
                             id="personalId"
-                            label="PESEL"
+                            label="Personal ID"
                             type="text"
                             InputLabelProps={{
                                 shrink: true,
@@ -192,7 +204,7 @@ export default function SignUp(props){
                             autoFocus
                             margin="dense"
                             id="phoneNumber"
-                            label="Numer Telefonu"
+                            label="Phone number"
                             type="text"
                             InputLabelProps={{
                                 shrink: true,
@@ -227,10 +239,10 @@ export default function SignUp(props){
                 </DialogContent>
             <DialogActions className="DialogButtons">
                 <Button onClick={handleClose} color="primary">
-                    Anuluj
+                    Cancel
                 </Button>
                 <Button onClick={handleAdd} color="primary">
-                    Stwórz konto
+                    Sign Up
                 </Button>
             </DialogActions>
         </Dialog>

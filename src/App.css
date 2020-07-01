@@ -57,6 +57,7 @@
 }
 
 .UserMenu {
+  color: #e4e67e;
   flex: 1;
   max-height: 5%;
   background-color: #086972;
@@ -94,10 +95,16 @@
   padding-bottom: 10px;
 }
 
+.userMenuButton{
+ color: #fbfd8a;
+}
+
 .authButton {
   box-shadow: 0px 1px 0px 0px #1c1b18;
   background: #e4e67e linear-gradient(to bottom, #fbfd8a 5%, #feffc2 100%);
   border-left: black 2px solid;
+  height: 75px;
+  width: 100px;
   border-right:black 2px solid;
   margin-left: 25px;
   display:inline-block;
@@ -145,3 +152,23 @@
   margin-right: 10px;
   margin-top: 10px;
 }
+
+.facebookButton{
+  background: mediumblue;
+  color: whitesmoke;
+  border: 2px solid whitesmoke;
+  border-radius: 25px;
+  font-weight: bolder;
+  padding: 5px;
+  margin-top: 35px;
+  text-decoration: none;
+}
+.facebookButton:link{
+  text-decoration: none;
+}
+
+.facebookButton:hover{
+  text-decoration: none;
+}
+
+

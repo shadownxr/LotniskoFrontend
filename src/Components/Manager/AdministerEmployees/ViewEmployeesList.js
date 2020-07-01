@@ -29,12 +29,12 @@ export default function ViewEmployeesList(props){
         return(
             <StyledTableRow key={i} className="EmployeeList">
                 <StyledTableCell align="center">{employee.position}</StyledTableCell>
-                <StyledTableCell align="center">{employee.salary}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.name}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.surname}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.personalID}</StyledTableCell>
                 <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
-                <StyledTableCell align="center"><DeleteButton employee={employee.id} refresh={(refresh) => {props.refresh(refresh)}}/></StyledTableCell>
+                <StyledTableCell align="center">${employee.salary}</StyledTableCell>
+                <StyledTableCell align="center"><DeleteButton employee={employee.id} obj={employee} refresh={(refresh) => {props.refresh(refresh)}}/></StyledTableCell>
             </StyledTableRow>
         )}
         else i++;

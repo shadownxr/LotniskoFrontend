@@ -31,9 +31,9 @@ export default function ViewFiredEmployeesList(props){
                     <StyledTableCell align="center">{employee.personID.name}</StyledTableCell>
                     <StyledTableCell align="center">{employee.personID.surname}</StyledTableCell>
                     <StyledTableCell align="center">{employee.personID.phoneNumber}</StyledTableCell>
-                    <StyledTableCell align="center">{employee.hiringDate}</StyledTableCell>
-                    <StyledTableCell align="center">{employee.firingDate}</StyledTableCell>
-                    <StyledTableCell align="center"><Button>Szczegóły</Button></StyledTableCell>
+                    <StyledTableCell align="center">{new Date(employee.hiringDate).toUTCString()}</StyledTableCell>
+                    <StyledTableCell align="center">{new Date(employee.firingDate).toUTCString()}</StyledTableCell>
+                    <StyledTableCell align="center"> </StyledTableCell>
                 </StyledTableRow>
             )}
         else i++;

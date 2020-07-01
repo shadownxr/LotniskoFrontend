@@ -9,6 +9,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies'
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const MyButton = styled(Button)({
     color: 'white'
@@ -27,6 +30,7 @@ export default function AddEmployeeButton(props){
     const [email, setEmail] = useState('');
     const [answ, setAnsw] = useState('');
     const [answ2, setAnsw2] = useState('');
+    const positions = [{value: "employee", label:"Employee"},{value: "manager", label:"Manager"}]
 
     const [err, setErr] = useState('');
 
@@ -54,8 +58,8 @@ export default function AddEmployeeButton(props){
         setSurname(event.target.value);
     };
 
-    const handlePosition = (event) => {
-        setPosition(event.target.value);
+    const handlePosition = (item) => {
+        setPosition(item.value);
     };
 
     const handlePersonalID = (event) => {
@@ -70,13 +74,13 @@ export default function AddEmployeeButton(props){
     };
 
     const handleAdd = () => {
-        console.log(position+" "+name+" "+surname+" "+personalID+" "+phoneNumber+" "+email);
-        fetchAddEmployee();
-        setOpen(false);
-        if(answ2!=null&&email){
-            setOpenResult(true);
+        if(validateInput()){
+            fetchAddEmployee();
+            setOpen(false);
+            if(answ2!=null&&email){
+                setOpenResult(true);
+            }
         }
-
     }
     const fetchAddEmployee = () => {
         let payload = {
@@ -87,7 +91,7 @@ export default function AddEmployeeButton(props){
             "personalID": personalID,
             "phoneNumber": phoneNumber,
             "eMail": email,
-            "role": ["employee"]
+            "role": [position]
         }
 
         console.log(payload);
@@ -125,30 +129,50 @@ export default function AddEmployeeButton(props){
 
     };
 
+    const validateEmail =(email)=> {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    const validateInput = () =>{
+        if(name === "" || surname === "" || personalID === "" || phoneNumber === "" || position === ""){
+            setErr("All fields must be filled!");
+            return false;
+        }
+        if( salary <= 0 ){
+            setErr("Valid salary value must be provided!");
+            return false;
+        }
+        if(!validateEmail(email)){
+            setErr("Valid email must be provided!");
+            return false;
+        }
+        return true;
+    }
+
     return (
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Dodaj pracownika</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add a new Employee</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
+                    <DialogContentText style={{color: "red", textAlign: "center"}}>
                         {err}
                     </DialogContentText>
-                    <TextField
-                        autoFocus
-                        margin="dense"
+                    <Autocomplete
                         id="position"
-                        label="Stanowisko"
-                        type="text"
-                        onChange={handlePosition}
-                        fullWidth
+                        options={positions}
+                        getOptionLabel={(option) => option.label}
+                        style={{ width: 300 }}
+                        onChange={(event, value) =>handlePosition(value)}
+                        renderInput={(params) => <TextField {...params} label="Position" variant="outlined" />}
                     />
                     <TextField
                         autoFocus
                         margin="dense"
                         id="salary"
-                        label="Wynagordzenie"
-                        type="text"
+                        label="Salary"
+                        type="number"
                         onChange={handleSalary}
                         fullWidth
                     />
@@ -156,7 +180,7 @@ export default function AddEmployeeButton(props){
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Imie"
+                        label="Name"
                         type="text"
                         onChange={handleName}
                         fullWidth
@@ -165,7 +189,7 @@ export default function AddEmployeeButton(props){
                         autoFocus
                         margin="dense"
                         id="surname"
-                        label="Nazwisko"
+                        label="Surname"
                         type="text"
                         onChange={handleSurname}
                         fullWidth
@@ -174,7 +198,7 @@ export default function AddEmployeeButton(props){
                         autoFocus
                         margin="dense"
                         id="personalID"
-                        label="Pesel"
+                        label="Personal ID"
                         type="text"
                         onChange={handlePersonalID}
                         fullWidth
@@ -183,7 +207,7 @@ export default function AddEmployeeButton(props){
                         autoFocus
                         margin="dense"
                         id="phoneNumber"
-                        label="Numer telefonu"
+                        label="Phone Number"
                         type="text"
                         onChange={handlePhoneNumber}
                         fullWidth
@@ -192,7 +216,7 @@ export default function AddEmployeeButton(props){
                         autoFocus
                         margin="dense"
                         id="email"
-                        label="Email"
+                        label="Email Address"
                         type="email"
                         onChange={handleEmail}
                         fullWidth
@@ -201,22 +225,27 @@ export default function AddEmployeeButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleAdd} color="primary">
-                        Dodaj
+                        Add
                     </Button>
                 </DialogActions>
             </Dialog>
             <Dialog open={openResult} onClose={handleCloseResult} aria-labelledby="form-dialog-title">
                 <DialogContentText>
-                    Poprawnie dodano pracownika, oraz utworzono jego konto.
+                    <h1 style={{textAlign: "center"}}>Operation successful</h1><hr/>
+                    A new employee was added. He can use following credentials to log in:
                 </DialogContentText>
                 <DialogContentText>
-                    Użytkownik: {answ2}
-                </DialogContentText>
-                <DialogContentText>
-                    Hasło: {answ}
+                    <table style={{width: "100%"}}>
+                        <tr>
+                            <td>Username:</td><td>{answ2}</td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td><td>{answ}</td>
+                        </tr>
+                    </table>
                 </DialogContentText>
                 <DialogActions>
                     <Button onClick={handleCloseResult} color="primary">

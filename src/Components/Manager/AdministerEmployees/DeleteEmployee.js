@@ -30,7 +30,7 @@ export default function DeleteButton(props){
     const handleFire = () => {
         console.log(props.employee);
         if(props.employee==0){
-            setErr("NIE MOZNA USUNĄC MENADZERA")
+            setErr("Root user cannot be deleted!")
         }
         else{
         fetchFireEmployee();
@@ -78,7 +78,7 @@ export default function DeleteButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><DeleteForever style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Czy na pewno chcesz zwolnić pracownika?</DialogTitle>
+                <DialogTitle id="form-dialog-title">Are you sure you want to fire <b>{props.obj.personID.name} {props.obj.personID.surname}</b>?</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
@@ -87,10 +87,10 @@ export default function DeleteButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Nie
+                        No
                     </Button>
                     <Button onClick={handleFire} color="primary">
-                        Tak
+                        Yes
                     </Button>
                 </DialogActions>
             </Dialog>

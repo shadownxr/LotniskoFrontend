@@ -44,8 +44,6 @@ export default function SignIn(props){
         password: password
       }
 
-      console.log(payload);
-
       const options = {
         method: 'POST',
         headers: {
@@ -64,7 +62,6 @@ export default function SignIn(props){
         .then(response => response.json())
         .then(result => {
           if(result.error === "Unauthorized"){
-            console.log(result);
             setErr("Incorrect input");
             return
           } else {
@@ -78,17 +75,17 @@ export default function SignIn(props){
 
     return (
       <div>
-        <Button onClick={handleClickOpen}>Sign in</Button>
+        <Button className={"authButton"} onClick={handleClickOpen}>Sign in</Button>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title" className="FormTitle">SignIn</DialogTitle>
+            <DialogTitle id="form-dialog-title" className="FormTitle">Sign in</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
+                    <DialogContentText style={{color: "red", textAlign: "center"}}>
                         {err}
                     </DialogContentText>
                         <TextField
                           autoFocus
                           id="login"
-                          label="Login"
+                          label="Username"
                           type="login"
                           onChange={handleLogin}
                           InputLabelProps={{
@@ -107,11 +104,11 @@ export default function SignIn(props){
                 </DialogContent>
                 <Facebook />
             <DialogActions className="DialogButtons">
-                <Button onClick={handleClose} color="primary">
-                    Anuluj
+                <Button onClick={handleClose} color="secondary">
+                    Cancel
                 </Button>
                 <Button onClick={handleSignIn} color="primary">
-                    Zaloguj
+                    Go
                 </Button>
             </DialogActions>
         </Dialog>
