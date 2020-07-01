@@ -17,7 +17,7 @@ export default function Facebook(){
         <Box  m={3}>
             {/*<a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
                     <img src={fbLogo} alt="Facebook" /> Log in with Facebook</a>*/}
-            <Link color="whitesmoke" className={'facebookButton'} href={FACEBOOK_AUTH_URL}>Zaloguj się przez Facebook</Link>
+            <Link color="whitesmoke" className={'facebookButton'} href={FACEBOOK_AUTH_URL}>Join through Facebook</Link>
         </Box>
     )
 }
