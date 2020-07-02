@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
+/**
+ * Page that process data recived from server when logining in through Facebook
+ */
 class OAuth2RedirectHandler extends Component {
     getUrlParameter(name) {
         name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -17,11 +20,7 @@ class OAuth2RedirectHandler extends Component {
         const email = this.getUrlParameter('email');
         if(token) {
             localStorage.setItem('facebookToken', token);
-            console.log("OAUTHLOADED");
-            //console.log("TOKEN = " + token);
-            //console.log(this.props.location);
             const accountData = {id: id,roles: ["ROLE_USER"],username:username,email:email};
-            //console.log(accountData);
             return <Redirect to={{
                 pathname: "",
                 state: { accountData: accountData }

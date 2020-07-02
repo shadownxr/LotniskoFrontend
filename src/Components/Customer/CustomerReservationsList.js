@@ -24,6 +24,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Renders rows in CustomerReservations array
+ * @param {customerReservationsData} props 
+ */
 export default function CustomerReservationsList(props){
     const reservationList = props.customerReservationsData.map((reservation,i) => {
         return(

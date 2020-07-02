@@ -4,6 +4,10 @@ import CustomerUserMenu from './Customer/CustomerUserMenu';
 import EmployeeUserMenu from './Employee/EmployeeUserMenu';
 import ManagerUserMenu from './Manager/ManagerUserMenu';
 
+/**
+ * Component that render menu depending on current user role
+ * @param {userType,menuChoice,accountData} props 
+ */
 export default function UserMenu(props){
     const [userType,setUserType] = useState("Not Logged");
 

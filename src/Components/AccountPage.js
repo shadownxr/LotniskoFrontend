@@ -1,5 +1,9 @@
 import React from 'react';
 
+/**
+ * Render current user data
+ * @param {accountData} props 
+ */
 export default function AccountPage(props){
     return(
         <div>

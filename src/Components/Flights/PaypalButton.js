@@ -14,6 +14,10 @@ import Cookie from 'react-cookies';
    process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
 
 let PayPalButton = null;
+
+/**
+ * Button for payment using PayPal Api
+ */
 class PaypalButton extends React.Component {
   constructor(props) {
     super(props);

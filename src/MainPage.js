@@ -7,6 +7,11 @@ import Content from './Components/Content';
 import logo from './resources/logo.png';
 import Cookie from "react-cookies";
 
+/**
+ * MainPage of website
+ * @param {location.state.accountData} props 
+ */
+
 function MainPage(props) {
   const [menuChoice, setMenuChoice] = useState(0);
   const [accountData, setAccountData] = useState();
@@ -24,6 +29,9 @@ function MainPage(props) {
       }
   },[refresh])
 
+  /**
+   * UseEffect that takes care of logging via Facebook
+   */
   useEffect(() => {
     if(localStorage.getItem('facebookToken') !== null){
       console.log("FacebookLogin");
@@ -36,6 +44,9 @@ function MainPage(props) {
     }
   },[dt]);
 
+  /**
+   * UseEffect that sets role of a user by checking array of users roles
+   */
   useEffect(() => {
     if(accountData){
       if(accountData.roles.indexOf("ROLE_MANAGER") > -1){
@@ -51,6 +62,9 @@ function MainPage(props) {
     }
   })
 
+  /**
+   * Fetches last logged in users and number of created accounts using Thymeleaf
+   */
   const fetchUsers = () => {
       const url = "https://localhost:8443/thyme";
 

@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders array with briefable reservations
+ * @param {refresh,accountData} props 
+ */
 export default function BriefableReservations(props){
     const [reservations,setReservations] = useState([]);
     const [refresh,setRefresh] = useState(props.refresh);

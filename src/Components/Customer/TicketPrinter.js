@@ -3,6 +3,10 @@ import Button from '@material-ui/core/Button';
 import jsPDF from 'jspdf';
 import Cookie from 'react-cookies';
 
+/**
+ * Creates pdf ticket and checks that breiefing was compleated
+ * @param {ticketData,reservation,seat} props 
+ */
 export default function TicketPrinter(props){
     const jsPdfGenerator = () => {
         let doc = new jsPDF('p','pt');

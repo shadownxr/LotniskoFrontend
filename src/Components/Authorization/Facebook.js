@@ -4,6 +4,9 @@ import Link from '@material-ui/core/Link';
 import '../../App.css';
 import Box from "@material-ui/core/Box";
 
+/**
+ * Facebook login link
+ */
 export default function Facebook(){
 
     const API_BASE_URL = 'https://localhost:8443';

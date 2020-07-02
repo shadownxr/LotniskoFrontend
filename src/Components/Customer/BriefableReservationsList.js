@@ -23,6 +23,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Renders rows in BriefableReservations array
+ * @param {customerReservationsData} props 
+ */
 export default function BriefableReservationsList(props){
     const handleBriefing = (reservation) => {
         props.reservation(reservation);

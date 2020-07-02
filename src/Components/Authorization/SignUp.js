@@ -8,6 +8,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
 
+/**
+ * Sign Up form
+ * @param {refresh} props 
+ */
 export default function SignUp(props){
     const [open, setOpen] = React.useState(false);
     const [password, setPassword] = React.useState('');

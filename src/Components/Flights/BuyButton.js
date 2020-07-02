@@ -14,6 +14,10 @@ const MyButton = styled(Button)({
   color: 'black'
 });
 
+/**
+ * Dialog used to buy ticket
+ * @param {accountData, flight} props 
+ */
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
     const [ticketClass, setTicketClass] = useState('');

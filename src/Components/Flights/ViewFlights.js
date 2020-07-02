@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders available flights
+ * @param {accountData} props 
+ */
 export default function ViewFlights(props){
     const [flights,setFlights] = useState([]);
     const [search,setSearch] = useState("");
@@ -57,8 +61,7 @@ export default function ViewFlights(props){
         return(
           (flight.sapid.cityName === search.from) && 
           (flight.dapid.cityName === search.to) && 
-          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())/* &&
-          (new Date(flight.startDate).toLocaleDateString() <= new Date(search.dateTo).toLocaleDateString())*/
+          (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())
         )
       }).map((flight) => flight);
       console.log(searched);

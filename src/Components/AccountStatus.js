@@ -4,6 +4,11 @@ import SignUp from './Authorization/SignUp';
 import Button from '@material-ui/core/Button';
 import Cookie from 'react-cookies';
 
+/**
+ * Component that render upper right corner buttons for user to sign in, sign up or when user is logged in
+ * Button to check current user account data or to logout
+ * @param {accountData,accountData2,refresh,menuChoice} props 
+ */
 export default function AccountStatus(props){
     const [isLogged,setIsLogged] = useState(0);
     const [accountData,setAccountData] = useState();
@@ -26,6 +31,9 @@ export default function AccountStatus(props){
         }, [cb,callOnCleanup])
     };
 
+    /**
+     * Function that clears localStorage and removes cookie when page is refreshed
+     */
     const Child = () => {
         useWindowUnloadEffect(() => Cookie.remove('userToken'), true);
         useWindowUnloadEffect(() => localStorage.clear(), true);
@@ -63,7 +71,6 @@ export default function AccountStatus(props){
                     </div>;
             case true:
                 return (<div style={{display:"flex",flexDirection:"row",justifyContent:"flex-end"}}>
-                            {/*<div className={'userGreet'}>Hello {accountData.username}!</div>*/}
                             <div><Button onClick={() => handleMyAccount()}>My Account</Button></div>
                             <div onClick={() => logout()}><Button >Sign out</Button></div>
                         </div>)

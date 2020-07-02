@@ -12,6 +12,10 @@ import CustomerReservations from './Customer/CustomerReservations';
 import EmployeeViewPlanes from "./Employee/ManagePlanes/EmployeeViewPlanes";
 import EmployeeViewAirports from "./Employee/ManageAirports/EmployeeViewAirports";
 
+/**
+ * Component that render pages in Content div depending on user choice
+ * @param {menuChoice,accountData} props 
+ */
 export default function Content(props){
     const renderContentSwitch = () => {
         switch(props.menuChoice){

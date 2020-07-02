@@ -12,6 +12,10 @@ const MyButton = styled(Button)({
   color: 'black'
 });
 
+/**
+ * Button used to cancel reservation
+ * @param {reservation} props 
+ */
 export default function CancelButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');

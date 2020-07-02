@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders customers reservations
+ * @param {accountData} props 
+ */
 export default function CustomerReservations(props){
     const [reservations,setReservations] = useState([]);
     const [search, setSearch] = useState("");
