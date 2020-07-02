@@ -49,7 +49,6 @@ export default function TicketPrinter(props){
         fetch(url, options)
           .then(response => response.json())
           .then(result => {
-            console.log(result)
           });
     }
 

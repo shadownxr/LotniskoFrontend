@@ -9,15 +9,16 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import Cookie from 'react-cookies'
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const MyButton = styled(Button)({
     color: 'white'
 });
 
-
+/**
+ * Button for adding employees
+ * @param {refresh} props 
+ */
 export default function AddEmployeeButton(props){
     const [open, setOpen] = useState(false);
     const [openResult, setOpenResult] = useState(false);
@@ -94,10 +95,6 @@ export default function AddEmployeeButton(props){
             "role": [position]
         }
 
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
-
-
         const options = {
             method: 'POST',
             headers: {
@@ -115,14 +112,11 @@ export default function AddEmployeeButton(props){
             .then(result => {
                 setAnsw(result.password);
                 setAnsw2(result.login);
-                console.log(result);
-                console.log(answ+ " "+answ2);
                 props.refresh(true);
                 if(result.message === "Error: Role is not found."){
                     setErr("Wybrana rola nie istnieje");
                     return
                 } else if(result.message === "Employee added successfully!"){
-                    console.log(result);
                     setOpen(false);
                 }
             });

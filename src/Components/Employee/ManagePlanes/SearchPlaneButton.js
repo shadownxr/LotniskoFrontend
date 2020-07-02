@@ -12,7 +12,10 @@ import TextField from '@material-ui/core/TextField';
 const MyButton = styled(Button)({
     color: 'white'
 });
-
+/**
+ * Button to search plane
+ * @param {search} props 
+ */
 export default function SearchPlaneButton(props){
     const [open, setOpen] = useState(false);
     const [planeName, setPlaneName] = useState('');

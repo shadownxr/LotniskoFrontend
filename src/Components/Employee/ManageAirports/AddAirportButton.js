@@ -14,7 +14,10 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
-
+/**
+ * Button to add airport
+ * @param {*} props 
+ */
 export default function AddAirportButton(props){
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
@@ -43,7 +46,6 @@ export default function AddAirportButton(props){
     };
 
     const handleAdd = () => {
-        console.log(name+" "+code+" "+city);
         fetchAddAirport();
         setOpen(false);
 
@@ -54,9 +56,6 @@ export default function AddAirportButton(props){
             "code": code,
             "city": city,
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
 
         const options = {
             method: 'POST',
@@ -73,12 +72,10 @@ export default function AddAirportButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: Code is already taken!") {
                     setErr("Wybrany kod jest już zajęty");
                     return
                 } else if(result.message === "Airport added successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }

@@ -13,7 +13,10 @@ const MyButton = styled(Button)({
     color: 'black'
 });
 
-
+/**
+ * Button for deleting employees
+ * @param {refresh} props 
+ */
 export default function DeleteButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');
@@ -28,7 +31,6 @@ export default function DeleteButton(props){
     };
 
     const handleFire = () => {
-        console.log(props.employee);
         if(props.employee==0){
             setErr("Root user cannot be deleted!")
         }
@@ -41,10 +43,6 @@ export default function DeleteButton(props){
         let payload = {
             "id": props.employee
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
-
 
         const options = {
             method: 'POST',
@@ -61,12 +59,10 @@ export default function DeleteButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: no such Employee!"){
                     setErr("Wybrany pracownik nie istnieje lub został już zwolniony");
                     return
                 } else if(result.message === "Employee fired successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }

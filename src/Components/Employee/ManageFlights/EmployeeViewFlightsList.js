@@ -24,6 +24,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Renders rows of EmployeeViewFlights array
+ * @param {flightsData} props 
+ */
 export default function EmployeeViewFlightsList(props){
     const flightList = props.flightsData.map((flight,i) => {
         return(

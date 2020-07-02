@@ -15,7 +15,10 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
-
+/**
+ * Button to add flight
+ * @param {*} props 
+ */
 export default function AddFlightButton(props){
     const [airports,setAirports] = useState([]);
     const [planes2, setPlanes2] = useState([]);
@@ -67,7 +70,6 @@ export default function AddFlightButton(props){
     };
 
     const handleAdd = () => {
-        //console.log(starts+" "+ends+" "+sourceID+" "+destID+" "+planeID+" "+priceEco+" "+priceBusi);
         fetchAddFlight();
         setOpen(false);
 
@@ -82,9 +84,6 @@ export default function AddFlightButton(props){
             "priceEco": priceEco,
             "priceBusi": priceBusi
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
 
         const options = {
             method: 'POST',
@@ -101,7 +100,6 @@ export default function AddFlightButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: Invalid source airport!") {
                     setErr("Wybrane lostnisko źródłowe nie istnieje");
                     return
@@ -112,7 +110,6 @@ export default function AddFlightButton(props){
                     setErr("Wybrane lostnisko docelowe nie istnieje");
                     return;
                 } else if(result.message === "Flight added successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }
@@ -133,7 +130,6 @@ export default function AddFlightButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setAirports(result);
             });
     }
@@ -149,7 +145,6 @@ export default function AddFlightButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setPlanes2(result);
 
             });

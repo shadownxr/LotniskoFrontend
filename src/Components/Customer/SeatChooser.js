@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 export default function SeatChooser(props){
     const [value,setValue] = useState("");
     const [seats,setSeats] = useState([]);
-    console.log(props.reservation);
 
     useEffect(() => {
         fetchFreeSeats();

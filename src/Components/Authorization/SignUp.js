@@ -102,11 +102,7 @@ export default function SignUp(props){
           "name": name,
           "surname": surename
         }
-  
 
-
-        console.log(payload);
-  
         const options = {
           method: 'POST',
           headers: {
@@ -121,7 +117,6 @@ export default function SignUp(props){
         fetch(url, options)
           .then(response => response.json())
           .then(result => {
-            console.log(result);
               if(result.message === "Error: Username is already taken!"){
               setErr("Username is already taken!");
               return

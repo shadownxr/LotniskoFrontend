@@ -54,7 +54,6 @@ export default function AccountStatus(props){
 
     const logout = () => {
         if(Cookie.load('userToken')){
-            console.log("Logged out");
             Cookie.remove('userToken');
             localStorage.clear()
             setIsLogged(false);

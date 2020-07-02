@@ -35,6 +35,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders array with planes
+ * @param {*} props 
+ */
 export default function EmployeeViewPlanes(props){
     const [planes,setPlanes] = useState([]);
     const [refresh,setRefresh] = useState(true);
@@ -63,7 +67,6 @@ export default function EmployeeViewPlanes(props){
                 (plane.planeName === search.planeName)
             )
         }).map((plane) => plane);
-        console.log(searched);
         setSearchedPlanes(searched);
     }
 
@@ -78,7 +81,6 @@ export default function EmployeeViewPlanes(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setPlanes(result);
             });
     }

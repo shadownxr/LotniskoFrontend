@@ -64,7 +64,6 @@ export default function ViewFlights(props){
           (new Date(flight.startDate).toLocaleDateString() >= new Date(search.dateFrom).toLocaleDateString())
         )
       }).map((flight) => flight);
-      console.log(searched);
       setSearchedFlights(searched);
     }
 
@@ -78,7 +77,6 @@ export default function ViewFlights(props){
       fetch(url, options)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           setFlights(result);
         });
     }

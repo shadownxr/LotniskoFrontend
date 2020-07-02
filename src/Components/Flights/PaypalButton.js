@@ -40,8 +40,6 @@ class PaypalButton extends React.Component {
         "paid": false
     }
 
-    console.log(payload);
-
     const url = "https://localhost:8443/api/tickets/add";
 
     const options = {
@@ -57,7 +55,6 @@ class PaypalButton extends React.Component {
     fetch(url, options)
       .then(response => response.json())
       .then(result => {
-        console.log(result);
         this.props.close(false);
       });
   }
@@ -112,7 +109,6 @@ class PaypalButton extends React.Component {
         payerID: data.payerID,
         orderID: data.orderID
       };
-      console.log("Payment Approved: ", paymentData);
       this.handleBuy();
       this.setState({ showButtons: false, paid: true });
     });

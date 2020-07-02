@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Array of fired employees
+ * @param {*} props 
+ */
 export default function ViewEmployees(props){
     const [employees,setEmployees] = useState([]);
     const [search,setSearch] = useState("");
@@ -59,7 +63,6 @@ export default function ViewEmployees(props){
                 (employee.personID.surname === search.surname)
             )
         }).map((employee) => employee);
-        console.log(searched);
         setSearchedEmployees(searched);
     }
 
@@ -76,7 +79,6 @@ export default function ViewEmployees(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setEmployees(result);
             });
     }

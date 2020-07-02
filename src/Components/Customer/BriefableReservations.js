@@ -58,8 +58,6 @@ export default function BriefableReservations(props){
           "userID": props.accountData.id,
         }
 
-      console.log(payload);
-
       const url = "https://localhost:8443/api/tickets/listByClientID";
 
       const options = {
@@ -75,7 +73,6 @@ export default function BriefableReservations(props){
       fetch(url, options)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           setReservations(result);
         });
     }

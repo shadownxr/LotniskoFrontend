@@ -34,12 +34,10 @@ function MainPage(props) {
    */
   useEffect(() => {
     if(localStorage.getItem('facebookToken') !== null){
-      console.log("FacebookLogin");
       const {location,history} = props;
       setAccountData(props.location.state.accountData);
       Cookie.save('userToken',{token:localStorage.getItem('facebookToken'),tokenType:"Bearer"},{path:'/',expires: dt});
-      localStorage.clear()
-      console.log(Cookie.load('userToken').token);
+      localStorage.clear();
       history.replace();
     }
   },[dt]);
@@ -71,7 +69,6 @@ function MainPage(props) {
       fetch(url)
           .then(response => response.text())
           .then(result => {
-              console.log(result);
               setThyme(result);
           });
 

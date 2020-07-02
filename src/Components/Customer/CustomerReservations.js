@@ -48,7 +48,6 @@ export default function CustomerReservations(props){
     ref.current = "";
 
     useEffect(() => {
-      console.log(props.reservation);
       fetchReservations();
     },[]);
 
@@ -75,7 +74,6 @@ export default function CustomerReservations(props){
           (reservation.paid === search.paid)
         )
       }).map((reservation) => reservation);
-      console.log(searched);
       setSearchedReservations(searched);
     }
 
@@ -83,8 +81,6 @@ export default function CustomerReservations(props){
         let payload = {
           "userID": props.accountData.id,
         }
-
-      console.log(payload);
 
       const url = "https://localhost:8443/api/tickets/listByClientID";
 
@@ -101,7 +97,6 @@ export default function CustomerReservations(props){
       fetch(url, options)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           setReservations(result);
         });
     }
