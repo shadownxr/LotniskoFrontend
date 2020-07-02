@@ -1,55 +1,54 @@
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
-import { shallow } from 'enzyme';
-import EmployeeViewPlanes from "../Employee/ManageAirports/EmployeeViewAirports";
-import AddAirportButton from "../Employee/ManageAirports/AddAirportButton";
-import EmployeeViewAirportsList from "../Employee/ManageAirports/EmployeeViewAirportsList";
+import { shallow } from 'enzyme';;
 
+import EmployeeViewAirportsList from "../Employee/ManageAirports/EmployeeViewAirportsList";
 
 configure({ adapter: new Adapter() });
 
+
+const Test = {id:0, airportName:"Test", cityName:"Testowo"};
+
+const Test2 = {id:0, airportName:"Test2", cityName:"Testowo2"};
+
+
+const airports = [Test, Test2]
+
 it('renders without crashing', () => {
-    shallow(<EmployeeViewPlanes />);
-});
-
-it('includes AddAirportButton', () => {
-    const app = shallow(<EmployeeViewPlanes />);
-    expect(app.containsMatchingElement(<AddAirportButton />)).toEqual(true)
-});
-it('includes EmployeeViewAirportsList', () => {
-    const app = shallow(<EmployeeViewPlanes />);
-    expect(app.containsMatchingElement(<EmployeeViewAirportsList />)).toEqual(true)
+    shallow(<EmployeeViewAirportsList airportsData={airports}/>);
 });
 
 
-it('Opens and displayes text', () => {
-    const usersList = shallow(<AddAirportButton search={() => {setSearch()}} />);
-    expect(usersList.text()).toContain("Dodaj samolotAnulujDodaj")
-});
-
-
-
-it(`shows a list of planes`, () => {
-    const airport = [];
-    airport.id = "13";
-    airport.airportName="TestoweLotnisko";
-    airport. cityName="Testowe";
-
-    let list = shallow(<EmployeeViewAirportsList airportsData={airport} />);
-    expect(list.find('li').length).toEqual(airport.length);
+describe('Passing employees works', () => {
+    const list = shallow(<EmployeeViewAirportsList airportsData={airports}/>);
+    it(`it has employees`, () => {
+        expect(list.containsMatchingElement(Test)).toEqual(true)
+    });
 });
 
 describe('Passing employees works', () => {
-    const name = "TestoweLotnisko";
+    const list = shallow(<EmployeeViewAirportsList airportsData={airports}/>);
+    it(`it has employees`, () => {
+        expect(list.containsMatchingElement(Test2)).toEqual(true)
+    });
+});
 
-    const airport = [];
-    airport.id = "13";
-    airport.airportName="TestoweLotnisko";
-    airport. cityName="Testowe";
+it('renders without crashing', () => {
+    shallow(<EmployeeViewAirportsList airportsData={airports}/>);
+});
 
-    let list = shallow(<EmployeeViewAirportsList airportsData={airport} />);
-    it(`it passes airport`, () => {
-        expect(list.containsMatchingElement(name)).not.toEqual(true)
+
+describe('Passing employees works', () => {
+    const list = shallow(<EmployeeViewAirportsList airportsData={airports}/>);
+    it(`it has employees`, () => {
+        expect(list.containsMatchingElement(Test)).toEqual(true)
+    });
+});
+
+describe('Passing employees works', () => {
+    const list = shallow(<EmployeeViewAirportsList airportsData={airports}/>);
+    it(`it has employees`, () => {
+        expect(list.containsMatchingElement(Test2)).toEqual(true)
     });
 });
