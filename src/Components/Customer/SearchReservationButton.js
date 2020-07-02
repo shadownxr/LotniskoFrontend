@@ -14,6 +14,10 @@ const MyButton = styled(Button)({
   color: 'white'
 });
 
+/**
+ * Dialog to search reservations
+ * @param {search} props 
+ */
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
     const [dateFrom, setDateFrom] = useState('');

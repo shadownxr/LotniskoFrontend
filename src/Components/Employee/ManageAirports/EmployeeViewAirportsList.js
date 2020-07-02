@@ -22,6 +22,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Rows of EmployeeVieAirports array
+ * @param {airportsData} props 
+ */
 export default function EmployeeViewPlanesList(props){
     const airportsList = props.airportsData.map((airport,i) => {
         return(

@@ -11,6 +11,10 @@ const MyButton = styled(Button)({
   color: 'black'
 });
 
+/**
+ * Renders more data about choosen flight
+ * @param {flight} props 
+ */
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
 

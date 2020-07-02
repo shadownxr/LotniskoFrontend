@@ -8,6 +8,10 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import './Authorization.css';
 
+/**
+ * Sign Up form
+ * @param {refresh} props 
+ */
 export default function SignUp(props){
     const [open, setOpen] = React.useState(false);
     const [password, setPassword] = React.useState('');
@@ -98,11 +102,7 @@ export default function SignUp(props){
           "name": name,
           "surname": surename
         }
-  
 
-
-        console.log(payload);
-  
         const options = {
           method: 'POST',
           headers: {
@@ -117,7 +117,6 @@ export default function SignUp(props){
         fetch(url, options)
           .then(response => response.json())
           .then(result => {
-            console.log(result);
               if(result.message === "Error: Username is already taken!"){
               setErr("Username is already taken!");
               return

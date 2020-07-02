@@ -22,6 +22,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Renders rows in EmployeeViewPlanes array
+ * @param {planesData} props 
+ */
 export default function EmployeeViewPlanesList(props){
     const planesList = props.planesData.map((plane,i) => {
             return(

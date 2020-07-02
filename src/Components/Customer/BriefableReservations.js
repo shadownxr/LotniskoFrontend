@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders array with briefable reservations
+ * @param {refresh,accountData} props 
+ */
 export default function BriefableReservations(props){
     const [reservations,setReservations] = useState([]);
     const [refresh,setRefresh] = useState(props.refresh);
@@ -54,8 +58,6 @@ export default function BriefableReservations(props){
           "userID": props.accountData.id,
         }
 
-      console.log(payload);
-
       const url = "https://localhost:8443/api/tickets/listByClientID";
 
       const options = {
@@ -71,7 +73,6 @@ export default function BriefableReservations(props){
       fetch(url, options)
         .then(response => response.json())
         .then(result => {
-          console.log(result);
           setReservations(result);
         });
     }

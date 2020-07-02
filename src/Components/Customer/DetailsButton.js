@@ -11,6 +11,10 @@ const MyButton = styled(Button)({
   color: 'black'
 });
 
+/**
+ * Shows detailed data about reservation
+ * @param {reservation} props 
+ */
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
 

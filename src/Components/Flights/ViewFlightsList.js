@@ -25,6 +25,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Render rows in ViewFlights component
+ * @param {accountData, flightsData} props 
+ */
 export default function ViewFlightsList(props){
     const flightList = props.flightsData.map((flight,i) => {
         return(

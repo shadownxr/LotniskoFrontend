@@ -15,7 +15,10 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
-
+/**
+ * Button to add plane
+ * @param {refresh} props 
+ */
 export default function AddPlaneButton(props){
     const [open, setOpen] = useState(false);
     const [airports,setAirports] = useState([]);
@@ -51,7 +54,6 @@ export default function AddPlaneButton(props){
     };
 
     const handleAdd = () => {
-        console.log(airportId+" "+businessSeats+" "+ecoSeats+" "+name);
         fetchAddPlane();
         setOpen(false);
 
@@ -63,9 +65,6 @@ export default function AddPlaneButton(props){
             "ecoSeats": ecoSeats,
             "name": name,
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
 
         const options = {
             method: 'POST',
@@ -82,12 +81,10 @@ export default function AddPlaneButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: Invalid airport!") {
                     setErr("Wybrane nieprawidłowe lotnisko");
                     return
                 } else if(result.message === "Plane added successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }
@@ -108,7 +105,6 @@ export default function AddPlaneButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setAirports(result);
             });
     }

@@ -1,7 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/button';
-import red from "@material-ui/core/colors/red";
 
+/**
+ * Menu for user that is not logged in
+ * @param {menuChoice} props 
+ */
 export default function NoLoginMenu(props){
     const handleMenuChoice = (choice) => {
         props.menuChoice(choice);

@@ -14,7 +14,10 @@ const MyButton = styled(Button)({
     color: 'black'
 });
 
-
+/**
+ * Button to edit flight
+ * @param {lot,refresh} props 
+ */
 export default function EditFlightButton(props){
     const [open, setOpen] = useState(false);
     const [starts, setStarts] = useState('');
@@ -39,7 +42,6 @@ export default function EditFlightButton(props){
 
 
     const handleEdit = () => {
-        console.log(props.lot+" "+starts+" "+ends);
         fetchEditFlight();
         setOpen(false);
 
@@ -50,9 +52,6 @@ export default function EditFlightButton(props){
             "newStart": starts,
             "newEnd": ends,
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
 
         const options = {
             method: 'POST',
@@ -69,7 +68,6 @@ export default function EditFlightButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: No such flight!") {
                     setErr("Wybrany lot już nie istnieje");
                     return
@@ -77,7 +75,6 @@ export default function EditFlightButton(props){
                     setErr("Niepoprawna data");
                     return;
                 } else if(result.message === "Flight edited successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }

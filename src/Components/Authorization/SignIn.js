@@ -10,6 +10,10 @@ import './Authorization.css';
 import { useCookies } from 'react-cookie';
 import Facebook from './Facebook';
 
+/**
+ * Sign In form
+ * @param {accountData} props 
+ */
 export default function SignIn(props){
     const [open, setOpen] = useState(false);
     const [password, setPassword] = useState('');

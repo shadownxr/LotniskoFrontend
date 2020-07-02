@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomerUserMenu test Renders when loaded 1`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders when loaded 2`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders when loaded 3`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders when loaded 4`] = `ShallowWrapper {}`;

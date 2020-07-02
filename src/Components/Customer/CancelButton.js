@@ -12,6 +12,10 @@ const MyButton = styled(Button)({
   color: 'black'
 });
 
+/**
+ * Button used to cancel reservation
+ * @param {reservation} props 
+ */
 export default function CancelButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');
@@ -34,8 +38,6 @@ export default function CancelButton(props){
             "id": props.reservation.id
         }
 
-        console.log(payload);
-
         const url = "https://localhost:8443/api/tickets/delete";
   
         const options = {
@@ -51,7 +53,6 @@ export default function CancelButton(props){
         fetch(url, options)
           .then(response => response.json())
           .then(result => {
-            console.log(result);
             props.refresh(true);
             setOpen(false);
           });

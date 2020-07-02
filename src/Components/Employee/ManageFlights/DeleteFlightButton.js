@@ -13,7 +13,10 @@ const MyButton = styled(Button)({
     color: 'black'
 });
 
-
+/**
+ * Button to delete flight
+ * @param {lot,refresh} props 
+ */
 export default function DeleteFlightButton(props){
     const [open, setOpen] = useState(false);
     const [err, setErr] = useState('');
@@ -28,7 +31,6 @@ export default function DeleteFlightButton(props){
     };
 
     const handleFire = () => {
-        console.log(props.lot);
         fetchDeleteFlight();
         setOpen(false);
     }
@@ -37,10 +39,6 @@ export default function DeleteFlightButton(props){
         let payload = {
             "id": props.lot
         }
-
-        console.log(payload);
-        console.log(Cookie.load('userToken').token);
-
 
         const options = {
             method: 'DELETE',
@@ -57,12 +55,10 @@ export default function DeleteFlightButton(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 if(result.message === "Error: No such flight!"){
                     setErr("Wybrany lot nie istnieje lub został już usunięty");
                     return
                 } else if(result.message === "Flight removed successfully!"){
-                    console.log(result);
                     props.refresh(true);
                     setOpen(false);
                 }

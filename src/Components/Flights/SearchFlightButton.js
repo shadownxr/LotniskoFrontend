@@ -13,9 +13,12 @@ const MyButton = styled(Button)({
   color: 'white'
 });
 
+/**
+ * Dialog used to search through flights
+ * @param {search} props 
+ */
 export default function SearchButton(props){
     const [open, setOpen] = useState(false);
-    //const [dateTo, setDateTo] = useState('');
     const [dateFrom, setDateFrom] = useState('');
     const [from, setFrom] = useState('');
     const [to, setTo] = useState('');
@@ -41,10 +44,6 @@ export default function SearchButton(props){
     const handleDateFrom = (event) => {
       setDateFrom(event.target.value);
     }
-
-    /*const handleDateTo = (event) => {
-      setDateTo(event.target.value);
-    }*/
 
     const handleSearch = () => {
       if(from&&to&&dateFrom){
@@ -92,16 +91,6 @@ export default function SearchButton(props){
                 shrink: true,
               }}
           />
-          {/*<TextField
-              id="date"
-              label="Data odlotu do"
-              type="date"
-              value={dateTo}
-              onChange={handleDateTo}
-              InputLabelProps={{
-                shrink: true,
-              }}
-          />*/}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

@@ -1,6 +1,10 @@
 import React from 'react';
 import Button from '@material-ui/core/button';
 
+/**
+ * Employee menu
+ * @param {menuChoice} props 
+ */
 export default function EmployeeUserMenu(props){
     const handleMenuChoice = (choice) => {
         props.menuChoice(choice);

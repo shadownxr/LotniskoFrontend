@@ -4,10 +4,13 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+/**
+ * Form to choose seat in a plane
+ * @param {reservation,seat,screen} props 
+ */
 export default function SeatChooser(props){
     const [value,setValue] = useState("");
     const [seats,setSeats] = useState([]);
-    console.log(props.reservation);
 
     useEffect(() => {
         fetchFreeSeats();

@@ -23,6 +23,10 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
+/**
+ * Rows of ViewEmployees array
+ * @param {employeesData} props 
+ */
 export default function ViewEmployeesList(props){
     const employeesList = props.employeesData.map((employee,i) => {
         if(employee.firingDate==null){

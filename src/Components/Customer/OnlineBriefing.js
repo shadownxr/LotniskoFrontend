@@ -4,6 +4,10 @@ import UserDataForm from './UserDataForm';
 import TicketPrinter from './TicketPrinter';
 import SeatChooser from './SeatChooser';
 
+/**
+ * Component that simiulates briefing
+ * @param {accountData} props 
+ */
 export default function OnlineBriefing(props){
     const [briefingScreen, setBriefingScreen] = useState(1);
     const [reservation, setReservation] = useState([]);

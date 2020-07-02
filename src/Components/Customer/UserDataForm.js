@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+/**
+ * Form for ticket data
+ * @param {ticketData, screen} props 
+ */
 export default function UserDataForm(props){
     const [date, setDate] = useState('');
     const [name, setName] = useState('');

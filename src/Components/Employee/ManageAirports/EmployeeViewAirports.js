@@ -34,6 +34,10 @@ const useStyles = makeStyles({
     },
 });
 
+/**
+ * Renders airports
+ * @param {*} props 
+ */
 export default function EmployeeViewPlanes(props){
     const [airports,setAirports] = useState([]);
     const [refresh,setRefresh] = useState(true);
@@ -59,7 +63,6 @@ export default function EmployeeViewPlanes(props){
         fetch(url, options)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
                 setAirports(result);
             });
     }

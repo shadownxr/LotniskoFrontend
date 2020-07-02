@@ -13,6 +13,10 @@ const MyButton = styled(Button)({
     color: 'white'
 });
 
+/**
+ * Button for searching employees
+ * @param {search} props 
+ */
 export default function SearchEmployeeButton(props){
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
