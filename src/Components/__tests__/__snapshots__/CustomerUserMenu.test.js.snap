@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomerUserMenu test Renders CustomerReservations menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders OnlineBriefing on change 1`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders ViewFlights menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`CustomerUserMenu test Renders when loaded 1`] = `ShallowWrapper {}`;

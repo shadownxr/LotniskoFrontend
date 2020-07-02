@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserMenu test Renders AboutUsPage menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders AccountPage on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders CustomerReservations menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders EmployeeViewAirportsmenu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders EmployeeViewFlights menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders EmployeeViewPlanes menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders Main Page menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders Main Page menu on change 2`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders NewsPage menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders OnlineBriefing menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders OnlineBriefing on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders ViewEmployees menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders ViewFiredEmployees menu on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders ViewFlights on change 1`] = `ShallowWrapper {}`;
+
+exports[`UserMenu test Renders when loaded 1`] = `ShallowWrapper {}`;
