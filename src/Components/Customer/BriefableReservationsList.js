@@ -43,7 +43,7 @@ export default function BriefableReservationsList(props){
                 <StyledTableCell align="center">{new Date(reservation.flightID.startDate).toLocaleDateString()}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.className}</StyledTableCell>
                 <StyledTableCell align="center">
-                    <Button onClick={() => handleBriefing(reservation)}>Odpraw</Button>
+                    <Button onClick={() => handleBriefing(reservation)}>Check-in</Button>
                 </StyledTableCell>
             </StyledTableRow>
         )

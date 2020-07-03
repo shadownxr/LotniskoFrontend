@@ -70,7 +70,7 @@ export default function DeleteFlightButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><DeleteForever style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Czy na pewno chcesz usunąć lot?</DialogTitle>
+                <DialogTitle id="form-dialog-title">Are you sure you want to cancel this flight?</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
@@ -79,10 +79,10 @@ export default function DeleteFlightButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Nie
+                        No
                     </Button>
                     <Button onClick={handleFire} color="primary">
-                        Tak
+                        Yes
                     </Button>
                 </DialogActions>
             </Dialog>

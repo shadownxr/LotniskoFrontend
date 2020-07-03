@@ -84,9 +84,9 @@ function MainPage(props) {
           <div className="Login"><AccountStatus accountData={(accountData) => {setAccountData(accountData)}} menuChoice={(choice) => setMenuChoice(choice)} accountData2={accountData} refresh={(refresh) => {setRefresh(true)}}/></div>
           <div className="AirportPageMenu">
             <div className="AirportMenuButtonCluster">
-                <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>Strona główna</Button>
-                <Button className={"menuButton"} onClick={() => setMenuChoice("News")}>Nowości</Button>
-                <Button className={"menuButton"} onClick={() => setMenuChoice("About Us")}>O nas</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("Main Page")}>HOME</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("News")}>NEWS</Button>
+                <Button className={"menuButton"} onClick={() => setMenuChoice("About Us")}>ABOUT</Button>
             </div>
           </div>
         </div>

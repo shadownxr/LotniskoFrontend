@@ -113,13 +113,13 @@ export default function AddPlaneButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Dodaj samolot</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add plane</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
                     </DialogContentText>
                     <Autocomplete
-                        id="airportId"
+                        id="Airport"
                         options={airports}
                         getOptionLabel={(option) => option.airportName}
                         style={{ width: 300 }}
@@ -130,7 +130,7 @@ export default function AddPlaneButton(props){
                         autoFocus
                         margin="dense"
                         id="businessSeats"
-                        label="Miejsca biznesowe"
+                        label="Business class seats"
                         type="text"
                         onChange={handleBusinessSeats}
                         fullWidth
@@ -139,7 +139,7 @@ export default function AddPlaneButton(props){
                         autoFocus
                         margin="dense"
                         id="ecoSeats"
-                        label="Miejsca ekonomii"
+                        label="Economic class seats"
                         type="text"
                         onChange={handleEcoSeats}
                         fullWidth
@@ -148,7 +148,7 @@ export default function AddPlaneButton(props){
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Nazwa"
+                        label="Name"
                         type="text"
                         onChange={handleName}
                         fullWidth
@@ -156,10 +156,10 @@ export default function AddPlaneButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleAdd} color="primary">
-                        Dodaj
+                        Add
                     </Button>
                 </DialogActions>
             </Dialog>

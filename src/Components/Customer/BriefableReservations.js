@@ -83,13 +83,13 @@ export default function BriefableReservations(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Możliwe odprawy</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Check-in</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={2}>Z</StyledTableCell>
-                            <StyledTableCell align="center" colSpan={2}>Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Klasa</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={2}>From</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={2}>To</StyledTableCell>
+                            <StyledTableCell align="center">Departure</StyledTableCell>
+                            <StyledTableCell align="center">Class</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton /></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

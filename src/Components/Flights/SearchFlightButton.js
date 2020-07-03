@@ -47,10 +47,10 @@ export default function SearchButton(props){
 
     const handleSearch = () => {
       if(from&&to&&dateFrom){
-        props.search({from: from, to: to, dateFrom: dateFrom});
+          props.search({from: from, to: to, dateFrom:dateFrom});
         setOpen(false);
       } else {
-        setErr("Wypełnij wszystkie pola!");
+        setErr("All fields must be filled!");
       }
     }
 
@@ -58,17 +58,17 @@ export default function SearchButton(props){
       <div>
       <MyButton color="primary" onClick={handleClickOpen}><SearchIcon style={{height:'35px',width:'35px'}}/></MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
+        <DialogTitle id="form-dialog-title">Search</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Podaj miejsce początkowe, dolecowe, datę odlotu i klasę<br/>
+            <br/>
             {err}
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="from"
-            label="Miejsce początkowe"
+            label="From"
             type="text"
             onChange={handleFrom}
             fullWidth
@@ -76,14 +76,14 @@ export default function SearchButton(props){
           <TextField
             margin="dense"
             id="to"
-            label="Miejsce Docelowe"
+            label="To"
             type="text"
             onChange={handleTo}
             fullWidth
           />
           <TextField
               id="date"
-              label="Data odlotu od"
+              label="No earlier than"
               type="date"
               value={dateFrom}
               onChange={handleDateFrom}
@@ -94,10 +94,10 @@ export default function SearchButton(props){
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Anuluj
+            Cancel
           </Button>
           <Button onClick={handleSearch} color="primary">
-            Szukaj
+            Search
           </Button>
         </DialogActions>
       </Dialog>

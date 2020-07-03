@@ -101,13 +101,13 @@ export default function AddFlightButton(props){
             .then(response => response.json())
             .then(result => {
                 if(result.message === "Error: Invalid source airport!") {
-                    setErr("Wybrane lostnisko źródłowe nie istnieje");
+                    setErr("Error: Invalid source airport!");
                     return
                 } else if(result.message === "Error: Invalid plane id!"){
-                    setErr("Wybrany samolot nie istnieje");
+                    setErr("Error: Invalid plane id!");
                     return
                 } else if(result.message === "Error: Invalid destination airport!"){
-                    setErr("Wybrane lostnisko docelowe nie istnieje");
+                    setErr("Error: Invalid destination airport!");
                     return;
                 } else if(result.message === "Flight added successfully!"){
                     props.refresh(true);
@@ -155,7 +155,7 @@ export default function AddFlightButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Dodaj lot</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add flight</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
@@ -229,10 +229,10 @@ export default function AddFlightButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleAdd} color="primary">
-                        Dodaj
+                        Add
                     </Button>
                 </DialogActions>
             </Dialog>

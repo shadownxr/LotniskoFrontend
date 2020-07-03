@@ -49,7 +49,7 @@ export default function SeatChooser(props){
     return(
         <div>
             <div style={{display:"flex",flexDirection:"column",backgroundColor:"white",justifyContent:"center",alignItems:"center"}}>
-                <div style={{flex:"1"}}>Wybierz miejsce</div>
+                <div style={{flex:"1"}}>Select seat</div>
                   <div style={{flex:"2"}}>
                     <Autocomplete
                       onChange={(event, newValue) => {

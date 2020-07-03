@@ -30,20 +30,20 @@ export default function SearchButton(props){
       <div>
       <MyButton color="primary" onClick={handleClickOpen}>Szczegóły</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Szczegóły</DialogTitle>
+        <DialogTitle id="form-dialog-title">Details</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Z : {props.reservation.flightID.sapid.airportName}  || Lotnisko : {props.reservation.flightID.sapid.cityName} <br/>
-            Do : {props.reservation.flightID.dapid.airportName} || Lotnisko : {props.reservation.flightID.dapid.cityName} <br/>
-            Data wylotu : {new Date(props.reservation.flightID.startDate).toLocaleDateString()} <br/>
-            Data przylotu : {new Date(props.reservation.flightID.endDate).toLocaleDateString()} <br/>
-            Cena za bilet : {props.reservation.price} <br/>
-            Klasa : {props.reservation.className} <br/>
+            From: {props.reservation.flightID.sapid.airportName} | {props.reservation.flightID.sapid.cityName} <br/>
+            To: {props.reservation.flightID.dapid.airportName} | {props.reservation.flightID.dapid.cityName} <br/>
+            Departure: {new Date(props.reservation.flightID.startDate).toUTCString()} <br/>
+            Arrival: {new Date(props.reservation.flightID.endDate).toUTCString()} <br/>
+            Price : {props.reservation.price} <br/>
+            Class : {props.reservation.className} <br/>
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Wróć
+            Close
           </Button>
         </DialogActions>
       </Dialog>

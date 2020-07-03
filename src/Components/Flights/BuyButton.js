@@ -37,7 +37,7 @@ export default function SearchButton(props){
       setOpen(close);
     };
 
-    const ticketClasses = ['Economic','Buisness'];
+    const ticketClasses = ['Economic','Business'];
 
     return (
       <div>
@@ -46,7 +46,7 @@ export default function SearchButton(props){
         <DialogTitle id="form-dialog-title">Kup</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Wybierz klasę<br/>
+            Ticket class<br/>
             {err}
           </DialogContentText>
           <Autocomplete
@@ -56,13 +56,13 @@ export default function SearchButton(props){
             id="class"
             options={ticketClasses}
             style={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label={"Klasa"} variant="outlined" />}
+            renderInput={(params) => <TextField {...params} label={"Class"} variant="outlined" />}
           />
         </DialogContent>
         <PaypalButton flightId={props.flightId} accountData={props.accountData} ticketClass={ticketClass} flightCost={(ticketClass === "Economic")?props.flight.priceEconomic:props.flight.priceBuisness} close={(close) => handleClosePaypal(close)}/>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Anuluj
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

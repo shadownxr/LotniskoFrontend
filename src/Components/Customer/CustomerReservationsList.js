@@ -37,7 +37,7 @@ export default function CustomerReservationsList(props){
                 <StyledTableCell align="center">{new Date(reservation.flightID.startDate).toLocaleDateString()}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.className}</StyledTableCell>
                 <StyledTableCell align="center">{reservation.price}USD</StyledTableCell>
-                <StyledTableCell align="center">{(reservation.paid===false)?"Nie":"Tak"}</StyledTableCell>
+                <StyledTableCell align="center">{(reservation.paid===false)?"No":"Yes"}</StyledTableCell>
                 <StyledTableCell align="center">
                     <div style={{display:"flex",justifyContent:"center"}}>
                         <DetailsButton reservation={reservation}/>

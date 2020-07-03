@@ -62,10 +62,10 @@ export default function CancelButton(props){
       <div>
       <MyButton color="primary" onClick={handleClickOpen}>Usuń</MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Usuń rezerwację</DialogTitle>
+        <DialogTitle id="form-dialog-title">Cancel</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Czy napewno chcesz usunąć rezerwacje?<br/>
+            Do you really want to cancel this flight?<br/>
             {err}
           </DialogContentText>
         </DialogContent>

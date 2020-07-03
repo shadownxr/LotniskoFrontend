@@ -49,7 +49,7 @@ export default function UserDataForm(props){
         props.ticketData({name: name, surename: surename, birthDate: date, country: country, address: address, street: street, homeNr: homeNr});
         props.screen(3);
       } else {
-        setErr("Wypełnij wszystkie pola !");
+        setErr("All fields must be filled!");
       }
     }
 
@@ -60,48 +60,48 @@ export default function UserDataForm(props){
             autoFocus
             margin="dense"
             id="name"
-            label="Imie"
+            label="Name"
             type="text"
             onChange={handleName}
         /><br/>
         <TextField
             margin="dense"
             id="surename"
-            label="Nazwisko"
+            label="Surname"
             type="text"
             onChange={handleSurename}
         /><br/>
         <TextField
             margin="dense"
             id="country"
-            label="Kraj"
+            label="Country"
             type="text"
             onChange={handleCountry}
         /><br/>
         <TextField
             margin="dense"
             id="address"
-            label="Miejscowość"
+            label="City"
             type="text"
             onChange={handleAddress}
         /><br/>
         <TextField
             margin="dense"
             id="street"
-            label="Ulica"
+            label="Street"
             type="text"
             onChange={handleStreet}
         /><br/>
         <TextField
             margin="dense"
             id="homenr"
-            label="Nr. Domu/Mieszkania"
+            label="Home Number"
             type="text"
             onChange={handleHomeNr}
         /><br/>
         <TextField
             id="date"
-            label="Data urodzenia"
+            label="DOB"
             type="date"
             value={date}
             onChange={handleDate}
@@ -109,7 +109,7 @@ export default function UserDataForm(props){
               shrink: true,
             }}
         /><br/>
-        <Button onClick={() => handleNext()}>Dalej</Button>
+        <Button onClick={() => handleNext()}>Next</Button>
     </div>
     )
 }

@@ -73,7 +73,7 @@ export default function AddAirportButton(props){
             .then(response => response.json())
             .then(result => {
                 if(result.message === "Error: Code is already taken!") {
-                    setErr("Wybrany kod jest już zajęty");
+                    setErr("Error: Code is already taken!");
                     return
                 } else if(result.message === "Airport added successfully!"){
                     props.refresh(true);
@@ -87,7 +87,7 @@ export default function AddAirportButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Add style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Dodaj samolot</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add airport</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
@@ -96,7 +96,7 @@ export default function AddAirportButton(props){
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Nazwa"
+                        label="Name"
                         type="text"
                         onChange={handleName}
                         fullWidth
@@ -105,7 +105,7 @@ export default function AddAirportButton(props){
                         autoFocus
                         margin="dense"
                         id="code"
-                        label="Kod"
+                        label="Code"
                         type="text"
                         onChange={handleCode}
                         fullWidth
@@ -114,7 +114,7 @@ export default function AddAirportButton(props){
                         autoFocus
                         margin="dense"
                         id="city"
-                        label="Miasto"
+                        label="Location"
                         type="text"
                         onChange={handleCity}
                         fullWidth
@@ -123,10 +123,10 @@ export default function AddAirportButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleAdd} color="primary">
-                        Dodaj
+                        Add
                     </Button>
                 </DialogActions>
             </Dialog>

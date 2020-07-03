@@ -39,7 +39,7 @@ export default function SearchPlaneButton(props){
             props.search({planeName: planeName});
             setOpen(false);
         } else {
-            setErr("Wypełnij pole!");
+            setErr("Name field must be filled!");
         }
     }
 
@@ -47,17 +47,17 @@ export default function SearchPlaneButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><SearchIcon style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
+                <DialogTitle id="form-dialog-title">Search</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Podaj nazwe samolotu<br/>
+                        Enter plane name<br/>
                         {err}
                     </DialogContentText>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="planeName"
-                        label="Nazwa"
+                        label="name"
                         type="text"
                         onChange={handleId}
                         fullWidth
@@ -65,10 +65,10 @@ export default function SearchPlaneButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleSearch} color="primary">
-                        Szukaj
+                        Go
                     </Button>
                 </DialogActions>
             </Dialog>

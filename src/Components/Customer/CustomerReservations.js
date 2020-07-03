@@ -107,15 +107,15 @@ export default function CustomerReservations(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={8}>Moje rezerwacje</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={8}>My tickets</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Klasa</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
-                            <StyledTableCell align="center">Przeprowadzona odprawa</StyledTableCell>
+                            <StyledTableCell align="center">From</StyledTableCell>
+                            <StyledTableCell align="center">To</StyledTableCell>
+                            <StyledTableCell align="center">Departure</StyledTableCell>
+                            <StyledTableCell align="center">Class</StyledTableCell>
+                            <StyledTableCell align="center">Price</StyledTableCell>
+                            <StyledTableCell align="center">Check-in</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

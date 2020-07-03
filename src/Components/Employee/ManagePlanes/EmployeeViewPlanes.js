@@ -91,12 +91,12 @@ export default function EmployeeViewPlanes(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={7}>Przeglądarka samolotów</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={7}>Planes</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Nazwa</StyledTableCell>
-                            <StyledTableCell align="center">Miejsca ekonomiczne</StyledTableCell>
-                            <StyledTableCell align="center">Miejsca biznesowe</StyledTableCell>
+                            <StyledTableCell align="center">Name</StyledTableCell>
+                            <StyledTableCell align="center">Economic seats</StyledTableCell>
+                            <StyledTableCell align="center">Business seats</StyledTableCell>
                             <StyledTableCell align="center">
                                 <SearchPlaneButton search={(search) => {setSearch(search)}}/>
                                 <AddPlaneButton refresh={(refresh) => {setRefresh(true)}}/>

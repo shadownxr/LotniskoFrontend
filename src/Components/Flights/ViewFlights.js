@@ -58,6 +58,7 @@ export default function ViewFlights(props){
 
     const handleSearch = () => {
       let searched = flights.filter((flight) => {
+          console.log(search.from + "->" + search.to)
         return(
           (flight.sapid.cityName === search.from) && 
           (flight.dapid.cityName === search.to) && 
@@ -87,13 +88,13 @@ export default function ViewFlights(props){
                 <Table className={useStyles().table} aria-label="simple table">
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell align="center" colSpan={6}>Dostępne loty</StyledTableCell>
+                            <StyledTableCell align="center" colSpan={6}>Available Flights</StyledTableCell>
                         </StyledTableRow>
                         <StyledTableRow>
-                            <StyledTableCell align="center">Z</StyledTableCell>
-                            <StyledTableCell align="center">Do</StyledTableCell>
-                            <StyledTableCell align="center">Data wylotu</StyledTableCell>
-                            <StyledTableCell align="center">Cena</StyledTableCell>
+                            <StyledTableCell align="center">From</StyledTableCell>
+                            <StyledTableCell align="center">To</StyledTableCell>
+                            <StyledTableCell align="center">Departure</StyledTableCell>
+                            <StyledTableCell align="center">Price</StyledTableCell>
                             <StyledTableCell align="center"><SearchButton search={(search) => {setSearch(search)}}/></StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

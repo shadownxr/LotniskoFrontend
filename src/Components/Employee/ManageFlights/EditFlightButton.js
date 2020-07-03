@@ -69,10 +69,10 @@ export default function EditFlightButton(props){
             .then(response => response.json())
             .then(result => {
                 if(result.message === "Error: No such flight!") {
-                    setErr("Wybrany lot już nie istnieje");
+                    setErr("Error: No such flight!");
                     return
                 } else if(result.message === "Error: Invalid date!"){
-                    setErr("Niepoprawna data");
+                    setErr("Invalid date and time");
                     return;
                 } else if(result.message === "Flight edited successfully!"){
                     props.refresh(true);
@@ -86,7 +86,7 @@ export default function EditFlightButton(props){
         <div>
             <MyButton color="primary" onClick={handleClickOpen}><Edit style={{height:'35px',width:'35px'}}/></MyButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Edytuj lot</DialogTitle>
+                <DialogTitle id="form-dialog-title">Edit</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         {err}
@@ -95,7 +95,7 @@ export default function EditFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="starts"
-                        label="Data wylotu"
+                        label="Departure"
                         type="datetime-local"
                         onChange={handleStarts}
                         //defaultValue = {props.startuje}
@@ -107,7 +107,7 @@ export default function EditFlightButton(props){
                         autoFocus
                         margin="dense"
                         id="ends"
-                        label="Data przylotu"
+                        label="Arrival"
                         type="datetime-local"
                         onChange={handleEnds}
                         //defaultValue = {props.koniec}
@@ -118,10 +118,10 @@ export default function EditFlightButton(props){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
-                        Anuluj
+                        Cancel
                     </Button>
                     <Button onClick={handleEdit} color="primary">
-                        Edytuj
+                        Apply
                     </Button>
                 </DialogActions>
             </Dialog>

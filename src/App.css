@@ -56,6 +56,12 @@
   position: relative;
 }
 
+.MainPage {
+  text-align: left;
+  padding: 10px;
+    font-size: 32px;
+}
+
 .UserMenu {
   color: #e4e67e;
   flex: 1;
@@ -64,12 +70,12 @@
 }
 
 .Content {
-  flex: 2;
-  min-height: 95%;
-  background-color: #87dfd6;
-  display: flex;
-  align-content: center;
-  justify-content: center;
+    flex: 2;
+    min-height: 95%;
+    background-color: #87dfd6;
+    display: flex;
+    align-content: center;
+    justify-content: center;
 }
 
 .ContentContainer {

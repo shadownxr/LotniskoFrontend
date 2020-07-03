@@ -62,17 +62,17 @@ export default function SearchButton(props){
       <div>
       <MyButton color="primary" onClick={handleClickOpen}><SearchIcon style={{height:'35px',width:'35px'}}/></MyButton>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Szukaj</DialogTitle>
+        <DialogTitle id="form-dialog-title">Search</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Podaj miejsce początkowe, dolecowe, datę odlotu i klasę<br/>
+           <br/>
             {err}
           </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="from"
-            label="Miejsce początkowe"
+            label="From"
             type="text"
             onChange={handleFrom}
             fullWidth
@@ -80,7 +80,7 @@ export default function SearchButton(props){
           <TextField
             margin="dense"
             id="to"
-            label="Miejsce Docelowe"
+            label="To"
             type="text"
             onChange={handleTo}
             fullWidth
@@ -98,7 +98,7 @@ export default function SearchButton(props){
           />
           <TextField
               id="date"
-              label="Data odlotu od"
+              label="Departure"
               type="date"
               value={dateFrom}
               onChange={handleDateFrom}
@@ -109,10 +109,10 @@ export default function SearchButton(props){
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Anuluj
+            Cancel
           </Button>
           <Button onClick={handleSearch} color="primary">
-            Szukaj
+            Search
           </Button>
         </DialogActions>
       </Dialog>
