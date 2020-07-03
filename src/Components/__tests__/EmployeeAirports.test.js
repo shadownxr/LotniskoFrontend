@@ -25,7 +25,7 @@ it('includes EmployeeViewAirportsList', () => {
 
 it('Opens and displayes text', () => {
     const usersList = shallow(<AddAirportButton search={() => {setSearch()}} />);
-    expect(usersList.text()).toContain("Dodaj samolotAnulujDodaj")
+    expect(usersList.text()).toContain("Add airportCancelAdd")
 });
 
 

@@ -29,12 +29,12 @@ it('includes EmployeeViewAirportsList', () => {
 
 it('Opens and displayes text', () => {
     const usersList = shallow(<AddFlightButton search={() => {setSearch()}} />);
-    expect(usersList.text()).toContain("Dodaj lotAnulujDodaj")
+    expect(usersList.text()).toContain("Add flightCancelAdd")
 });
 
 it('Opens and displayes text', () => {
     const usersList = shallow(<SearchFlightButton search={() => {setSearch()}} />);
-    expect(usersList.text()).toContain("SzukajPodaj miejsce początkowe, dolecowe, datę odlotu i klasęAnulujSzukaj")
+    expect(usersList.text()).toContain("SearchCancelSearch")
 });
 
 

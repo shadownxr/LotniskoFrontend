@@ -35,7 +35,7 @@ it('includes EmployeeViewAirportsList', () => {
 
 it('Opens and displayes text', () => {
     const usersList = shallow(<SearchButton flightId={flight.id} accountData={accountData} flight={flight} />);
-    expect(usersList.text()).toContain("KupKupWybierz klasę<ScriptLoader />Anuluj")
+    expect(usersList.text()).toContain("KupKupTicket class<ScriptLoader />Cancel")
 });
 
 
